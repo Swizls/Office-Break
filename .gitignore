@@ -1,0 +1,40 @@
+/Office Break/Library/
+/Office Break/Temp/
+/Office Break/Obj/
+/Office Break/obj/
+/Office Break/Build/
+/Office Break/ProjectSettings/Packages/com.unity.probuilder/Settings.json
+/Builds/
+/Office Break/Logs/
+/Office Break/UserSettings/
+/Office Break/Assets/Thirdparty
+
+ExportedObj/
+.consulo/
+.vs
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+sysinfo.txt
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+*.app

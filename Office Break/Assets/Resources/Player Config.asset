@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0612da0c21c5e4c8fa6cd9cc2b6258, type: 3}
+  m_Name: Player Config
+  m_EditorClassIdentifier: 
+  _walkingSpeed: 5
+  _spritingMultiplier: 2
+  _movementInertia: 1
+  _maxStamina: 0
+  _staminaConsumptionSpeed: 0
+  _staminaRestoreSpeed: 0
+  _jumpForce: 2
+  _wallJumpForce: 0
+  _jumpInertia: 1
+  _slopeAcceleration: 1
+  _slopeDecceleration: 1
+  _slideInertia: 1
