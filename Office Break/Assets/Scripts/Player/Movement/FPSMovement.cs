@@ -59,8 +59,7 @@ namespace FabroGames.Player.Movement
 
         private void OnEnable()
         {
-            if (_playerInputActions == null)
-                _playerInputActions = new PlayerInputActions();
+            _playerInputActions = new PlayerInputActions();
 
             _playerInputActions.Player.Enable();
             _playerInputActions.Player.Jump.performed += Jump;
@@ -69,9 +68,6 @@ namespace FabroGames.Player.Movement
 
         private void OnDisable()
         {
-            if (_playerInputActions == null)
-                return;
-
             _playerInputActions.Player.Jump.performed -= Jump;
             _playerInputActions.Player.Sprint.performed -= StartRun;
             _playerInputActions.Player.Disable();

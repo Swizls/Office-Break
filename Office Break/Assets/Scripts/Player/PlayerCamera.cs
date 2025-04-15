@@ -6,6 +6,7 @@ namespace FabroGames.Input
     {
         [SerializeField][Range(0f, 120f)] private float _maxYAngle;
         [SerializeField] private float _sensivity;
+        [SerializeField] private Transform _cameraAnchor;
 
         private PlayerInputActions _playerInputActions;
 
@@ -29,6 +30,9 @@ namespace FabroGames.Input
 
         private void Update()
         {
+            if (_cameraAnchor != null)
+                transform.position = _cameraAnchor.position;
+
             if (Cursor.lockState != CursorLockMode.Locked)
                 return;
 
