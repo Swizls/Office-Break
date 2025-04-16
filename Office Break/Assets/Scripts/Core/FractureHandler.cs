@@ -14,7 +14,7 @@ namespace OfficeBreak
         {
             VoronoiParameters voronoiParameters = new VoronoiParameters();
             voronoiParameters.insideMaterial = insideMaterial;
-            voronoiParameters.jointBreakForce = 5f;
+            voronoiParameters.jointBreakForce = 0f;
             voronoiParameters.totalChunks = PIECE_COUNT;
             GameObject fracturedObject = LibreFracture.LibreFracture.CreateFracturedCopyOf(target, voronoiParameters);
 

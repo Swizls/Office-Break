@@ -4,17 +4,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace OfficeBreak.Player 
-{ 
+{
+    [RequireComponent(typeof(AudioSource))]
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private float _damage;
         [SerializeField] private float _attackForce;
 
+        private AudioSource _audioSource;
         private PlayerInputActions _playerInputActions;
 
         public Action AttackPerformed;
 
         #region MONO
+
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
         private void OnEnable()
         {
             _playerInputActions = new PlayerInputActions();
@@ -39,17 +47,20 @@ namespace OfficeBreak.Player
             if (hit.collider == null)
                 return;
 
-            if (hit.collider.gameObject.TryGetComponent(out IHitable target))
-            {
-                HitData data = new HitData
-                {
-                    Damage = _damage,
-                    HitDirection = Camera.main.transform.forward,
-                    AttackForce = _attackForce
-                };
+            if (!hit.collider.gameObject.TryGetComponent(out IHitable target))
+                return;
 
-                target.TakeHit(data);
-            }
+            HitData data = new HitData
+            {
+                Damage = _damage,
+                HitDirection = Camera.main.transform.forward,
+                AttackForce = _attackForce
+            };
+
+            target.TakeHit(data);
+
+            _audioSource.pitch = UnityEngine.Random.Range(0.5f, 1.5f);
+            _audioSource.Play();
         }
     }
 }
