@@ -6,11 +6,14 @@ namespace OfficeBreak
     public class Destructable : MonoBehaviour, IHitable
     {
         [SerializeField] private Health _health;
+
         private Rigidbody _rigidbody;
+        private Collider _collider;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _collider = GetComponent<Collider>();
         }
 
         private void OnEnable()
@@ -25,6 +28,11 @@ namespace OfficeBreak
 
         private void OnDeath()
         {
+            _rigidbody.isKinematic = true;
+            _collider.enabled = false;
+
+            FractureHandler.Fracture(gameObject);
+
             Destroy(gameObject);
         }
 
