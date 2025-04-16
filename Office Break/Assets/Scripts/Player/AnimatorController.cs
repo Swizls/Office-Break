@@ -1,4 +1,6 @@
 using FabroGames.Player.Movement;
+using OfficeBreak.Player;
+using System;
 using UnityEngine;
 
 namespace FabroGames.Player
@@ -11,16 +13,28 @@ namespace FabroGames.Player
         private const string IS_FLYING = "IsFlying";
         private const string IS_RUNNING = "IsRunning";
         private const string IS_SLIDING = "IsSliding";
-
+        private const string ATTACK = "Attack";
         private float ANIMATION_CHANGE_SPEED = 0.1f;
 
         [SerializeField] private FPSMovement _playerMovement;
+        [SerializeField] private PlayerAttack _playerAttack;
 
         private Animator _animator;
 
+        #region MONO
         private void Start()
         {
             _animator = GetComponent<Animator>();
+        }
+
+        private void OnEnable()
+        {
+            _playerAttack.AttackPerformed += OnAttackPerform;
+        }
+
+        private void OnDisable()
+        {
+            _playerAttack.AttackPerformed -= OnAttackPerform;
         }
 
         private void Update()
@@ -29,6 +43,12 @@ namespace FabroGames.Player
             SetFlyingBool();
             SetIsRunningBool();
             SetIsSlidingBool();
+        }
+        #endregion
+
+        private void OnAttackPerform()
+        {
+            _animator.SetTrigger(ATTACK);
         }
 
         private void SetIsSlidingBool()

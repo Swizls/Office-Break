@@ -30,9 +30,6 @@ namespace FabroGames.Input
 
         private void Update()
         {
-            if (_cameraAnchor != null)
-                transform.position = _cameraAnchor.position;
-
             if (Cursor.lockState != CursorLockMode.Locked)
                 return;
 
@@ -49,6 +46,12 @@ namespace FabroGames.Input
             _currentRotation.y = Mathf.Clamp(_currentRotation.y, -_maxYAngle, _maxYAngle);
 
             transform.localRotation = Quaternion.Euler(_currentRotation.y, _currentRotation.x, 0f);
+        }
+
+        private void LateUpdate()
+        {
+            if (_cameraAnchor != null)
+                transform.position = _cameraAnchor.position;
         }
     }
 }
