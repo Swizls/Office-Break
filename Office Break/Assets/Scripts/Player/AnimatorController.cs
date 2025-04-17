@@ -14,6 +14,7 @@ namespace FabroGames.Player
         private const string IS_RUNNING = "IsRunning";
         private const string IS_SLIDING = "IsSliding";
         private const string ATTACK = "Attack";
+        private const string ALTERNATIVE_ATTACK = "AltAttack";
         private float ANIMATION_CHANGE_SPEED = 0.1f;
 
         [SerializeField] private FPSMovement _playerMovement;
@@ -30,11 +31,13 @@ namespace FabroGames.Player
         private void OnEnable()
         {
             _playerAttack.AttackPerformed += OnAttackPerform;
+            _playerAttack.AlternativeAttackPerformed += OnAlternativeAttackPerform;
         }
 
         private void OnDisable()
         {
             _playerAttack.AttackPerformed -= OnAttackPerform;
+            _playerAttack.AlternativeAttackPerformed -= OnAlternativeAttackPerform;
         }
 
         private void Update()
@@ -49,6 +52,11 @@ namespace FabroGames.Player
         private void OnAttackPerform()
         {
             _animator.SetTrigger(ATTACK);
+        }
+
+        private void OnAlternativeAttackPerform()
+        {
+            _animator.SetTrigger(ALTERNATIVE_ATTACK);
         }
 
         private void SetIsSlidingBool()

@@ -15,6 +15,7 @@ namespace OfficeBreak.Player
         private PlayerInputActions _playerInputActions;
 
         public Action AttackPerformed;
+        public Action AlternativeAttackPerformed;
 
         #region MONO
 
@@ -28,11 +29,13 @@ namespace OfficeBreak.Player
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Enable();
             _playerInputActions.Player.Attack.performed += Attack;
+            _playerInputActions.Player.AlternativeAttack.performed += AlternativeAttack;
         }
 
         private void OnDisable()
         {
             _playerInputActions.Player.Attack.performed -= Attack;
+            _playerInputActions.Player.AlternativeAttack.performed -= AlternativeAttack;
             _playerInputActions.Player.Disable();
         }
 
@@ -41,7 +44,17 @@ namespace OfficeBreak.Player
         private void Attack(InputAction.CallbackContext context)
         {
             AttackPerformed?.Invoke();
+            FistAttack();
+        }
 
+        private void AlternativeAttack(InputAction.CallbackContext context)
+        {
+            AlternativeAttackPerformed?.Invoke();
+            FistAttack();
+        }
+
+        private void FistAttack()
+        {
             Physics.Raycast(transform.position, Camera.main.transform.forward, out RaycastHit hit);
 
             if (hit.collider == null)
