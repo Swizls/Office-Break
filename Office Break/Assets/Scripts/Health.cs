@@ -3,17 +3,20 @@ using System;
 
 namespace OfficeBreak
 {
-    [System.Serializable]
-    public class Health
+    public class Health : MonoBehaviour
     {
-        [SerializeField] private float _health;
-        public float Value => _health;
+        [SerializeField] private float _initialHealth;
+
+        private float _health;
 
         public Action Died;
 
-        public Health(float health)
+        public float Value => _health;
+        public float LeftHealthPercentage => _health / _initialHealth * 100;
+
+        private void Awake()
         {
-            _health = health;
+            _health = _initialHealth;
         }
 
         public void TakeDamage(float damage)
