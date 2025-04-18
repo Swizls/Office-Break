@@ -1,6 +1,5 @@
-using FabroGames.Player;
-using FabroGames.Player.Movement;
-using OfficeBreak.Characters.Player;
+﻿using FabroGames.Player.Movement;
+using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
 namespace FabroGames.Characters.Animations
@@ -10,7 +9,7 @@ namespace FabroGames.Characters.Animations
         private const string IS_SLIDING = "IsSliding";
 
         [SerializeField] private FPSMovement _playerMovement;
-        [SerializeField] private PlayerAttack _playerAttack;
+        [SerializeField] private PlayerAttackController _playerAttack;
 
         #region MONO
         private void Update()

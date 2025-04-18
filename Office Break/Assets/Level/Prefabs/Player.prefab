@@ -481,7 +481,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
+  _attackRange: 0
   _attackForce: 500
+  _hitablesLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!82 &5593336191630325569
 AudioSource:
   m_ObjectHideFlags: 0
