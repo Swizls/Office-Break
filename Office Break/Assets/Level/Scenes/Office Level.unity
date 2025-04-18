@@ -3833,7 +3833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &408351773
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5715,6 +5715,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 97352896124929650, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
   m_PrefabInstance: {fileID: 299657781}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &926598256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926598257}
+  m_Layer: 0
+  m_Name: PatrolPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926598257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926598256}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.003307205, y: 0.015140326, z: -0.00019220078, w: -0.9998799}
+  m_LocalPosition: {x: -7.641825, y: -1.9567302, z: -1.7094684}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &949224253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7315088402313144741, guid: 1e6bab2470174bd4eb23c884a6e9df1f, type: 3}
@@ -7445,6 +7476,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7315088402313144741, guid: 1e6bab2470174bd4eb23c884a6e9df1f, type: 3}
   m_PrefabInstance: {fileID: 21260895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1492844197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492844198}
+  m_Layer: 0
+  m_Name: PatrolPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1492844198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492844197}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.012706877, y: 0.38028064, z: -0.0054093064, w: -0.9247681}
+  m_LocalPosition: {x: 19.094463, y: 2.2040744, z: 9.331875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1534188111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8922,6 +8984,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 512651086003811572, guid: b79c0810f0d8bef408323c31c405ac25, type: 3}
+  points:
+  - {fileID: 2001868094}
+  - {fileID: 926598257}
+  - {fileID: 1492844198}
 --- !u!4 &1912455306
 Transform:
   m_ObjectHideFlags: 0
@@ -9146,6 +9212,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _barTransform: {fileID: 1254870442}
   _destructionTracker: {fileID: 1056050424}
+--- !u!1 &2001868093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001868094}
+  m_Layer: 0
+  m_Name: PatrolPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2001868094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001868093}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.03151358, y: -0.63705736, z: 0.02591181, w: -0.76973593}
+  m_LocalPosition: {x: 2.4510267, y: -1.4518598, z: -17.435905}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2004510438
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9743,3 +9840,6 @@ SceneRoots:
   - {fileID: 648701942}
   - {fileID: 356477991}
   - {fileID: 173684280}
+  - {fileID: 2001868094}
+  - {fileID: 926598257}
+  - {fileID: 1492844198}

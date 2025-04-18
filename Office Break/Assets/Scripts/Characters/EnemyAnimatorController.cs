@@ -1,6 +1,5 @@
 ﻿using OfficeBreak.Enemies;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace FabroGames.Player
 {
@@ -10,8 +9,14 @@ namespace FabroGames.Player
 
         private void Update()
         {
-            Vector2 movementDirection = new Vector2(_enemyMover.AgentVelocity.normalized.x, _enemyMover.AgentVelocity.normalized.z);
+            Vector2 movementDirection = CalculateRealitveMovementDirection(_enemyMover.AgentVelocity, _enemyMover.transform.forward);
             SetMovementDirection(movementDirection);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Debug.DrawRay(_enemyMover.transform.position, _enemyMover.AgentVelocity.normalized, Color.green);
+            Debug.DrawRay(_enemyMover.transform.position, _enemyMover.transform.forward, Color.red);
         }
 
         protected override void OnAlternativeAttackPerform()
