@@ -14,13 +14,13 @@ namespace OfficeBreak
         public float Value => _health;
         public float LeftHealthPercentage => _health / _initialHealth * 100;
 
-        private void Awake()
-        {
-            _health = _initialHealth;
-        }
+        private void Awake() => _health = _initialHealth;
 
         public void TakeDamage(float damage)
         {
+            if (_health <= 0)
+                return;
+
             if (damage < 0)
                 throw new ArgumentException("Wrong damage value");
 
