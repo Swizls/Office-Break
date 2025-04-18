@@ -14,6 +14,8 @@ namespace OfficeBreak.Core
         [Header("UI")]
         [SerializeField] private DestructableHealthUI _destructableHealthUI;
 
+        public Transform PlayerTransform => _playerTransform;
+
         private void Start()
         {
             _destructionTracker.Initialzie();

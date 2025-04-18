@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae07818662c3eb4cb8fbcc88d2c11c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCameraTransform: {fileID: 9154795099937670989}
+  _targetTransform: {fileID: 9154795099937670989}
   _yOffset: 50
 --- !u!1 &2662690451406526573
 GameObject:
@@ -2207,7 +2207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3627259493258727459}
   - component: {fileID: 758490816160319738}
-  - component: {fileID: 7501770652874729729}
+  - component: {fileID: 860836118449538863}
   - component: {fileID: 1742562323851656916}
   - component: {fileID: 3008999811093049752}
   m_Layer: 3
@@ -2258,7 +2258,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7501770652874729729
+--- !u!114 &860836118449538863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2267,7 +2267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5312011006103789939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 060180cff840b8240aa7d51a346bf443, type: 3}
+  m_Script: {fileID: 11500000, guid: 27a6ed08743779b4daf44dc296fea4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 1655997530220947386}
