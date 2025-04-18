@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace OfficeBreak.Core.EditorExtension 
+namespace OfficeBreak.Core.EditorExtension
 {
     [CustomEditor(typeof(DestructionTracker))]
     public class DestructionTrackerEditor : Editor

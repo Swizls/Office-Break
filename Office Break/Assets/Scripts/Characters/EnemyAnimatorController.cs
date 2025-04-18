@@ -1,7 +1,7 @@
-﻿using OfficeBreak.Enemies;
+﻿using OfficeBreak.Characters.Enemies;
 using UnityEngine;
 
-namespace FabroGames.Player
+namespace FabroGames.Characters.Animations
 {
     public class EnemyAnimatorController : AnimatorController
     {

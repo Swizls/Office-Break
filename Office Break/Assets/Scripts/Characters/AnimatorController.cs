@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FabroGames.Player
+namespace FabroGames.Characters
 {
     [RequireComponent(typeof(Animator))]
     public abstract class AnimatorController : MonoBehaviour

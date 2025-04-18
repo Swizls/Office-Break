@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class CopyCameraRotation : MonoBehaviour
+namespace FabroGames.Characters.Player
 {
-    [SerializeField] private Transform _cameraTransform;
-
-    private void LateUpdate()
+    public class CopyCameraRotation : MonoBehaviour
     {
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, _cameraTransform.eulerAngles.y, transform.eulerAngles.z);        
+        [SerializeField] private Transform _cameraTransform;
+
+        private void LateUpdate()
+        {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, _cameraTransform.eulerAngles.y, transform.eulerAngles.z);
+        }
     }
 }

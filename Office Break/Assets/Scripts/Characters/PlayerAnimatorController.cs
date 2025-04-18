@@ -1,8 +1,9 @@
-﻿using FabroGames.Player.Movement;
-using OfficeBreak.Player;
+using FabroGames.Player;
+using FabroGames.Player.Movement;
+using OfficeBreak.Characters.Player;
 using UnityEngine;
 
-namespace FabroGames.Player
+namespace FabroGames.Characters.Animations
 {
     public class PlayerAnimatorController : AnimatorController
     {
@@ -16,7 +17,7 @@ namespace FabroGames.Player
         {
             SetMovementDirection(_playerMovement.InputDirection);
             SetIsSlidingBool();
-        }            
+        }
 
         private void OnEnable()
         {

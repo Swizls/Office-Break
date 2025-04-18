@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OfficeBreak.Player 
+namespace OfficeBreak.Characters.Player
 {
     [RequireComponent(typeof(AudioSource))]
     public class PlayerAttack : MonoBehaviour

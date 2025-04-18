@@ -1,7 +1,8 @@
+using OfficeBreak.Characters.Enemies;
 using UnityEditor;
 using UnityEngine;
 
-namespace OfficeBreak.Enemies.EditorExtension 
+namespace OfficeBreak.Enemies.EditorExtension
 {
     [CustomEditor(typeof(EnemyMover))]
     public class EnemyMoverEditor : Editor

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace OfficeBreak.Enemies
+namespace OfficeBreak.Characters.Enemies
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyMover : MonoBehaviour
