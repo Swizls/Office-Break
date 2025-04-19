@@ -4682,7 +4682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5.710242, y: -2.0268345}
+  m_AnchoredPosition: {x: 5.7105827, y: -2.0239868}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &603533443
@@ -4699,6 +4699,110 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBarRectTransform: {fileID: 303528332}
   _redBarTransform: {fileID: 1724865150}
+  _shakeAnimationCurveX:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.17088062
+      value: 0.019635059
+      inSlope: -0.026258202
+      outSlope: -0.026258202
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.36092657
+    - serializedVersion: 3
+      time: 0.60221124
+      value: 0.015554424
+      inSlope: 0.77067274
+      outSlope: 0.77067274
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14415123
+      outWeight: 0.1115055
+    - serializedVersion: 3
+      time: 1
+      value: 0.011348724
+      inSlope: 1.2476325
+      outSlope: 1.2476325
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.044751007
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _shakeAnimationCurveY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.1380466
+      value: 0.15452534
+      inSlope: -0.2381119
+      outSlope: -0.2381119
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.47794524
+    - serializedVersion: 3
+      time: 0.30585292
+      value: 0.015712917
+      inSlope: 1.6566062
+      outSlope: 1.6566062
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6876379
+      value: -0.0018948615
+      inSlope: -1.6860454
+      outSlope: -1.6860454
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15488017
+    - serializedVersion: 3
+      time: 0.84695834
+      value: 0.1539098
+      inSlope: -0.9940302
+      outSlope: -0.9940302
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.49005026
+    - serializedVersion: 3
+      time: 0.9920044
+      value: 0.0047187805
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _shakeDuration: 0.01
+  _shakeSpeed: 0.5
 --- !u!1 &648701941
 GameObject:
   m_ObjectHideFlags: 0
@@ -5357,10 +5461,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387722710866203043, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
       propertyPath: _health._initialHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4465059736425304485, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
-      propertyPath: _initialHealth
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5610116003349905094, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
@@ -8630,10 +8730,6 @@ PrefabInstance:
       propertyPath: _health._initialHealth
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 4465059736425304485, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
-      propertyPath: _initialHealth
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 5610116003349905094, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
       propertyPath: m_Interpolate
       value: 1
@@ -9353,10 +9449,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4387722710866203043, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
       propertyPath: _health._initialHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4465059736425304485, guid: e61baf4e5632a384db3521f032736c6f, type: 3}
-      propertyPath: _initialHealth
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5610116003349905094, guid: e61baf4e5632a384db3521f032736c6f, type: 3}

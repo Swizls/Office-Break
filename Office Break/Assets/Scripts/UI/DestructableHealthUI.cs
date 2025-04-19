@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,21 @@ namespace OfficeBreak.UI
         private const float FOLLOW_SPEED = 0.1f;
         private const float DISTANCE_TO_DISAPPEAR = 5f;
 
+        [Header("Bars")]
+        [SerializeField] private RectTransform _healthBarRectTransform;
+        [SerializeField] private RectTransform _redBarTransform;
+        [Space]
+        [Header("Animation")]
+        [SerializeField] private AnimationCurve _shakeAnimationCurveX;
+        [SerializeField] private AnimationCurve _shakeAnimationCurveY;
+        [SerializeField] private float _shakeDuration = 0.01f;
+        [SerializeField] private float _shakeSpeed = 0.01f;
+
         private IReadOnlyList<Destructable> _destructables;
         private Destructable _currentDestructableObject;
         private Transform _playerTransform;
 
-        [SerializeField] private RectTransform _healthBarRectTransform;
-        [SerializeField] private RectTransform _redBarTransform;
+        private bool _isShaking = false;
 
         public void Initialize(IReadOnlyList<Destructable> destructables, Transform playerTransform)
         {
@@ -58,9 +68,10 @@ namespace OfficeBreak.UI
                 _currentDestructableObject.Destroyed += OnDestructableDestroy;
                 SetHealthBarValue();
             }
-
-            transform.position = CalculatePointBetweenObjectAndPlayer(destructable.transform.position);
-            transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+            else
+            {
+                StartShakeAnimation();
+            }
 
             StartCoroutine(PlayHealthBarAnimation(_currentDestructableObject.Health.LeftHealthPercentage));
             StartCoroutine(PlayRedBarAnimation(_currentDestructableObject.Health.LeftHealthPercentage));
@@ -88,6 +99,8 @@ namespace OfficeBreak.UI
 
         private IEnumerator FollowPlayer()
         {
+            transform.position = CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position);
+
             while (true)
             {
                 if (_currentDestructableObject.IsDestroyed)
@@ -96,6 +109,9 @@ namespace OfficeBreak.UI
                 if (Vector3.Distance(_playerTransform.position, _currentDestructableObject.transform.position) > DISTANCE_TO_DISAPPEAR)
                     break;
 
+                if (_isShaking)
+                    yield return new WaitForEndOfFrame();
+
                 transform.position = Vector3.Lerp(transform.position, CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position), FOLLOW_SPEED);
                 transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 yield return new WaitForEndOfFrame();
@@ -103,7 +119,7 @@ namespace OfficeBreak.UI
 
             gameObject.SetActive(false);
         }
-
+        #region ANIMATIONS
         private IEnumerator PlayHealthBarAnimation(float target)
         {
             if (target < 0)
@@ -131,5 +147,27 @@ namespace OfficeBreak.UI
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        private IEnumerator Shake()
+        {
+            _isShaking = true;
+            float progress = 0;
+
+            while (progress < 1)
+            {
+                Vector2 appearPoint = CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position);
+                float shakeX = _shakeAnimationCurveX.Evaluate(progress) + appearPoint.x;
+                float shakeY = _shakeAnimationCurveY.Evaluate(progress) + appearPoint.y;
+                Vector3 position = new Vector3(shakeX, shakeY, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, position, _shakeSpeed);
+                progress += _shakeDuration;
+                yield return null;
+            }
+
+            _isShaking = false;
+        }
+        #endregion
+
+        public void StartShakeAnimation() => StartCoroutine(Shake());
     }
 }
