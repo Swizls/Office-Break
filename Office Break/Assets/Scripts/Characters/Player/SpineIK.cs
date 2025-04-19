@@ -9,7 +9,7 @@ namespace OfficeBreak
 
         private void LateUpdate()
         {
-            transform.rotation = Quaternion.Euler(_targetTransform.localEulerAngles.x, _targetTransform.localEulerAngles.y + _yOffset, _targetTransform.localEulerAngles.z);
+            transform.rotation = Quaternion.Euler(_targetTransform.localEulerAngles.x, _targetTransform.eulerAngles.y + _yOffset, _targetTransform.localEulerAngles.z);
         }
     }
 }

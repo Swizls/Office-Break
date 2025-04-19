@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace OfficeBreak
 {
     [RequireComponent (typeof(Rigidbody))]
     [RequireComponent (typeof(AudioSource))]
     [RequireComponent (typeof(MeshRenderer))]
-    [RequireComponent(typeof(Health))]
+    [RequireComponent (typeof(Health))]
+    [RequireComponent (typeof(NavMeshObstacle))]
     public class Destructable : MonoBehaviour, IHitable
     {
         [SerializeField] private Health _health;
@@ -15,6 +17,7 @@ namespace OfficeBreak
         private Collider _collider;
         private MeshRenderer _meshRenderer;
         private AudioSource _audioSource;
+        private NavMeshObstacle _navMeshObstacle;
 
         public Action Destroyed;
         public Action<Destructable> GotHit;
@@ -29,6 +32,8 @@ namespace OfficeBreak
             _collider = GetComponent<Collider>();
             _audioSource = GetComponent<AudioSource>();
             _health = GetComponent<Health>();
+            _navMeshObstacle = GetComponent<NavMeshObstacle>();
+            _navMeshObstacle.carving = true;
         }
 
         private void OnEnable() => _health.Died += OnObjectDestroy;
@@ -43,6 +48,7 @@ namespace OfficeBreak
 
             _collider.enabled = false;
             _meshRenderer.enabled = false;
+            _navMeshObstacle.enabled = false;
 
             _audioSource.Play();
 
