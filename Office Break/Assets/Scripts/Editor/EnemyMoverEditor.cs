@@ -21,6 +21,9 @@ namespace OfficeBreak.Enemies.EditorExtension
 
             EditorGUILayout.LabelField($"Velocity: {enemyMover.AgentVelocity}");
             EditorGUILayout.LabelField($"Velocity normalized: {enemyMover.AgentVelocity.normalized}");
+            EditorGUILayout.LabelField($"Speed: {enemyMover.AgentVelocity.magnitude}");
+            EditorGUILayout.LabelField($"Remaining distance to target: {enemyMover.RemainingDistance}");
+            EditorGUILayout.LabelField($"Is Running: {enemyMover.IsRunning}", enemyMover.IsRunning ? succesfulStyle : unsuccefulStyle);
         }
     }
 

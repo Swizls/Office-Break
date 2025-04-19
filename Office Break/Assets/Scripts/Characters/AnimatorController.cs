@@ -18,16 +18,7 @@ namespace FabroGames.Characters
         protected Animator _animator;
 
         #region MONO
-        private void Start()
-        {
-            _animator = GetComponent<Animator>();
-        }
-
-        private void Update()
-        {
-            SetFlyingBool();
-            SetIsRunningBool();
-        }
+        private void Start() => _animator = GetComponent<Animator>();
         #endregion
 
         protected abstract void OnAttackPerform();
@@ -46,6 +37,9 @@ namespace FabroGames.Characters
 
         protected Vector2 CalculateRealitveMovementDirection(Vector3 movementDirection, Vector3 lookDirection)
         {
+            if (movementDirection.magnitude == 0)
+                return Vector2.zero;
+
             float dotProduct = Vector3.Dot(movementDirection.normalized, lookDirection);
             float crossProductMagnitude = Vector3.Cross(movementDirection, lookDirection).y;
             float clockwiseAngle = Mathf.Atan2(crossProductMagnitude, dotProduct) * Mathf.Rad2Deg;

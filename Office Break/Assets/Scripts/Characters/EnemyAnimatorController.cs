@@ -9,34 +9,16 @@ namespace FabroGames.Characters.Animations
 
         private void Update()
         {
-            Vector2 movementDirection = CalculateRealitveMovementDirection(_enemyMover.AgentVelocity, _enemyMover.transform.forward);
-            SetMovementDirection(movementDirection);
+            SetIsRunningBool();
+            SetMovementDirection(CalculateRealitveMovementDirection(_enemyMover.AgentVelocity, _enemyMover.transform.forward));
         }
 
-        private void OnDrawGizmos()
-        {
-            Debug.DrawRay(_enemyMover.transform.position, _enemyMover.AgentVelocity.normalized, Color.green);
-            Debug.DrawRay(_enemyMover.transform.position, _enemyMover.transform.forward, Color.red);
-        }
+        protected override void OnAlternativeAttackPerform() => throw new System.NotImplementedException();
 
-        protected override void OnAlternativeAttackPerform()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override void OnAttackPerform() => throw new System.NotImplementedException();
 
-        protected override void OnAttackPerform()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override void SetFlyingBool() => throw new System.NotImplementedException();
 
-        protected override void SetFlyingBool()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        protected override void SetIsRunningBool()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override void SetIsRunningBool() => _animator.SetBool(IS_RUNNING, _enemyMover.IsRunning);
     }
 }
