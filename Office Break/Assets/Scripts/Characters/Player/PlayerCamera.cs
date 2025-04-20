@@ -12,23 +12,28 @@ namespace FabroGames.Input
 
         private Vector2 _currentRotation;
 
-        private void Start()
+        #region MONO
+
+        private void Awake() => Cursor.lockState = CursorLockMode.Locked;
+
+        private void OnEnable()
         {
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Player.Enable();
-
-            if (!TryGetComponent(out Camera camera))
-                return;
-
-            camera.enabled = true;
-            GetComponent<AudioListener>().enabled = true;
-
-            enabled = true;
-
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
-        private void Update()
+        private void OnDisable() => _playerInputActions.Player.Disable();
+
+        private void Update() => RotateCamera();
+
+        private void LateUpdate()
+        {
+            if (_cameraAnchor != null) transform.position = _cameraAnchor.position;
+        }
+
+        #endregion
+
+        private void RotateCamera()
         {
             if (Cursor.lockState != CursorLockMode.Locked)
                 return;
@@ -46,12 +51,6 @@ namespace FabroGames.Input
             _currentRotation.y = Mathf.Clamp(_currentRotation.y, -_maxYAngle, _maxYAngle);
 
             transform.localRotation = Quaternion.Euler(_currentRotation.y, _currentRotation.x, 0f);
-        }
-
-        private void LateUpdate()
-        {
-            if (_cameraAnchor != null)
-                transform.position = _cameraAnchor.position;
         }
     }
 }
