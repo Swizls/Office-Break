@@ -80,7 +80,6 @@ namespace OfficeBreak.UI
 
         private void OnDestructableDestroy()
         {
-            _currentDestructableObject.Destroyed -= OnDestructableDestroy;
             _currentDestructableObject = null;
             StopAllCoroutines();
             gameObject.SetActive(false);
