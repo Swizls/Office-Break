@@ -17,6 +17,7 @@ namespace FabroGames.Characters.Animations
         {
             SetMovementDirection(_playerMovement.InputDirection);
             SetIsSlidingBool();
+            SetIsRunningBool();
         }
 
         private void OnEnable()
@@ -37,20 +38,11 @@ namespace FabroGames.Characters.Animations
             _animator.SetBool(IS_FLYING, _playerMovement.IsFlying);
         }
 
-        protected override void OnAttackPerform()
-        {
-            _animator.SetTrigger(ATTACK);
-        }
-
-        protected override void OnAlternativeAttackPerform()
-        {
-            _animator.SetTrigger(ALTERNATIVE_ATTACK);
-        }
-
         protected override void SetIsRunningBool()
         {
             _animator.SetBool(IS_RUNNING, _playerMovement.IsRunning);
         }
+
         private void SetIsSlidingBool()
         {
             _animator.SetBool(IS_SLIDING, _playerMovement.IsSliding);

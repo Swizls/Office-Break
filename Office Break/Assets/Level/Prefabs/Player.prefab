@@ -578,9 +578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  _attackRange: 1
+  _attackRange: 1.5
   _attackForce: 500
-  _cooldownReductionTime: 0.25
+  _cooldownReductionTime: 0.4
   _hitablesLayer:
     serializedVersion: 2
     m_Bits: 1

@@ -1,11 +1,16 @@
 ﻿using OfficeBreak.Characters.Enemies;
+using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
 namespace FabroGames.Characters.Animations
 {
     public class EnemyAnimatorController : AnimatorController
     {
+        [Header("Dependencies")]
         [SerializeField] private EnemyMover _enemyMover;
+        [SerializeField] private AttackController _attackController;
+
+        #region MONO
 
         private void Update()
         {
@@ -13,9 +18,19 @@ namespace FabroGames.Characters.Animations
             SetMovementDirection(CalculateRealitveMovementDirection(_enemyMover.AgentVelocity, _enemyMover.transform.forward));
         }
 
-        protected override void OnAlternativeAttackPerform() => throw new System.NotImplementedException();
+        private void OnEnable()
+        {
+            _attackController.AttackPerformed += OnAttackPerform;
+            _attackController.AlternativeAttackPerformed += OnAlternativeAttackPerform;
+        }
 
-        protected override void OnAttackPerform() => throw new System.NotImplementedException();
+        private void OnDisable()
+        {
+            _attackController.AttackPerformed -= OnAttackPerform;
+            _attackController.AlternativeAttackPerformed -= OnAlternativeAttackPerform;
+        }
+
+        #endregion
 
         protected override void SetFlyingBool() => throw new System.NotImplementedException();
 

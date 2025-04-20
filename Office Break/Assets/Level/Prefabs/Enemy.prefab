@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6873381035582596545}
   - component: {fileID: 2119671741725075777}
   - component: {fileID: 6846288462906024305}
+  - component: {fileID: 6618236544784308911}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -295,6 +296,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ragdollController: {fileID: 8616562590788183421}
+--- !u!114 &6618236544784308911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512651086003811572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a4284f3d3e4c0449f7d3cb98124ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 20
+  _attackRange: 2
+  _attackForce: 500
+  _cooldownReductionTime: 0
 --- !u!1 &569687253710102714
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,7 +3513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fb9b42f97f3234fb9116f248354f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
+  _secondaryAttackAnimation: {fileID: -8945691123924629249, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
   _enemyMover: {fileID: 4158930420107859663}
+  _attackController: {fileID: 6618236544784308911}
 --- !u!1 &7741302335955089187
 GameObject:
   m_ObjectHideFlags: 0

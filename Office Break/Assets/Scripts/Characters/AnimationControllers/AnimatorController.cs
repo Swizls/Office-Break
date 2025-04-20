@@ -27,13 +27,13 @@ namespace FabroGames.Characters.Animations
         private void Start() => _animator = GetComponent<Animator>();
         #endregion
 
-        protected abstract void OnAttackPerform();
-
-        protected abstract void OnAlternativeAttackPerform();
-
         protected abstract void SetIsRunningBool();
 
         protected abstract void SetFlyingBool();
+
+        protected void OnAttackPerform() => _animator.SetTrigger(ATTACK);
+
+        protected void OnAlternativeAttackPerform() => _animator.SetTrigger(ALTERNATIVE_ATTACK);
 
         protected void SetMovementDirection(Vector2 relativeMovementDirection)
         {
