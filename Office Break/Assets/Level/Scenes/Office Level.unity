@@ -3423,6 +3423,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 884220439882305472, guid: 40b09421bded0984c896acfe2ed6690e, type: 3}
+      propertyPath: _damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 884220439882305472, guid: 40b09421bded0984c896acfe2ed6690e, type: 3}
+      propertyPath: _attackForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 884220439882305472, guid: 40b09421bded0984c896acfe2ed6690e, type: 3}
+      propertyPath: _attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 884220439882305472, guid: 40b09421bded0984c896acfe2ed6690e, type: 3}
+      propertyPath: _hitablesLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1071432396107423065, guid: 40b09421bded0984c896acfe2ed6690e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -5049,6 +5065,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 97352896124929650, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
   m_PrefabInstance: {fileID: 866271552}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &721794431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8719276866545271691, guid: 1e6bab2470174bd4eb23c884a6e9df1f, type: 3}
+  m_PrefabInstance: {fileID: 745597270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e73739a9a0b263489797e0192fc7e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &730620022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5166,6 +5193,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 918080073530397837, guid: 1e6bab2470174bd4eb23c884a6e9df1f, type: 3}
+      propertyPath: _health
+      value: 
+      objectReference: {fileID: 721794431}
     - target: {fileID: 918080073530397837, guid: 1e6bab2470174bd4eb23c884a6e9df1f, type: 3}
       propertyPath: _health._health
       value: 100

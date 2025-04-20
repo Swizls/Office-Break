@@ -2093,7 +2093,7 @@ Transform:
   m_GameObject: {fileID: 5030972298428262548}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008146034, y: -5.384209e-10, z: 2.6193459e-10, w: 1}
-  m_LocalPosition: {x: 0.0000000023841857, y: 0.0000000016391277, z: -2.980233e-10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3402,8 +3402,8 @@ GameObject:
   - component: {fileID: 7875322774464911646}
   - component: {fileID: 4162531111347265760}
   - component: {fileID: 6660433633158737839}
-  - component: {fileID: 32690392171443090}
   - component: {fileID: 8616562590788183421}
+  - component: {fileID: 171032569908817119}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -3468,19 +3468,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 344125111419279469}
     m_Active: 1
   m_Effectors: []
---- !u!114 &32690392171443090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7722472593035795079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3356b9dc4bbcaf468745765544afeee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyMover: {fileID: 4158930420107859663}
 --- !u!114 &8616562590788183421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3496,6 +3483,19 @@ MonoBehaviour:
   _rootBone: {fileID: 2901030378462361707}
   _characterController: {fileID: 8260104321947962793}
   _animator: {fileID: 4162531111347265760}
+  _enemyMover: {fileID: 4158930420107859663}
+--- !u!114 &171032569908817119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722472593035795079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fb9b42f97f3234fb9116f248354f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _enemyMover: {fileID: 4158930420107859663}
 --- !u!1 &7741302335955089187
 GameObject:

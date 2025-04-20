@@ -1,4 +1,6 @@
+using FabroGames.Characters.Animations;
 using FabroGames.Input;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,14 +8,38 @@ namespace OfficeBreak.Characters.FightingSystem
 {
     public class PlayerAttackController : AttackController
     {
+        private enum AttackType
+        {
+            RightHand,
+            LeftHand
+        }
+
         private const float ATTACK_SPHERE_RADIUS = 0.3f;
 
         [SerializeField] private LayerMask _hitablesLayer;
         private PlayerInputActions _playerInputActions;
 
+        private bool _isAbleToAttackLeftHand = true;        
+        private bool _isAbleToAttackRightHand = true;
+
+        private float _leftHandCooldownTime;
+        private float _rightHandCooldownTime;
+
         private Vector3 AttackPosition => Camera.main.transform.position;
 
+        public override bool IsBlocking { get ; protected set; }
+
         #region MONO
+
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+
+            var animatorController = GetComponentInChildren<AnimatorController>();
+
+            _leftHandCooldownTime = animatorController.PrimaryAttackAnimationLength;
+            _rightHandCooldownTime = animatorController.SecondaryAttackAnimationLength;
+        }
 
         private void OnEnable()
         {
@@ -64,14 +90,53 @@ namespace OfficeBreak.Characters.FightingSystem
             PlayAttackSFX();
         }
 
+        private IEnumerator CooldownTimer(AttackType attackType, float cooldownTimer)
+        {
+            switch (attackType)
+            {
+                case AttackType.LeftHand:
+                    _isAbleToAttackLeftHand = false;
+                    break;
+                case AttackType.RightHand:
+                    _isAbleToAttackRightHand = false;
+                    break;
+            }
+
+            while(cooldownTimer > 0)
+            {
+                cooldownTimer -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            switch (attackType)
+            {
+                case AttackType.LeftHand:
+                    _isAbleToAttackLeftHand = true;
+                    break;
+                case AttackType.RightHand:
+                    _isAbleToAttackRightHand = true;
+                    break;
+            }
+        }
+
         protected override void PrimaryAttack()
         {
+            if (!_isAbleToAttackLeftHand)
+                return;
+
+            StartCoroutine(CooldownTimer(AttackType.LeftHand, _leftHandCooldownTime - CooldownReductionTime));
+
             AttackPerformed?.Invoke();
             FistAttack();
         }
 
         protected override void AlternativeAttack()
         {
+            if (!_isAbleToAttackRightHand)
+                return;
+
+            StartCoroutine(CooldownTimer(AttackType.RightHand, _rightHandCooldownTime - CooldownReductionTime));
+
             AlternativeAttackPerformed?.Invoke();
             FistAttack();
         }

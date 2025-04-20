@@ -9,8 +9,9 @@ namespace OfficeBreak.Characters.FightingSystem
         [SerializeField] private float _damage;
         [SerializeField][Range(0.2f, 5f)] private float _attackRange;
         [SerializeField] private float _attackForce;
+        [SerializeField][Range(0f, 1f)] private float _cooldownReductionTime;
 
-        private AudioSource _audioSource;
+        protected AudioSource _audioSource;
 
         public Action AttackPerformed;
         public Action AlternativeAttackPerformed;
@@ -18,6 +19,9 @@ namespace OfficeBreak.Characters.FightingSystem
         protected float Damage => _damage;
         protected float AttackRange => _attackRange;
         protected float AttackForce => _attackForce;
+        protected float CooldownReductionTime => _cooldownReductionTime;
+
+        public abstract bool IsBlocking { get; protected set; }
 
         #region MONO
 

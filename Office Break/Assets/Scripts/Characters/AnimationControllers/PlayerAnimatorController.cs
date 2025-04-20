@@ -8,6 +8,7 @@ namespace FabroGames.Characters.Animations
     {
         private const string IS_SLIDING = "IsSliding";
 
+        [Header("Dependencies")]
         [SerializeField] private FPSMovement _playerMovement;
         [SerializeField] private PlayerAttackController _playerAttack;
 

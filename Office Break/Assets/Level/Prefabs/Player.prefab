@@ -394,9 +394,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5250567902686570296}
   - component: {fileID: 1763046561431805210}
-  - component: {fileID: 1655997530220947386}
-  - component: {fileID: 6015825596303615188}
   - component: {fileID: 5593336191630325569}
+  - component: {fileID: 1655997530220947386}
+  - component: {fileID: 884220439882305472}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -446,46 +446,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1655997530220947386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993656833896514960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fafd8bb26a4e18242837d941da9c2e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 2130294262702102578}
-  _walkingSpeed: 4
-  _spritingMultiplier: 2
-  _movementInertia: 0.7
-  _maxStamina: 100
-  _staminaConsumptionSpeed: 1
-  _staminaRestoreSpeed: 1
-  _jumpForce: 2
-  _wallJumpForce: 2
-  _jumpInertia: 0.5
---- !u!114 &6015825596303615188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993656833896514960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bde1daabb5687bc439c02d53e81d1c10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 20
-  _attackRange: 0
-  _attackForce: 500
-  _hitablesLayer:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!82 &5593336191630325569
 AudioSource:
   m_ObjectHideFlags: 0
@@ -583,6 +543,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1655997530220947386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafd8bb26a4e18242837d941da9c2e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 2130294262702102578}
+  _walkingSpeed: 4
+  _spritingMultiplier: 2
+  _movementInertia: 0.7
+  _maxStamina: 100
+  _staminaConsumptionSpeed: 1
+  _staminaRestoreSpeed: 1
+  _jumpForce: 2
+  _wallJumpForce: 2
+  _jumpInertia: 0.5
+--- !u!114 &884220439882305472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7632a670985619f4885bce4847de381f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 20
+  _attackRange: 1
+  _attackForce: 500
+  _cooldownReductionTime: 0.25
+  _hitablesLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &2058803048013257783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,11 +2272,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5312011006103789939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a6ed08743779b4daf44dc296fea4ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 158d793322787c443afce13a97191266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
+  _secondaryAttackAnimation: {fileID: -8945691123924629249, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
   _playerMovement: {fileID: 1655997530220947386}
-  _playerAttack: {fileID: 6015825596303615188}
+  _playerAttack: {fileID: 884220439882305472}
 --- !u!114 &1742562323851656916
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FabroGames.Characters
+namespace FabroGames.Characters.Animations
 {
     [RequireComponent(typeof(Animator))]
     public abstract class AnimatorController : MonoBehaviour
@@ -15,7 +15,13 @@ namespace FabroGames.Characters
 
         protected float ANIMATION_CHANGE_SPEED = 0.1f;
 
+        [SerializeField] private AnimationClip _primaryAttackAnimation;
+        [SerializeField] private AnimationClip _secondaryAttackAnimation;
+
         protected Animator _animator;
+
+        public float PrimaryAttackAnimationLength => _primaryAttackAnimation.length;
+        public float SecondaryAttackAnimationLength => _secondaryAttackAnimation.length;
 
         #region MONO
         private void Start() => _animator = GetComponent<Animator>();
