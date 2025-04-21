@@ -10,10 +10,12 @@ namespace OfficeBreak
 
         private float _health;
 
-        public Action Died;
+        public event Action ValueChanged;
+        public event Action Died;
 
         public float Value => _health;
         public float LeftHealthPercentage => _health / _initialHealth * 100;
+        public bool IsDead => _health <= 0;
 
         private void Die() => Died?.Invoke();
 
@@ -31,6 +33,8 @@ namespace OfficeBreak
 
             if (_health <= 0)
                 Die();
+
+            ValueChanged?.Invoke();
         }
     }
 }
