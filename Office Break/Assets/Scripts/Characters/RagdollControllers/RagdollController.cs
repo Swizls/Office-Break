@@ -1,27 +1,35 @@
-using OfficeBreak.Characters.Enemies;
+using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Characters
 {
-    public class RagdollController : MonoBehaviour
+    [RequireComponent(typeof(Animator))]
+    public abstract partial class RagdollController : MonoBehaviour
     {
-        [SerializeField] private GameObject _rootBone;
-        [SerializeField] private CharacterController _characterController;
-        [SerializeField] private Animator _animator;
-        [SerializeField] private EnemyMover _enemyMover;
+        [SerializeField] protected GameObject _rootBone;
+        [SerializeField] protected CharacterController _characterController;
+
+        private Animator _animator;
+        private AttackController _attackController;
 
         private Collider[] _colliders;
         private Rigidbody[] _rigidbodies;
 
-        private void Awake()
+        private void Awake() => Initialize();
+
+        protected virtual void Initialize()
         {
+            _animator = GetComponent<Animator>();
+
             _colliders = _rootBone.GetComponentsInChildren<Collider>();
             _rigidbodies = _rootBone.GetComponentsInChildren<Rigidbody>();
+
+            _attackController = GetComponentInParent<AttackController>();
 
             DisableRagdoll();
         }
 
-        public void EnableRagdoll()
+        public virtual void EnableRagdoll()
         {
             foreach (Collider collider in _colliders)
             {
@@ -35,10 +43,10 @@ namespace OfficeBreak.Characters
 
             _animator.enabled = false;
             _characterController.enabled = false;
-            _enemyMover.enabled = false;
+            _attackController.enabled = false;
         }
 
-        public void DisableRagdoll()
+        public virtual void DisableRagdoll()
         {
             foreach (Collider collider in _colliders)
             {
@@ -52,7 +60,7 @@ namespace OfficeBreak.Characters
 
             _animator.enabled = true;
             _characterController.enabled = true;
-            _enemyMover.enabled = true;
+            _attackController.enabled = true;
         }
     }
 }

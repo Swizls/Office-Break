@@ -9,7 +9,6 @@ namespace OfficeBreak.Characters.Enemies
     {
         [SerializeField] private Health _health;
 
-        private RagdollController _ragdollController;
         private Transform _playerTransform;
         private EnemyMover _enemyMover;
         private EnemyAttackController _attackController;
@@ -24,8 +23,6 @@ namespace OfficeBreak.Characters.Enemies
 
             _attackController = GetComponent<EnemyAttackController>();
             _enemyMover = GetComponent<EnemyMover>();
-
-            _ragdollController = GetComponentInChildren<RagdollController>();
         }
 
         private void Update()
@@ -33,10 +30,6 @@ namespace OfficeBreak.Characters.Enemies
             FollowPlayer();
             AttackPlayer();
         }
-
-        private void OnEnable() => _health.Died += OnDeath;
-
-        private void OnDisable() => _health.Died -= OnDeath;
 
         #endregion
 
@@ -50,13 +43,6 @@ namespace OfficeBreak.Characters.Enemies
         }
 
         private void FollowPlayer() => _enemyMover.SetDestination(_playerTransform.position);
-
-        private void OnDeath()
-        {
-            _ragdollController.EnableRagdoll();
-            _attackController.enabled = false;
-            enabled = false;
-        }
 
         public void TakeHit(HitData hitData) => _health.TakeDamage(hitData.Damage);
 
