@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6585530305877592218}
   - component: {fileID: 505976952460820386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpineIK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 2119671741725075777}
   - component: {fileID: 6846288462906024305}
   - component: {fileID: 6618236544784308911}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565398981207876409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpineIK_hint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2094,7 +2094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6524437733185993125}
   - component: {fileID: 3240633638723254044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alpha_Joints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2731,7 +2731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2450536229605306880}
   - component: {fileID: 344125111419279469}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3128,7 +3128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 803924129126484043}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandIK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3421,7 +3421,7 @@ GameObject:
   - component: {fileID: 6660433633158737839}
   - component: {fileID: 8616562590788183421}
   - component: {fileID: 171032569908817119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3785,7 +3785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6205231527642434554}
   - component: {fileID: 7380297945828763836}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alpha_Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4164,7 +4164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 435940725460693387}
   - component: {fileID: 1005383776529102223}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpineIK_target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

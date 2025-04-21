@@ -14,7 +14,7 @@ namespace OfficeBreak.Characters.Enemies
         private Health _health;
         private EnemyAttackController _attackController;
 
-        public float HealthValue => _health.Value;
+        public Health Health => _health;
 
         #region MONO
 
