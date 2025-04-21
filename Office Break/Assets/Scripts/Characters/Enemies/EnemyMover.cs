@@ -19,7 +19,7 @@ namespace OfficeBreak.Characters.Enemies
 
         private void Awake() => _agent = GetComponent<NavMeshAgent>();
 
-        private void OnDisable() => _agent.isStopped = true;
+        private void OnDisable() => _agent.enabled = false;
 
         public void SetDestination(Vector3 destination)
         {

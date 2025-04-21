@@ -1,4 +1,5 @@
 using OfficeBreak.Characters.FightingSystem;
+using System.Collections;
 using UnityEngine;
 
 namespace OfficeBreak.Characters.Enemies
@@ -8,9 +9,9 @@ namespace OfficeBreak.Characters.Enemies
     [RequireComponent(typeof(Health))]
     public class Enemy : MonoBehaviour, IHitable
     {
-        [SerializeField] private RagdollController _ragdollController;
-
+        private RagdollController _ragdollController;
         private Transform _playerTransform;
+        private EnemyMover _enemyMover;
         private Health _health;
         private EnemyAttackController _attackController;
 
@@ -22,9 +23,24 @@ namespace OfficeBreak.Characters.Enemies
         {
             _health = GetComponent<Health>();
             _attackController = GetComponent<EnemyAttackController>();
+            _enemyMover = GetComponent<EnemyMover>();
+
+            _ragdollController = GetComponentInChildren<RagdollController>();
         }
 
         private void Update()
+        {
+            FollowPlayer();
+            AttackPlayer();
+        }
+
+        private void OnEnable() => _health.Died += OnDeath;
+
+        private void OnDisable() => _health.Died -= OnDeath;
+
+        #endregion
+
+        private void AttackPlayer()
         {
             if (!_attackController.IsAbleToAttack)
                 return;
@@ -33,11 +49,7 @@ namespace OfficeBreak.Characters.Enemies
                 _attackController.PerformAttack();
         }
 
-        private void OnEnable() => _health.Died += OnDeath;
-
-        private void OnDisable() => _health.Died -= OnDeath;
-
-        #endregion
+        private void FollowPlayer() => _enemyMover.SetDestination(_playerTransform.position);
 
         private void OnDeath()
         {
@@ -48,9 +60,6 @@ namespace OfficeBreak.Characters.Enemies
 
         public void TakeHit(HitData hitData) => _health.TakeDamage(hitData.Damage);
 
-        public void Initialize(Transform playerTranform)
-        {
-            _playerTransform = playerTranform;
-        }
+        public void Initialize(Transform playerTranform) => _playerTransform = playerTranform;
     }
 }

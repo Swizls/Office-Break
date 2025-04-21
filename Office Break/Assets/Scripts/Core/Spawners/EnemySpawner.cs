@@ -1,7 +1,6 @@
 using OfficeBreak.Characters.Enemies;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core;
-using OfficeBreak.Enemies;
 using UnityEngine;
 
 namespace OfficeBreak.Spawners
@@ -15,7 +14,6 @@ namespace OfficeBreak.Spawners
         }
 
         [SerializeField] private EnemySpawnerType _type;
-        [SerializeField] private Transform[] points;
 
         private Transform _playerTransform;
         private Health _playerHealth;
@@ -37,7 +35,6 @@ namespace OfficeBreak.Spawners
             enemyComponent.Initialize(_playerTransform);
             LastSpawnedEnemy = enemyComponent;
 
-            obj.GetComponent<EnemyMoverTester>().Initialize(_playerTransform, points);
             obj.GetComponent<EnemyAttackController>().Initialize(_playerHealth);
         }
     }
