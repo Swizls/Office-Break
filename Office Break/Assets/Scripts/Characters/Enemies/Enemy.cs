@@ -1,18 +1,17 @@
 using OfficeBreak.Characters.FightingSystem;
-using System.Collections;
 using UnityEngine;
 
 namespace OfficeBreak.Characters.Enemies
 {
     [RequireComponent(typeof(EnemyMover))]
     [RequireComponent(typeof(EnemyAttackController))]
-    [RequireComponent(typeof(Health))]
     public class Enemy : MonoBehaviour, IHitable
     {
+        [SerializeField] private Health _health;
+
         private RagdollController _ragdollController;
         private Transform _playerTransform;
         private EnemyMover _enemyMover;
-        private Health _health;
         private EnemyAttackController _attackController;
 
         public Health Health => _health;
@@ -21,7 +20,8 @@ namespace OfficeBreak.Characters.Enemies
 
         private void Awake()
         {
-            _health = GetComponent<Health>();
+            _health.Initialize();
+
             _attackController = GetComponent<EnemyAttackController>();
             _enemyMover = GetComponent<EnemyMover>();
 

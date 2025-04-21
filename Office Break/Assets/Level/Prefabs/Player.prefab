@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 5593336191630325569}
   - component: {fileID: 1655997530220947386}
   - component: {fileID: 884220439882305472}
+  - component: {fileID: 5768137927320068379}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -584,6 +585,20 @@ MonoBehaviour:
   _hitablesLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &5768137927320068379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdc0153672ec384f956ca81b4f41226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health:
+    _initialHealth: 100
 --- !u!1 &2058803048013257783
 GameObject:
   m_ObjectHideFlags: 0

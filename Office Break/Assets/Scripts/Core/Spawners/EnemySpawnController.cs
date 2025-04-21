@@ -1,3 +1,4 @@
+using OfficeBreak.Characters;
 using OfficeBreak.Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace OfficeBreak.Spawners
             _startEnemySpawners = _enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Start).ToList();
 
             Transform playerTransform = FindAnyObjectByType<LevelEntryPoint>().PlayerTransform;
-            Health playerHealth = playerTransform.GetComponent<Health>();
+            Health playerHealth = playerTransform.GetComponent<Player>().Health;
 
             foreach (var spawner in _enemySpawners)
                 spawner.Initialize(playerTransform, playerHealth);

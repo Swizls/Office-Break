@@ -23,8 +23,8 @@ namespace OfficeBreak.Spawners
 
         public void Initialize(Transform playerTransform, Health playerHealth)
         {
-            _playerTransform = FindAnyObjectByType<LevelEntryPoint>().PlayerTransform;
-            _playerHealth = _playerTransform.GetComponent<Health>();
+            _playerTransform = playerTransform;
+            _playerHealth = playerHealth;
         }
 
         public override void Spawn()

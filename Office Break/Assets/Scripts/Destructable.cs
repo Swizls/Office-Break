@@ -7,7 +7,6 @@ namespace OfficeBreak
     [RequireComponent (typeof(Rigidbody))]
     [RequireComponent (typeof(AudioSource))]
     [RequireComponent (typeof(MeshRenderer))]
-    [RequireComponent (typeof(Health))]
     [RequireComponent (typeof(NavMeshObstacle))]
     public class Destructable : MonoBehaviour, IHitable
     {
@@ -27,11 +26,12 @@ namespace OfficeBreak
 
         private void Awake()
         {
+            _health.Initialize();
+
             _rigidbody = GetComponent<Rigidbody>();
             _meshRenderer = GetComponent<MeshRenderer>();
             _collider = GetComponent<Collider>();
             _audioSource = GetComponent<AudioSource>();
-            _health = GetComponent<Health>();
             _navMeshObstacle = GetComponent<NavMeshObstacle>();
             _navMeshObstacle.carving = true;
         }

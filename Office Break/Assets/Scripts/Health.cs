@@ -3,7 +3,8 @@ using System;
 
 namespace OfficeBreak
 {
-    public class Health : MonoBehaviour
+    [Serializable]
+    public class Health
     {
         [SerializeField] private float _initialHealth;
 
@@ -14,7 +15,9 @@ namespace OfficeBreak
         public float Value => _health;
         public float LeftHealthPercentage => _health / _initialHealth * 100;
 
-        private void Awake() => _health = _initialHealth;
+        private void Die() => Died?.Invoke();
+
+        public void Initialize() => _health = _initialHealth;
 
         public void TakeDamage(float damage)
         {
@@ -28,11 +31,6 @@ namespace OfficeBreak
 
             if (_health <= 0)
                 Die();
-        }
-
-        private void Die()
-        {
-            Died?.Invoke();
         }
     }
 }
