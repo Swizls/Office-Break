@@ -1,4 +1,5 @@
 using OfficeBreak.Core;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace OfficeBreak.Spawners
     {
         [SerializeField] private List<EnemySpawner> _enemySpawners = new List<EnemySpawner>();
         [SerializeField] private UnityEvent EnemyWaveSpawned;
+        [SerializeField] private float _enemySpawnDelay = 5f; 
 
         private List<EnemySpawner> _elevatorSpawners;
         private List<EnemySpawner> _startEnemySpawners;
@@ -51,7 +53,13 @@ namespace OfficeBreak.Spawners
             _activeEnemyCount--;
 
             if (_activeEnemyCount == 0)
-                SpawnEnemies(_elevatorSpawners);
+                StartCoroutine(SpawnEnemiesWithDelay(_enemySpawnDelay));
+        }
+
+        private IEnumerator SpawnEnemiesWithDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            SpawnEnemies(_elevatorSpawners);
         }
     }
 }
