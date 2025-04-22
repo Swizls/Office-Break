@@ -1,4 +1,3 @@
-using OfficeBreak.DustructionSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,9 +7,9 @@ namespace OfficeBreak.DustructionSystem.UI
 {
     public class DestructableHealthUI : MonoBehaviour
     {
-        private const float HEALTH_BAR_ANIMATION_SPEED = 0.1f;
-        private const float RED_BAR_ANIMATION_DELAY = 0.1f;
-        private const float FOLLOW_SPEED = 0.1f;
+        private const float HEALTH_BAR_ANIMATION_SPEED = 2f;
+        private const float RED_BAR_ANIMATION_DELAY = 0.5f;
+        private const float FOLLOW_SPEED = 5f;
         private const float DISTANCE_TO_DISAPPEAR = 5f;
 
         [Header("Bars")]
@@ -20,8 +19,8 @@ namespace OfficeBreak.DustructionSystem.UI
         [Header("Animation")]
         [SerializeField] private AnimationCurve _shakeAnimationCurveX;
         [SerializeField] private AnimationCurve _shakeAnimationCurveY;
-        [SerializeField] private float _shakeDuration = 0.01f;
-        [SerializeField] private float _shakeSpeed = 0.01f;
+        [SerializeField][Range(0.0001f, 0.1f)] private float _shakeDuration = 0.01f;
+        [SerializeField] private float _shakeSpeed = 4f;
 
         private IReadOnlyList<Destructable> _destructables;
         private Destructable _currentDestructableObject;
@@ -74,8 +73,7 @@ namespace OfficeBreak.DustructionSystem.UI
                 StartShakeAnimation();
             }
 
-            StartCoroutine(PlayHealthBarAnimation(_currentDestructableObject.Health.LeftHealthPercentage));
-            StartCoroutine(PlayRedBarAnimation(_currentDestructableObject.Health.LeftHealthPercentage));
+            StartCoroutine(PlayAnimations(_currentDestructableObject.Health.LeftHealthPercentage));
             StartCoroutine(FollowPlayer());
         }
 
@@ -112,7 +110,7 @@ namespace OfficeBreak.DustructionSystem.UI
                 if (_isShaking)
                     yield return new WaitForEndOfFrame();
 
-                transform.position = Vector3.Lerp(transform.position, CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position), FOLLOW_SPEED);
+                transform.position = Vector3.Lerp(transform.position, CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position), FOLLOW_SPEED * Time.deltaTime);
                 transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 yield return new WaitForEndOfFrame();
             }
@@ -120,30 +118,22 @@ namespace OfficeBreak.DustructionSystem.UI
             gameObject.SetActive(false);
         }
         #region ANIMATIONS
-        private IEnumerator PlayHealthBarAnimation(float target)
+        private IEnumerator PlayAnimations(float target)
         {
-            if (target < 0)
-                target = 0;
-
-            Vector3 targetScale = new Vector3(target / 100, _healthBarRectTransform.localScale.y, _healthBarRectTransform.localScale.z);
-            while (Vector3.Distance(_healthBarRectTransform.localScale, targetScale) > 0.01f)
-            {
-                _healthBarRectTransform.localScale = Vector3.Lerp(_healthBarRectTransform.localScale, targetScale, HEALTH_BAR_ANIMATION_SPEED);
-                yield return new WaitForEndOfFrame();
-            }
+            StartCoroutine(PlayBarAnimation(target, _healthBarRectTransform));
+            yield return new WaitForSeconds(RED_BAR_ANIMATION_DELAY);
+            StartCoroutine(PlayBarAnimation(target, _redBarTransform));
         }
 
-        private IEnumerator PlayRedBarAnimation(float target)
+        private IEnumerator PlayBarAnimation(float target, RectTransform bar)
         {
-            yield return new WaitForSeconds(RED_BAR_ANIMATION_DELAY);
-
             if (target < 0)
                 target = 0;
 
-            Vector3 targetScale = new Vector3(target / 100, _healthBarRectTransform.localScale.y, _healthBarRectTransform.localScale.z);
-            while (Vector3.Distance(_redBarTransform.localScale, targetScale) > 0.01f)
+            Vector3 targetScale = new Vector3(target / 100, bar.localScale.y, bar.localScale.z);
+            while (bar.localScale.x != targetScale.x)
             {
-                _redBarTransform.localScale = Vector3.Lerp(_redBarTransform.localScale, targetScale, HEALTH_BAR_ANIMATION_SPEED);
+                bar.localScale = Vector3.MoveTowards(bar.localScale, targetScale, HEALTH_BAR_ANIMATION_SPEED * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
         }
@@ -159,7 +149,7 @@ namespace OfficeBreak.DustructionSystem.UI
                 float shakeX = _shakeAnimationCurveX.Evaluate(progress) + appearPoint.x;
                 float shakeY = _shakeAnimationCurveY.Evaluate(progress) + appearPoint.y;
                 Vector3 position = new Vector3(shakeX, shakeY, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, position, _shakeSpeed);
+                transform.position = Vector3.Lerp(transform.position, position, _shakeSpeed * Time.deltaTime);
                 progress += _shakeDuration;
                 yield return null;
             }

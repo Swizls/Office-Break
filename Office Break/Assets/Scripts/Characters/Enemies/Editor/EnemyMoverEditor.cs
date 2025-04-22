@@ -1,6 +1,7 @@
 using OfficeBreak.Characters.Enemies;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 namespace OfficeBreak.Enemies.EditorExtension
 {
@@ -28,3 +29,4 @@ namespace OfficeBreak.Enemies.EditorExtension
     }
 
 }
+#endif

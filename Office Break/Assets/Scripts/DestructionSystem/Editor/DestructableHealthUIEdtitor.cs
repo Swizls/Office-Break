@@ -1,6 +1,7 @@
 using OfficeBreak.DustructionSystem.UI;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 namespace OfficeBreak.DustructionSystem.Editors
 {
@@ -21,3 +22,4 @@ namespace OfficeBreak.DustructionSystem.Editors
         }
     }
 }
+#endif

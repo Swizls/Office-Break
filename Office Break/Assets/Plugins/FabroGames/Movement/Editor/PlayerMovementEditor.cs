@@ -1,6 +1,7 @@
 using FabroGames.PlayerControlls;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 namespace FabroGames.Player.Movement.EditorExtension 
 {
@@ -32,3 +33,4 @@ namespace FabroGames.Player.Movement.EditorExtension
     }
 
 }
+#endif

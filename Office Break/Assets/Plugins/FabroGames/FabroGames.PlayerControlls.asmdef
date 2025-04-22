@@ -2,7 +2,8 @@
     "name": "FabroGames.PlayerControlls",
     "rootNamespace": "FabroGames.PlayerControlls",
     "references": [
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
