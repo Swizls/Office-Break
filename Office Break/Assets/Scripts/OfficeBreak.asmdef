@@ -1,0 +1,19 @@
+{
+    "name": "OfficeBreak",
+    "rootNamespace": "OfficeBreak",
+    "references": [
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:e15d28443409ee54099493d7423c3d18",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:937fabf8e5e2ec04a9661cdf3a05244d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

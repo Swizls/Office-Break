@@ -1,0 +1,17 @@
+{
+    "name": "OfficeBreak.DestructionSystem",
+    "rootNamespace": "OfficeBreak.DestructionSystem",
+    "references": [
+        "GUID:74b70a2b966423b43a8819fe382e688e",
+        "GUID:937fabf8e5e2ec04a9661cdf3a05244d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

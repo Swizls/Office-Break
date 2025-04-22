@@ -5364,7 +5364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 603533438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ac34e70624bc240a9a21697ef8b4db, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fc972496e36b654fbb6234c0757047f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBarRectTransform: {fileID: 303528332}
@@ -5375,38 +5375,47 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 4
+      outSlope: 4
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.17088062
-      value: 0.019635059
-      inSlope: -0.026258202
-      outSlope: -0.026258202
-      tangentMode: 0
+      time: 0.25
+      value: 1
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.36092657
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.60221124
-      value: 0.015554424
-      inSlope: 0.77067274
-      outSlope: 0.77067274
-      tangentMode: 0
+      time: 0.5
+      value: -1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.14415123
-      outWeight: 0.1115055
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.011348724
-      inSlope: 1.2476325
-      outSlope: 1.2476325
-      tangentMode: 0
+      value: 0
+      inSlope: -4
+      outSlope: -4
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.044751007
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -5417,62 +5426,53 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 4
+      outSlope: 4
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.1380466
-      value: 0.15452534
-      inSlope: -0.2381119
-      outSlope: -0.2381119
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.47794524
-    - serializedVersion: 3
-      time: 0.30585292
-      value: 0.015712917
-      inSlope: 1.6566062
-      outSlope: 1.6566062
-      tangentMode: 0
+      time: 0.25
+      value: 1
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.6876379
-      value: -0.0018948615
-      inSlope: -1.6860454
-      outSlope: -1.6860454
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.15488017
-    - serializedVersion: 3
-      time: 0.84695834
-      value: 0.1539098
-      inSlope: -0.9940302
-      outSlope: -0.9940302
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.49005026
-    - serializedVersion: 3
-      time: 0.9920044
-      value: 0.0047187805
+      time: 0.5
+      value: -1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4
+      outSlope: -4
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _shakeDuration: 0.01
-  _shakeSpeed: 0.5
+  _shakeDuration: 0.05
+  _shakeSpeed: 0.01
 --- !u!1 &635492239
 GameObject:
   m_ObjectHideFlags: 0
@@ -10511,7 +10511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fd63b1ad45bf24c94142a8d6abc24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
 --- !u!4 &2058161309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5250567902686570296, guid: 40b09421bded0984c896acfe2ed6690e, type: 3}

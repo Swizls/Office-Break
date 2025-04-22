@@ -1,5 +1,5 @@
 ﻿using FabroGames.Characters.Player;
-using FabroGames.Player.Movement;
+using FabroGames.PlayerControlls;
 using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 

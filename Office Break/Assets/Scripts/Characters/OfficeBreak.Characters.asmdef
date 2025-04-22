@@ -1,0 +1,18 @@
+{
+    "name": "OfficeBreak.Characters",
+    "rootNamespace": "OfficeBreak.Characters",
+    "references": [
+        "GUID:937fabf8e5e2ec04a9661cdf3a05244d",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6485187461948144a89afee54252dbcc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

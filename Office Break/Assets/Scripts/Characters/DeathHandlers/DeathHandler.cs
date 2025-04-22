@@ -1,4 +1,4 @@
-using TMPro.EditorUtilities;
+using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Characters

@@ -1,6 +1,7 @@
 using OfficeBreak.Characters.Enemies;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core;
+using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Spawners

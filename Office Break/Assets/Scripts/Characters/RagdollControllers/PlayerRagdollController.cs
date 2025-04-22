@@ -1,5 +1,5 @@
-﻿using FabroGames.Input;
-using FabroGames.Player.Movement;
+﻿using FabroGames.Player.Movement;
+using FabroGames.PlayerControlls;
 using UnityEngine;
 
 namespace OfficeBreak.Characters

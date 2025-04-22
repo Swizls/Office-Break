@@ -1,5 +1,6 @@
 using OfficeBreak.Characters;
 using OfficeBreak.Core;
+using OfficeBreak.Core.DamageSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

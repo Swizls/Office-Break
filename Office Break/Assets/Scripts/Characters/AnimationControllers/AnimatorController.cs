@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FabroGames.Characters.Animations
+namespace OfficeBreak.Characters.Animations
 {
     [RequireComponent(typeof(Animator))]
     public abstract class AnimatorController : MonoBehaviour

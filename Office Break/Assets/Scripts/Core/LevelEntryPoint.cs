@@ -1,4 +1,5 @@
-using OfficeBreak.UI;
+using OfficeBreak.DustructionSystem;
+using OfficeBreak.DustructionSystem.UI;
 using UnityEngine;
 
 namespace OfficeBreak.Core

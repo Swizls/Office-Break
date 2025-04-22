@@ -1,8 +1,8 @@
-﻿using FabroGames.Player.Movement;
+﻿using FabroGames.PlayerControlls;
 using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
-namespace FabroGames.Characters.Animations
+namespace OfficeBreak.Characters.Animations
 {
     public class PlayerAnimatorController : AnimatorController
     {

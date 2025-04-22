@@ -1,4 +1,5 @@
 using OfficeBreak.Characters.FightingSystem;
+using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Characters.Enemies
