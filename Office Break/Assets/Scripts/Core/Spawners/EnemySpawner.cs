@@ -1,3 +1,4 @@
+using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core;
@@ -17,15 +18,15 @@ namespace OfficeBreak.Spawners
         [SerializeField] private EnemySpawnerType _type;
 
         private Transform _playerTransform;
-        private Health _playerHealth;
+        private Player _player;
 
         public EnemySpawnerType Type => _type;
         public Enemy LastSpawnedEnemy { get; private set; }
 
-        public void Initialize(Transform playerTransform, Health playerHealth)
+        public void Initialize(Transform playerTransform, Player player)
         {
             _playerTransform = playerTransform;
-            _playerHealth = playerHealth;
+            _player = player;
         }
 
         public override void Spawn()
@@ -36,7 +37,7 @@ namespace OfficeBreak.Spawners
             enemyComponent.Initialize(_playerTransform);
             LastSpawnedEnemy = enemyComponent;
 
-            obj.GetComponent<EnemyAttackController>().Initialize(_playerHealth);
+            obj.GetComponent<EnemyAttackController>().Initialize(_player);
         }
     }
 }

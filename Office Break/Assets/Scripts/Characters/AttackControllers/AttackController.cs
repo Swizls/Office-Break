@@ -23,8 +23,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         public Action AttackPerformed;
         public Action AlternativeAttackPerformed;
-
-        private float CooldownReductionTime => _cooldownReductionTime;
+        public Action<bool> BlockStateChanged;
 
         protected float Damage => _damage;
         protected float AttackForce => _attackForce;
@@ -34,7 +33,7 @@ namespace OfficeBreak.Characters.FightingSystem
         protected bool IsAbleToAttackRightHand { get; set; }
 
         public abstract bool IsBlocking { get; protected set; }
-        public bool IsAbleToAttack => IsAbleToAttackLeftHand && IsAbleToAttackRightHand;
+        public bool IsAbleToAttack => IsAbleToAttackLeftHand && IsAbleToAttackRightHand && !IsBlocking;
         public float AttackRange => _attackRange;
 
         #region MONO
@@ -45,8 +44,8 @@ namespace OfficeBreak.Characters.FightingSystem
 
             var animatorController = GetComponentInChildren<AnimatorController>();
 
-            LeftHandCooldownTime = animatorController.PrimaryAttackAnimationLength - CooldownReductionTime;
-            RightHandCooldownTime = animatorController.SecondaryAttackAnimationLength - CooldownReductionTime;
+            LeftHandCooldownTime = animatorController.PrimaryAttackAnimationLength - _cooldownReductionTime;
+            RightHandCooldownTime = animatorController.SecondaryAttackAnimationLength - _cooldownReductionTime;
 
             IsAbleToAttackLeftHand = true;
             IsAbleToAttackRightHand = true;

@@ -25,12 +25,14 @@ namespace OfficeBreak.Characters.FightingSystem
             _playerInputActions.Enable();
             _playerInputActions.Player.Attack.performed += OnAttackButtonPress;
             _playerInputActions.Player.AlternativeAttack.performed += OnAltAttackButtonPress;
+            _playerInputActions.Player.Block.performed += OnBlockButtonPress;
         }
 
         private void OnDisable()
         {
             _playerInputActions.Player.Attack.performed -= OnAttackButtonPress;
             _playerInputActions.Player.AlternativeAttack.performed -= OnAltAttackButtonPress;
+            _playerInputActions.Player.Block.performed -= OnBlockButtonPress;
             _playerInputActions.Player.Disable();
         }
 
@@ -42,6 +44,9 @@ namespace OfficeBreak.Characters.FightingSystem
         private void OnAttackButtonPress(InputAction.CallbackContext context) => PrimaryAttack();
 
         private void OnAltAttackButtonPress(InputAction.CallbackContext context) => AlternativeAttack();
+
+        private void OnBlockButtonPress(InputAction.CallbackContext context) => ToggleBlock();
+
         #endregion
 
         private void FistAttack()
@@ -68,9 +73,15 @@ namespace OfficeBreak.Characters.FightingSystem
             PlayAttackSFX();
         }
 
+        private void ToggleBlock()
+        {
+            IsBlocking = !IsBlocking;
+            BlockStateChanged?.Invoke(IsBlocking);
+        }
+
         protected override void PrimaryAttack()
         {
-            if (!IsAbleToAttackLeftHand)
+            if (!IsAbleToAttackLeftHand && !IsBlocking)
                 return;
 
             StartCoroutine(CooldownTimer(AttackType.LeftHand, LeftHandCooldownTime));
@@ -81,7 +92,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected override void AlternativeAttack()
         {
-            if (!IsAbleToAttackRightHand)
+            if (!IsAbleToAttackRightHand && !IsBlocking)
                 return;
 
             StartCoroutine(CooldownTimer(AttackType.RightHand, RightHandCooldownTime));

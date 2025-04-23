@@ -7,6 +7,7 @@ namespace OfficeBreak.Characters.Animations
     {
         protected const string IS_FLYING = "IsFlying";
         protected const string IS_RUNNING = "IsRunning";
+        protected const string IS_BLOCKING = "IsBlocking";
         protected const string ATTACK = "Attack";
         protected const string ALTERNATIVE_ATTACK = "AltAttack";
 
@@ -30,6 +31,8 @@ namespace OfficeBreak.Characters.Animations
         protected abstract void SetIsRunningBool();
 
         protected abstract void SetFlyingBool();
+
+        protected void OnBlockStateChange(bool flag) => _animator.SetBool(IS_BLOCKING, flag);
 
         protected void OnAttackPerform() => _animator.SetTrigger(ATTACK);
 

@@ -24,12 +24,14 @@ namespace OfficeBreak.Characters.Animations
         {
             _playerAttack.AttackPerformed += OnAttackPerform;
             _playerAttack.AlternativeAttackPerformed += OnAlternativeAttackPerform;
+            _playerAttack.BlockStateChanged += OnBlockStateChange;
         }
 
         private void OnDisable()
         {
             _playerAttack.AttackPerformed -= OnAttackPerform;
             _playerAttack.AlternativeAttackPerformed -= OnAlternativeAttackPerform;
+            _playerAttack.BlockStateChanged -= OnBlockStateChange;
         }
         #endregion
 
