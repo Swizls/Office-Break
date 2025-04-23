@@ -81,7 +81,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected override void PrimaryAttack()
         {
-            if (!IsAbleToAttackLeftHand && !IsBlocking)
+            if (!IsAbleToAttackLeftHand || IsBlocking)
                 return;
 
             StartCoroutine(CooldownTimer(AttackType.LeftHand, LeftHandCooldownTime));
@@ -92,7 +92,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected override void AlternativeAttack()
         {
-            if (!IsAbleToAttackRightHand && !IsBlocking)
+            if (!IsAbleToAttackRightHand || IsBlocking)
                 return;
 
             StartCoroutine(CooldownTimer(AttackType.RightHand, RightHandCooldownTime));

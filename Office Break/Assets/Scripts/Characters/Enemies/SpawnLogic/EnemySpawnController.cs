@@ -33,7 +33,7 @@ namespace OfficeBreak.Spawners
             Player player = playerTransform.GetComponent<Player>();
 
             foreach (var spawner in enemySpawners)
-                spawner.Initialize(playerTransform, player);
+                spawner.Initialize(player);
         }
 
         private void Start() => Spawn(_startEnemySpawners);

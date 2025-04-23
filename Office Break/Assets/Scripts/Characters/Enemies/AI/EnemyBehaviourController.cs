@@ -21,10 +21,7 @@ namespace OfficeBreak.Characters.Enemies.AI
             _playerTransform = player.transform;
             _enemyMover = GetComponent<EnemyMover>();
             _attackController = GetComponent<EnemyAttackController>();
-        }
 
-        private void Start()
-        {
             _followBehaviour = new EnemyFollowBehaviour(_playerTransform, _enemyMover);
             _attackBehaviour = new EnemyAttackBehaviour(_playerTransform, _enemyMover, _attackController);
 
