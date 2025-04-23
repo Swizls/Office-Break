@@ -1,9 +1,8 @@
-﻿using OfficeBreak.Characters.Animations;
-using OfficeBreak.Characters.Enemies;
+﻿using OfficeBreak.Characters.Enemies;
 using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
-namespace FabroGames.Characters.Animations
+namespace OfficeBreak.Characters.Animations
 {
     public class EnemyAnimatorController : AnimatorController
     {
@@ -16,7 +15,7 @@ namespace FabroGames.Characters.Animations
         private void Update()
         {
             SetIsRunningBool();
-            SetMovementDirection(CalculateRealitveMovementDirection(_enemyMover.AgentVelocity, _enemyMover.transform.forward));
+            SetMovementDirection(CalculateRealitveMovementDirection(_enemyMover.AgentVelocity, transform.forward));
         }
 
         private void OnEnable()

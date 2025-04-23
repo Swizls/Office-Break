@@ -56,8 +56,8 @@ MonoBehaviour:
     m_TargetPositionWeight: 0
     m_TargetRotationWeight: 1
     m_HintWeight: 1
-    m_MaintainTargetPositionOffset: 0
-    m_MaintainTargetRotationOffset: 0
+    m_MaintainTargetPositionOffset: 1
+    m_MaintainTargetRotationOffset: 1
 --- !u!1 &512651086003811572
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkingSpeed: 3.5
   _runningSpeed: 7
+  _enemyModelTransform: {fileID: 7875322774464911646}
 --- !u!114 &6846288462906024305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,7 +4356,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435940725460693387}
-  - component: {fileID: 1005383776529102223}
   m_Layer: 8
   m_Name: SpineIK_target
   m_TagString: Untagged
@@ -4378,17 +4378,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6585530305877592218}
   m_LocalEulerAnglesHint: {x: -0.324, y: 0, z: -0.005}
---- !u!114 &1005383776529102223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9001170560228012144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bae07818662c3eb4cb8fbcc88d2c11c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetTransform: {fileID: 141685377424060757}
-  _yOffset: 0
