@@ -1,13 +1,12 @@
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies;
+using OfficeBreak.Characters.Enemies.AI;
 using OfficeBreak.Characters.FightingSystem;
-using OfficeBreak.Core;
-using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Spawners
 {
-    public class EnemySpawner : Spawner
+    public class EnemySpawner : MonoBehaviour
     {
         public enum EnemySpawnerType
         {
@@ -15,13 +14,13 @@ namespace OfficeBreak.Spawners
             Elevator
         }
 
+        [SerializeField] private Enemy _prefab;
         [SerializeField] private EnemySpawnerType _type;
 
         private Transform _playerTransform;
         private Player _player;
 
         public EnemySpawnerType Type => _type;
-        public Enemy LastSpawnedEnemy { get; private set; }
 
         public void Initialize(Transform playerTransform, Player player)
         {
@@ -29,15 +28,14 @@ namespace OfficeBreak.Spawners
             _player = player;
         }
 
-        public override void Spawn()
+        public Enemy Spawn()
         {
-            GameObject obj = Instantiate(Prefab, transform.position, Quaternion.identity);
+            Enemy enemy = Instantiate(_prefab, transform.position, Quaternion.identity);
 
-            var enemyComponent = obj.GetComponent<Enemy>();
-            enemyComponent.Initialize(_playerTransform);
-            LastSpawnedEnemy = enemyComponent;
-
-            obj.GetComponent<EnemyAttackController>().Initialize(_player);
+            enemy.Initialize(_playerTransform);
+            enemy.GetComponent<EnemyAttackController>().Initialize(_player);
+            enemy.GetComponent<EnemyBehaviourController>().Initialize(_player);
+            return enemy;
         }
     }
 }

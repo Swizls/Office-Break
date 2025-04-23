@@ -26,15 +26,9 @@ namespace OfficeBreak.Characters.Enemies
             _enemyMover = GetComponent<EnemyMover>();
         }
 
-        private void Update()
-        {
-            FollowPlayer();
-            AttackPlayer();
-        }
-
         #endregion
 
-        private void AttackPlayer()
+        public void AttackPlayer()
         {
             if (!_attackController.IsAbleToAttack)
                 return;
@@ -42,8 +36,6 @@ namespace OfficeBreak.Characters.Enemies
             if (Vector3.Distance(transform.position, _playerTransform.position) < _attackController.AttackRange)
                 _attackController.PerformAttack();
         }
-
-        private void FollowPlayer() => _enemyMover.SetDestination(_playerTransform.position);
 
         public void TakeHit(HitData hitData) => _health.TakeDamage(hitData.Damage);
 

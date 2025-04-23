@@ -34,7 +34,6 @@ namespace OfficeBreak.DustructionSystem
             _collider = GetComponent<Collider>();
             _audioSource = GetComponent<AudioSource>();
             _navMeshObstacle = GetComponent<NavMeshObstacle>();
-            _navMeshObstacle.carving = true;
         }
 
         private void OnEnable() => _health.Died += OnObjectDestroy;

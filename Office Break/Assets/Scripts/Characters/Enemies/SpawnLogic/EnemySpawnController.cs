@@ -1,6 +1,6 @@
 using OfficeBreak.Characters;
+using OfficeBreak.Characters.Enemies;
 using OfficeBreak.Core;
-using OfficeBreak.Core.DamageSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,41 +11,45 @@ namespace OfficeBreak.Spawners
 {
     public class EnemySpawnController : MonoBehaviour
     {
-        [SerializeField] private List<EnemySpawner> _enemySpawners = new List<EnemySpawner>();
-        [SerializeField] private UnityEvent EnemyWaveSpawned;
-        [SerializeField] private float _enemySpawnDelay = 5f; 
+        [SerializeField] private float _enemySpawnDelay = 5f;
 
         private List<EnemySpawner> _elevatorSpawners;
         private List<EnemySpawner> _startEnemySpawners;
 
         private int _activeEnemyCount;
 
+        public UnityEvent<List<Enemy>> EnemyWaveSpawned;
+
         #region MONO
 
         private void Awake()
         {
-            _elevatorSpawners = _enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Elevator).ToList();
-            _startEnemySpawners = _enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Start).ToList();
+            List<EnemySpawner> enemySpawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None).ToList();
+
+            _elevatorSpawners = enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Elevator).ToList();
+            _startEnemySpawners = enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Start).ToList();
 
             Transform playerTransform = FindAnyObjectByType<LevelEntryPoint>().PlayerTransform;
             Player player = playerTransform.GetComponent<Player>();
 
-            foreach (var spawner in _enemySpawners)
+            foreach (var spawner in enemySpawners)
                 spawner.Initialize(playerTransform, player);
         }
 
-        private void Start() => SpawnEnemies(_startEnemySpawners);
+        private void Start() => Spawn(_startEnemySpawners);
 
-        private void SpawnEnemies(List<EnemySpawner> spawners)
+        private void Spawn(List<EnemySpawner> spawners)
         {
+            List<Enemy> enemies = new List<Enemy>();
             foreach (var spawner in spawners)
             {
-                spawner.Spawn();
+                Enemy enemy = spawner.Spawn();
+                enemy.Health.Died += OnEnemyDeath;
+                enemies.Add(enemy);
                 _activeEnemyCount++;
-                spawner.LastSpawnedEnemy.Health.Died += OnEnemyDeath;
             }
 
-            EnemyWaveSpawned?.Invoke();
+            EnemyWaveSpawned?.Invoke(enemies);
         }
 
         #endregion
@@ -61,7 +65,7 @@ namespace OfficeBreak.Spawners
         private IEnumerator SpawnEnemiesWithDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            SpawnEnemies(_elevatorSpawners);
+            Spawn(_elevatorSpawners);
         }
     }
 }

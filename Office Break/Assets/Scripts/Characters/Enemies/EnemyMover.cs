@@ -29,5 +29,13 @@ namespace OfficeBreak.Characters.Enemies
             else
                 _agent.speed = _walkingSpeed;
         }
+
+        public bool IsPositionReachable(Vector3 point)
+        {
+            NavMeshPath path = new NavMeshPath();
+            _agent.CalculatePath(point, path);
+
+            return path.status == NavMeshPathStatus.PathComplete;
+        }
     }
 }
