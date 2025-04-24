@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 namespace FabroGames.PlayerControlls
 {
     [RequireComponent(typeof(CharacterController))]
-    public class FPSMovement : MonoBehaviour
+    public class FPSMovement : MonoBehaviour, IMovable
     {
         private const float DISTANCE_TO_DETECT_SURFACE_FOR_WALL_JUMP = 2f;
         private const float SPEED_TO_STOP_SLIDE = 8f;
 
-        [SerializeField] private Camera _camera;
+        [SerializeField] private Transform _cameraTransform;
 
         [Header("Movement")]
         [SerializeField] private float _walkingSpeed;
@@ -46,14 +46,14 @@ namespace FabroGames.PlayerControlls
         public bool IsSliding { get; private set; }
         public bool IsRunning => _playerInputActions.Player.Sprint.ReadValue<float>() > 0 && IsMoving;
         public bool IsMoving => Velocity.magnitude > 0;
-        public bool IsFlying => !IsGroundend;
-        public bool IsGroundend => _characterController.isGrounded;
+        public bool IsFlying => !IsGrounded;
+        public bool IsGrounded => _characterController.isGrounded;
 
         #region MONO
         private void Start()
         {
             _characterController = GetComponent<CharacterController>();
-            _currentMover = new WalkMover(this, _playerInputActions, _camera.transform);
+            _currentMover = new WalkMover(this, _playerInputActions, _cameraTransform);
         }
 
         private void OnEnable()
@@ -108,7 +108,7 @@ namespace FabroGames.PlayerControlls
             if (IsRunning == false || _playerInputActions.Player.Crouch.IsPressed() == false)
                 return;
 
-            _currentMover = new SlideMover(this, _playerInputActions, _camera.transform);
+            _currentMover = new SlideMover(this, _playerInputActions, _cameraTransform);
             StartCoroutine(WaitForSlideEnd());
         }
 
@@ -120,7 +120,7 @@ namespace FabroGames.PlayerControlls
             if (IsSliding)
                 return;
 
-            _currentMover = new RunMover(this, _playerInputActions, _camera.transform);
+            _currentMover = new RunMover(this, _playerInputActions, _cameraTransform);
             StartCoroutine(WaitForRunEnd());
         }
 
@@ -131,7 +131,7 @@ namespace FabroGames.PlayerControlls
 
             Vector3 jumpDirection = Vector3.up;
 
-            if (!IsGroundend)
+            if (!IsGrounded)
             {
                 if (IsSurfaceOnGivenDirection(-transform.right))
                     jumpDirection += transform.right * _wallJumpForce * Time.deltaTime;
@@ -146,7 +146,7 @@ namespace FabroGames.PlayerControlls
             _characterController.Move(velocityY * Time.deltaTime);
 
             IsSliding = false;
-            _currentMover = new AirMover(this, _playerInputActions, _camera.transform);
+            _currentMover = new AirMover(this, _playerInputActions, _cameraTransform);
 
             StartCoroutine(WaitForLand());
 
@@ -166,17 +166,17 @@ namespace FabroGames.PlayerControlls
         private IEnumerator WaitForRunEnd()
         {
             yield return new WaitUntil(() => IsRunning == false);
-            _currentMover = new WalkMover(this, _playerInputActions, _camera.transform);
+            _currentMover = new WalkMover(this, _playerInputActions, _cameraTransform);
         }
 
         private IEnumerator WaitForLand()
         {
-            yield return new WaitUntil(() => IsGroundend);
+            yield return new WaitUntil(() => IsGrounded);
 
             if (_playerInputActions.Player.Sprint.IsPressed())
-                _currentMover = new RunMover(this, _playerInputActions, _camera.transform);
+                _currentMover = new RunMover(this, _playerInputActions, _cameraTransform);
             else
-                _currentMover = new WalkMover(this, _playerInputActions, _camera.transform);
+                _currentMover = new WalkMover(this, _playerInputActions, _cameraTransform);
         }
 
         private IEnumerator WaitForSlideEnd()
@@ -187,11 +187,11 @@ namespace FabroGames.PlayerControlls
             yield return new WaitUntil(() => Velocity.magnitude < SPEED_TO_STOP_SLIDE || IsSliding == false);
 
             if (IsFlying)
-                _currentMover = new AirMover(this, _playerInputActions, _camera.transform);
+                _currentMover = new AirMover(this, _playerInputActions, _cameraTransform);
             else if (_playerInputActions.Player.Sprint.IsPressed())
-                _currentMover = new RunMover(this, _playerInputActions, _camera.transform);
+                _currentMover = new RunMover(this, _playerInputActions, _cameraTransform);
             else
-                _currentMover = new WalkMover(this, _playerInputActions, _camera.transform);
+                _currentMover = new WalkMover(this, _playerInputActions, _cameraTransform);
 
             IsSliding = false;
             SlideStateChanged?.Invoke(IsSliding);

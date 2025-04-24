@@ -121,7 +121,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4302443398561861336}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -263,7 +263,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1.5300001, y: 0.52500004, z: 0.8}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: -0.52500004, z: -0.009000001}
   m_TimeToStationary: 0.5

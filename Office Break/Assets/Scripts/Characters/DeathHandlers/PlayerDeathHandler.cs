@@ -1,11 +1,9 @@
 ﻿using FabroGames.Characters.Player;
-using FabroGames.PlayerControlls;
 using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Characters
 {
-    [RequireComponent(typeof(FPSMovement))]
     [RequireComponent(typeof(PlayerAttackController))]
     public class PlayerDeathHandler : DeathHandler
     {

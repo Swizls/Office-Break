@@ -30,7 +30,15 @@ namespace OfficeBreak.Characters.Enemies
             _playerTransform = FindAnyObjectByType<Player>().transform;
         }
 
-        private void OnDisable() => _agent.enabled = false;
+        private void OnDisable()
+        {
+            _agent.enabled = false;
+            if(_bodyRotationCoroutine != null)
+            {
+                StopCoroutine(_bodyRotationCoroutine);
+                _bodyRotationCoroutine = null;
+            }
+        }
 
         private IEnumerator RotateBodyToPlayerDirection()
         {

@@ -42,7 +42,7 @@ namespace FabroGames.PlayerControlls
 
             float verticalModifier = 1f;
 
-            if (PlayerMovement.IsGroundend)
+            if (PlayerMovement.IsGrounded)
             {
                 if (CharacterController.velocity.y > 0)
                     verticalModifier = _slopeDecceleration;

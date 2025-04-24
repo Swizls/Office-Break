@@ -23,9 +23,6 @@ namespace OfficeBreak.Characters
 
         public virtual void EnableRagdoll()
         {
-            foreach (Collider collider in _colliders)
-                collider.enabled = true;
-
             foreach (Rigidbody rigidbody in _rigidbodies)
                 rigidbody.isKinematic = false;
 
@@ -34,9 +31,6 @@ namespace OfficeBreak.Characters
 
         public virtual void DisableRagdoll()
         {
-            foreach (Collider collider in _colliders)
-                collider.enabled = false;
-
             foreach (Rigidbody rigidbody in _rigidbodies)
                 rigidbody.isKinematic = true;
 

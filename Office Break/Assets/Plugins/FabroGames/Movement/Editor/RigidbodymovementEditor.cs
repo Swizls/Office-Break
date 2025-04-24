@@ -5,8 +5,8 @@ using UnityEditor;
 
 namespace FabroGames.Player.Movement.EditorExtension 
 {
-    [CustomEditor(typeof(FPSMovement))]
-    public class PlayerMovementEditor : Editor
+    [CustomEditor(typeof(RigidbodyMovement))]
+    public class RigidbodyMovementEditor : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -15,20 +15,16 @@ namespace FabroGames.Player.Movement.EditorExtension
             if (!Application.isPlaying)
                 return;
 
-            FPSMovement playerMovement = (FPSMovement)target;
+            RigidbodyMovement playerMovement = (RigidbodyMovement)target;
 
             GUIStyle succesfulStyle = new GUIStyle { normal = { textColor = Color.green } };
             GUIStyle unsuccefulStyle = new GUIStyle { normal = { textColor = Color.red } };
 
-            EditorGUILayout.LabelField($"Current Mover: {playerMovement.CurrentMover.GetType().Name}");
             EditorGUILayout.LabelField($"Velocity: {playerMovement.Velocity}");
             EditorGUILayout.LabelField($"Velocity magnitude: {playerMovement.Velocity.magnitude}");
             EditorGUILayout.LabelField($"Velocity normalized: {playerMovement.Velocity.normalized}");
-            EditorGUILayout.LabelField($"Movement Direction: {playerMovement.CurrentMover.MovementDirection}");
             EditorGUILayout.LabelField($"IsMoving: {playerMovement.IsMoving}", playerMovement.IsMoving? succesfulStyle : unsuccefulStyle);
             EditorGUILayout.LabelField($"IsGrounded: {playerMovement.IsGrounded}", playerMovement.IsGrounded ? succesfulStyle : unsuccefulStyle);
-            EditorGUILayout.LabelField($"IsFlying: {playerMovement.IsFlying}", playerMovement.IsFlying ? succesfulStyle : unsuccefulStyle);
-            EditorGUILayout.LabelField($"IsSliding: {playerMovement.IsSliding}", playerMovement.IsSliding ? succesfulStyle : unsuccefulStyle);
         }
     }
 
