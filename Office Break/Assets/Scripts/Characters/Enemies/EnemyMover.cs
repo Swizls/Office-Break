@@ -26,6 +26,7 @@ namespace OfficeBreak.Characters.Enemies
         public bool IsRunning => _agent.speed > _walkingSpeed;
         public bool IsMoving => _agent.velocity.magnitude > 0;
         public bool IsGrounded => true;
+        public bool Enabled { get => enabled; set => enabled = value; }
 
         private void Awake()
         {

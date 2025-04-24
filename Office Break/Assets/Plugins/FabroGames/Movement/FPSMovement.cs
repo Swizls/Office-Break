@@ -48,6 +48,7 @@ namespace FabroGames.PlayerControlls
         public bool IsMoving => Velocity.magnitude > 0;
         public bool IsFlying => !IsGrounded;
         public bool IsGrounded => _characterController.isGrounded;
+        public bool Enabled { get => enabled; set => enabled = value; }
 
         #region MONO
         private void Start()

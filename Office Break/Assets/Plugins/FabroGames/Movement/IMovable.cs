@@ -8,5 +8,6 @@ namespace FabroGames.PlayerControlls
         public bool IsRunning { get; }
         public bool IsMoving { get; }
         public bool IsGrounded { get; }
+        public bool Enabled { get; set; }
     }
 }

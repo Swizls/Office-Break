@@ -14,15 +14,20 @@ namespace FabroGames.PlayerControlls
 
         #region MONO
 
-        private void Awake() => Cursor.lockState = CursorLockMode.Locked;
-
         private void OnEnable()
         {
             _playerInputActions = new PlayerInputActions();
             _playerInputActions.Player.Enable();
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
-        private void OnDisable() => _playerInputActions.Player.Disable();
+        private void OnDisable()
+        {
+            _playerInputActions.Player.Disable();
+
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         private void Update() => RotateCamera();
 

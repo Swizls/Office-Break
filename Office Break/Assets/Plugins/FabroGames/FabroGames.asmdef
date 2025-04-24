@@ -1,6 +1,6 @@
 {
-    "name": "FabroGames.PlayerControlls",
-    "rootNamespace": "FabroGames.PlayerControlls",
+    "name": "FabroGames",
+    "rootNamespace": "FabroGames",
     "references": [
         "Unity.InputSystem",
         "UnityEngine.UI"

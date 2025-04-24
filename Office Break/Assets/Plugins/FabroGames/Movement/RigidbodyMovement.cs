@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static Codice.Client.Commands.WkTree.WorkspaceTreeNode;
 
 namespace FabroGames.PlayerControlls
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class RigidbodyMovement : MonoBehaviour, IMovable
+    public class RigidbodyMovement : MonoBehaviour,  IMovable
     {
         private const float GROUND_DETECTION_DISTANCE = 1.2f;
 
@@ -24,6 +23,8 @@ namespace FabroGames.PlayerControlls
         public bool IsRunning => _playerInputActions.Player.Sprint.ReadValue<float>() > 0 && IsMoving;
         public bool IsMoving => Velocity.magnitude > 0.01f;
         public bool IsGrounded => Physics.Raycast(transform.position, Vector3.down, GROUND_DETECTION_DISTANCE, LayerMask.GetMask("Default"));
+
+        public bool Enabled { get => enabled; set => enabled = value; }
 
         #region MONO
 

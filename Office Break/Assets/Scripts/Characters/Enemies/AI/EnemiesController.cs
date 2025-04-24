@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using OfficeBreak.Spawners;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace OfficeBreak.Characters.Enemies
 {
@@ -27,11 +25,6 @@ namespace OfficeBreak.Characters.Enemies
         private void OnEnable() => _enemySpawnController.EnemyWaveSpawned.AddListener(OnEnemyWaveSpawn);
 
         private void OnDisable() => _enemySpawnController.EnemyWaveSpawned.RemoveListener(OnEnemyWaveSpawn);
-
-        private void Update()
-        {
-            
-        }
 
         #endregion
 

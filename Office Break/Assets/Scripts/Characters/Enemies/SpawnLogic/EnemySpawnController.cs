@@ -1,6 +1,5 @@
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies;
-using OfficeBreak.Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +21,18 @@ namespace OfficeBreak.Spawners
 
         #region MONO
 
-        private void Awake()
+        public void Initialize(Player player)
         {
             List<EnemySpawner> enemySpawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None).ToList();
 
             _elevatorSpawners = enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Elevator).ToList();
             _startEnemySpawners = enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Start).ToList();
 
-            Transform playerTransform = FindAnyObjectByType<LevelEntryPoint>().PlayerTransform;
-            Player player = playerTransform.GetComponent<Player>();
-
             foreach (var spawner in enemySpawners)
                 spawner.Initialize(player);
         }
 
-        private void Start() => Spawn(_startEnemySpawners);
+        #endregion
 
         private void Spawn(List<EnemySpawner> spawners)
         {
@@ -52,8 +48,6 @@ namespace OfficeBreak.Spawners
             EnemyWaveSpawned?.Invoke(enemies);
         }
 
-        #endregion
-
         private void OnEnemyDeath()
         {
             _activeEnemyCount--;
@@ -66,6 +60,11 @@ namespace OfficeBreak.Spawners
         {
             yield return new WaitForSeconds(delay);
             Spawn(_elevatorSpawners);
+        }
+
+        public void SpawnFirstWave()
+        {
+            Spawn(_startEnemySpawners);
         }
     }
 }
