@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace OfficeBreak.Core.DamageSystem
 {
     public interface IHitable
     {
+        public event Action<IHitable> GotHit;
         public void TakeHit(HitData hitData);
     }
 

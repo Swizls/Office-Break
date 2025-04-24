@@ -29,7 +29,6 @@ namespace OfficeBreak.Characters.FightingSystem
             AlternativeAttackPerformed?.Invoke();
             _player.TakeHit(HitData);
             StartCoroutine(CooldownTimer(AttackType.LeftHand, LeftHandCooldownTime));
-            PlayAttackSFX();
         }
 
         protected override void AlternativeAttack()
@@ -37,7 +36,6 @@ namespace OfficeBreak.Characters.FightingSystem
             AttackPerformed?.Invoke();
             _player.TakeHit(HitData);
             StartCoroutine(CooldownTimer(AttackType.LeftHand, RightHandCooldownTime));
-            PlayAttackSFX();
         }
 
         public void PerformAttack()

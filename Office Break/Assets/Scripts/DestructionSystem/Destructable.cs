@@ -12,6 +12,7 @@ namespace OfficeBreak.DustructionSystem
     public class Destructable : MonoBehaviour, IHitable
     {
         [SerializeField] private Health _health;
+        [SerializeField] private AudioClip _destroySFX;
 
         private Rigidbody _rigidbody;
         private Collider _collider;
@@ -19,8 +20,8 @@ namespace OfficeBreak.DustructionSystem
         private AudioSource _audioSource;
         private NavMeshObstacle _navMeshObstacle;
 
-        public Action Destroyed;
-        public Action<Destructable> GotHit;
+        public event Action Destroyed;
+        public event Action<IHitable> GotHit;
 
         public bool IsDestroyed => _health.Value <= 0;
         public Health Health => _health;
@@ -50,6 +51,7 @@ namespace OfficeBreak.DustructionSystem
             _meshRenderer.enabled = false;
             _navMeshObstacle.enabled = false;
 
+            _audioSource.clip = _destroySFX;
             _audioSource.Play();
 
             Destroy(this);
@@ -59,11 +61,11 @@ namespace OfficeBreak.DustructionSystem
 
         public void TakeHit(HitData hitData)
         {
+            GotHit?.Invoke(this);
+
             _rigidbody.isKinematic = false;
             _health.TakeDamage(hitData.Damage);
             _rigidbody.AddForce(hitData.HitDirection * hitData.AttackForce);
-
-            GotHit?.Invoke(this);
         }
     }
 }

@@ -499,6 +499,7 @@ GameObject:
   - component: {fileID: 3984022288629583900}
   - component: {fileID: 1095412098562032276}
   - component: {fileID: 751402224126471187}
+  - component: {fileID: 286017759384213492}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -733,6 +734,30 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: -0.2, z: 0}
+--- !u!114 &286017759384213492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051465f403b82894585b2ce7f0ed41bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pitchRangeMin: 0.8
+  _pitchRangeMax: 1.2
+  _hitSFXs:
+  - {fileID: 8300000, guid: 1e3312d22540aa14597a1fb4739f2782, type: 3}
+  - {fileID: 8300000, guid: d0f166575306db84091dc03fce0eff69, type: 3}
+  - {fileID: 8300000, guid: 58a5d36d6b134014ea5623d9802082e2, type: 3}
+  - {fileID: 8300000, guid: 1f53a5fc6bd934e46a5d8cfa8fd27b64, type: 3}
+  - {fileID: 8300000, guid: e82879725b40ce444bca27d19a75f42c, type: 3}
+  - {fileID: 8300000, guid: 2b019c6187fca1e48b47e28c891dc66c, type: 3}
+  - {fileID: 8300000, guid: b883c27c88428884fb3a10dcc42b8b47, type: 3}
+  - {fileID: 8300000, guid: 605611dd6463bbc4090ab6408907d9e8, type: 3}
+  - {fileID: 8300000, guid: d7ea6b2cca581414e87717a0d085aa62, type: 3}
 --- !u!1 &2058803048013257783
 GameObject:
   m_ObjectHideFlags: 0

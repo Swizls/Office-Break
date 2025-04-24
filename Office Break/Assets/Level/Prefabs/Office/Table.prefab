@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 139579870178149729}
   - component: {fileID: 2103396740268410310}
   - component: {fileID: 2009155840377258503}
+  - component: {fileID: 1790177894331088896}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -154,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health:
     _initialHealth: 100
+  _destroySFX: {fileID: 8300000, guid: ed7474f79dfcb5144a303439be4232dc, type: 3}
 --- !u!82 &2103396740268410310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -267,3 +269,21 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: -0.52500004, z: -0.009000001}
   m_TimeToStationary: 0.5
+--- !u!114 &1790177894331088896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302443398561861336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051465f403b82894585b2ce7f0ed41bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pitchRangeMin: 0.8
+  _pitchRangeMax: 1.2
+  _hitSFXs:
+  - {fileID: 8300000, guid: 4047aaaa19814be44ae0f40e9b70e1fd, type: 3}
+  - {fileID: 8300000, guid: 80213e79ca9796143b5ee8247490a268, type: 3}
+  - {fileID: 8300000, guid: cd2b5a4eab0b39b48baeecbb5743ec2c, type: 3}

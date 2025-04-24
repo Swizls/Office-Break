@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 6618236544784308911}
   - component: {fileID: 1296513437465502063}
   - component: {fileID: 2314045191349838508}
+  - component: {fileID: 5425179102992773041}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -254,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05aff770ae784d4bb07200d98452f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkingSpeed: 3.5
+  _walkingSpeed: 5
   _runningSpeed: 7
   _enemyModelTransform: {fileID: 7875322774464911646}
 --- !u!114 &6846288462906024305
@@ -311,6 +312,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d64eb73d86323514fb70112767535225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5425179102992773041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512651086003811572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051465f403b82894585b2ce7f0ed41bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSFXs:
+  - {fileID: 8300000, guid: 1e3312d22540aa14597a1fb4739f2782, type: 3}
+  - {fileID: 8300000, guid: d0f166575306db84091dc03fce0eff69, type: 3}
+  - {fileID: 8300000, guid: 58a5d36d6b134014ea5623d9802082e2, type: 3}
+  - {fileID: 8300000, guid: 1f53a5fc6bd934e46a5d8cfa8fd27b64, type: 3}
+  - {fileID: 8300000, guid: e82879725b40ce444bca27d19a75f42c, type: 3}
+  - {fileID: 8300000, guid: 2b019c6187fca1e48b47e28c891dc66c, type: 3}
+  - {fileID: 8300000, guid: b883c27c88428884fb3a10dcc42b8b47, type: 3}
+  - {fileID: 8300000, guid: 605611dd6463bbc4090ab6408907d9e8, type: 3}
+  - {fileID: 8300000, guid: d7ea6b2cca581414e87717a0d085aa62, type: 3}
 --- !u!1 &569687253710102714
 GameObject:
   m_ObjectHideFlags: 0

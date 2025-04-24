@@ -65,8 +65,6 @@ namespace OfficeBreak.Characters.FightingSystem
             };
 
             target.TakeHit(data);
-
-            PlayAttackSFX();
         }
 
         private void ToggleBlock()

@@ -1,6 +1,7 @@
 using OfficeBreak.Characters.Enemies.AI;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core.DamageSystem;
+using System;
 using UnityEngine;
 
 namespace OfficeBreak.Characters.Enemies
@@ -12,6 +13,8 @@ namespace OfficeBreak.Characters.Enemies
         [SerializeField] private Health _health;
 
         private EnemyAttackController _attackController;
+
+        public event Action<IHitable> GotHit;
 
         public Health Health => _health;
         public EnemyBehaviourController BehaviourController { get; private set; }
@@ -34,7 +37,10 @@ namespace OfficeBreak.Characters.Enemies
             BehaviourController.Initialize(player);
         }
 
-        public void TakeHit(HitData hitData) => _health.TakeDamage(hitData.Damage);
-
+        public void TakeHit(HitData hitData)
+        {
+            _health.TakeDamage(hitData.Damage);
+            GotHit?.Invoke(this);
+        }
     }
 }

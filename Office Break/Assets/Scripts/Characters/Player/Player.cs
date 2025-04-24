@@ -1,5 +1,6 @@
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core.DamageSystem;
+using System;
 using UnityEngine;
 
 namespace OfficeBreak.Characters
@@ -10,6 +11,8 @@ namespace OfficeBreak.Characters
 
         private CameraShaker _shaker;
         private PlayerAttackController _playerAttackController;
+
+        public event Action<IHitable> GotHit;
 
         public Health Health => _health;
 
@@ -27,6 +30,8 @@ namespace OfficeBreak.Characters
 
             _health.TakeDamage(hitData.Damage);
             _shaker.StartShake();
+
+            GotHit?.Invoke(this);
         }
     }
 }

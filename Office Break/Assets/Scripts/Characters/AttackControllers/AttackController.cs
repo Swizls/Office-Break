@@ -57,12 +57,6 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected abstract void AlternativeAttack();
 
-        protected void PlayAttackSFX()
-        {
-            _audioSource.pitch = UnityEngine.Random.Range(0.5f, 1.5f);
-            _audioSource.Play();
-        }
-
         protected IEnumerator CooldownTimer(AttackType attackType, float cooldownTimer)
         {
             switch (attackType)
