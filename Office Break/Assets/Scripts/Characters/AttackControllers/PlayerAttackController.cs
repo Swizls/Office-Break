@@ -36,8 +36,6 @@ namespace OfficeBreak.Characters.FightingSystem
             _playerInputActions.Player.Disable();
         }
 
-        private void OnDrawGizmos() => Gizmos.DrawSphere(AttackPosition, ATTACK_SPHERE_RADIUS);
-
         #endregion
 
         #region CALLBACKS
@@ -55,8 +53,6 @@ namespace OfficeBreak.Characters.FightingSystem
 
             if (hit.collider == null)
                 return;
-
-            Debug.Log(hit.collider.gameObject.name);
 
             if (!hit.collider.gameObject.TryGetComponent(out IHitable target))
                 return;

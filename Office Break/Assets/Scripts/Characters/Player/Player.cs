@@ -1,3 +1,4 @@
+using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
 
@@ -7,10 +8,25 @@ namespace OfficeBreak.Characters
     {
         [SerializeField] private Health _health;
 
+        private CameraShaker _shaker;
+        private PlayerAttackController _playerAttackController;
+
         public Health Health => _health;
 
-        private void Awake() => _health.Initialize();
+        private void Awake()
+        {
+            _health.Initialize();
+            _shaker = GetComponentInChildren<CameraShaker>();  
+            _playerAttackController = GetComponent<PlayerAttackController>();
+        }
 
-        public void TakeHit(HitData hitData) => _health.TakeDamage(hitData.Damage);
+        public void TakeHit(HitData hitData)
+        {
+            if (_playerAttackController.IsBlocking)
+                return;
+
+            _health.TakeDamage(hitData.Damage);
+            _shaker.StartShake();
+        }
     }
 }

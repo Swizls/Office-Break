@@ -6,7 +6,6 @@ namespace OfficeBreak.Characters.FightingSystem
     public class EnemyAttackController : AttackController
     {
         private Player _player;
-        private PlayerAttackController _playerAttackcontroller;
 
         private HitData HitData 
         {
@@ -23,24 +22,12 @@ namespace OfficeBreak.Characters.FightingSystem
 
         public override bool IsBlocking { get ; protected set; }
 
-        public void Initialize(Player player)
-        {
-            _player = player;
-            _playerAttackcontroller = _player.GetComponent<PlayerAttackController>();
-        }
-
-        private void DealDamage()
-        {
-            if (_playerAttackcontroller.IsBlocking)
-                return;
-
-            _player.TakeHit(HitData);
-        }
+        public void Initialize(Player player) => _player = player;
 
         protected override void PrimaryAttack()
         {
             AlternativeAttackPerformed?.Invoke();
-            DealDamage();
+            _player.TakeHit(HitData);
             StartCoroutine(CooldownTimer(AttackType.LeftHand, LeftHandCooldownTime));
             PlayAttackSFX();
         }
@@ -48,7 +35,7 @@ namespace OfficeBreak.Characters.FightingSystem
         protected override void AlternativeAttack()
         {
             AttackPerformed?.Invoke();
-            DealDamage();
+            _player.TakeHit(HitData);
             StartCoroutine(CooldownTimer(AttackType.LeftHand, RightHandCooldownTime));
             PlayAttackSFX();
         }
