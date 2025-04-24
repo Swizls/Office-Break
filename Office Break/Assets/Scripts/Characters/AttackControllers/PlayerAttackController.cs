@@ -54,7 +54,9 @@ namespace OfficeBreak.Characters.FightingSystem
             if (hit.collider == null)
                 return;
 
-            if (!hit.collider.gameObject.TryGetComponent(out IHitable target))
+            IHitable target = hit.collider.gameObject.GetComponentInParent<IHitable>();
+
+            if (target == null)
                 return;
 
             HitData data = new HitData

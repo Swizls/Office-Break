@@ -59,11 +59,11 @@ namespace OfficeBreak.DustructionSystem.UI
             Gizmos.DrawSphere(CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position), 0.5f);
         }
 
-        private void OnHit(IHitable hitable)
+        private void OnHit(IHitable destructableObject)
         {
             gameObject.SetActive(true);
 
-            Destructable destructable = hitable as Destructable;
+            Destructable destructable = destructableObject as Destructable;
 
             if (destructable != _currentDestructableObject)
             {
@@ -100,20 +100,20 @@ namespace OfficeBreak.DustructionSystem.UI
 
         private IEnumerator FollowPlayer()
         {
-            transform.position = CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position);
+            transform.position = CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.ModelTransform.position);
 
             while (true)
             {
                 if (_currentDestructableObject.IsDestroyed)
                     break;
 
-                if (Vector3.Distance(_playerTransform.position, _currentDestructableObject.transform.position) > DISTANCE_TO_DISAPPEAR)
+                if (Vector3.Distance(_playerTransform.position, _currentDestructableObject.ModelTransform.position) > DISTANCE_TO_DISAPPEAR)
                     break;
 
                 if (_isShaking)
                     yield return new WaitForEndOfFrame();
 
-                transform.position = Vector3.Lerp(transform.position, CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position), FOLLOW_SPEED * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.ModelTransform.position), FOLLOW_SPEED * Time.deltaTime);
                 transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 yield return new WaitForEndOfFrame();
             }

@@ -8,15 +8,15 @@ namespace OfficeBreak
     [Serializable]
     public static class FractureHandler
     {
-        private const int PIECE_COUNT = 10;
-
-        public static void Fracture(GameObject target, Material insideMaterial = null)
+        public static GameObject Fracture(GameObject target, int pieceCount = 5, Material insideMaterial = null)
         {
             VoronoiParameters voronoiParameters = new VoronoiParameters();
             voronoiParameters.insideMaterial = insideMaterial;
             voronoiParameters.jointBreakForce = 0f;
-            voronoiParameters.totalChunks = PIECE_COUNT;
+            voronoiParameters.totalChunks = pieceCount;
             GameObject fracturedObject = LibreFracture.LibreFracture.CreateFracturedCopyOf(target, voronoiParameters);
+
+            fracturedObject.GetComponent<Rigidbody>().isKinematic = true;
 
             List<Rigidbody> rigidbodies = new List<Rigidbody>();
             fracturedObject.GetComponentsInChildren(rigidbodies);
@@ -25,6 +25,8 @@ namespace OfficeBreak
                 rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
                 rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
             }
+
+            return fracturedObject;
         }
     }
 }
