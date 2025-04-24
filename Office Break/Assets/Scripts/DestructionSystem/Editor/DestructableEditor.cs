@@ -24,6 +24,7 @@ namespace OfficeBreak.DustructionSystem.Editors
                     HitDirection = Vector3.zero,
                     AttackForce = 0
                 };
+
                 destructable.TakeHit(hitData);
             }
         }

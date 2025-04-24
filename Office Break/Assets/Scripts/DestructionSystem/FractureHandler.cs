@@ -8,7 +8,7 @@ namespace OfficeBreak
     [Serializable]
     public static class FractureHandler
     {
-        public static GameObject Fracture(GameObject target, int pieceCount = 5, Material insideMaterial = null)
+        public static GameObject Fracture(GameObject target, int pieceCount = 10, Material insideMaterial = null)
         {
             VoronoiParameters voronoiParameters = new VoronoiParameters();
             voronoiParameters.insideMaterial = insideMaterial;
@@ -22,6 +22,7 @@ namespace OfficeBreak
             fracturedObject.GetComponentsInChildren(rigidbodies);
             foreach (Rigidbody rigidbody in rigidbodies)
             {
+                rigidbody.mass = 1f;
                 rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
                 rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
             }

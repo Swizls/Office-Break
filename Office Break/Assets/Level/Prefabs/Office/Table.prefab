@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4062771896402901055}
   - component: {fileID: 1940312727889098050}
-  - component: {fileID: 4898952998719744851}
   - component: {fileID: 6239191225568795269}
   - component: {fileID: 2173520038496357307}
   m_Layer: 0
@@ -133,22 +132,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!208 &4898952998719744851
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85713433794933988}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.5, y: 0.5, z: 0.6}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: -0.5, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &6239191225568795269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +147,7 @@ MonoBehaviour:
   _health:
     _initialHealth: 100
   _model: {fileID: 3252171829186931736}
-  _explosionForce: 10000
+  _explosionForce: 1000
   _destroySFX: {fileID: 8300000, guid: ed7474f79dfcb5144a303439be4232dc, type: 3}
 --- !u!114 &2173520038496357307
 MonoBehaviour:
