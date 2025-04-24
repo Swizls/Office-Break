@@ -1,5 +1,6 @@
 ﻿using FabroGames.Characters.Player;
 using OfficeBreak.Characters.FightingSystem;
+using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Characters
@@ -12,14 +13,14 @@ namespace OfficeBreak.Characters
 
         private void Awake()
         {
-            _health = GetComponent<Player>().Health;
+            Health = GetComponent<Player>().Health;
 
             _ragdollController = GetComponentInChildren<RagdollController>();
         }
 
         protected override void HandleDeath()
         {
-            _ragdollController.EnableRagdoll();
+            base.HandleDeath();
 
             _cameraRotationCopier.enabled = false;
 

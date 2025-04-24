@@ -10,11 +10,9 @@ namespace OfficeBreak.Characters
     {
         private void Awake()
         {
-            _health = GetComponent<Enemy>().Health;
+            Health = GetComponent<Enemy>().Health;
 
             _ragdollController = GetComponentInChildren<RagdollController>();
         }
-
-        protected override void HandleDeath() => _ragdollController.EnableRagdoll();
     }
 }

@@ -5,13 +5,19 @@ namespace OfficeBreak.Characters
 {
     public abstract class DeathHandler : MonoBehaviour
     {
-        protected Health _health;
+        private const int KNOCKOUT_FORCE = 100;
+
+        protected Health Health;
         protected RagdollController _ragdollController;
 
-        private void OnEnable() => _health.Died += HandleDeath;
+        private void OnEnable() => Health.Died += HandleDeath;
 
-        private void OnDisable() => _health.Died -= HandleDeath;
+        private void OnDisable() => Health.Died -= HandleDeath;
 
-        protected abstract void HandleDeath();
+        protected virtual void HandleDeath()
+        {
+            _ragdollController.EnableRagdoll();
+            _ragdollController.ApplyForce(-_ragdollController.transform.forward * KNOCKOUT_FORCE);
+        }
     }
 }

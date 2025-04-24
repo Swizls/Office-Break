@@ -5,17 +5,17 @@ namespace OfficeBreak.Characters
 {
     public class RagdollController : MonoBehaviour
     {
-        [SerializeField] protected GameObject _rootBone;
+        [SerializeField] private GameObject _rootBone;
 
-        private Collider[] _colliders;
         private Rigidbody[] _rigidbodies;
 
         public UnityEvent OnRagdollEnable;
         public UnityEvent OnRagdollDisable;
 
+        public Vector3 RootBonePosition => _rootBone.transform.position;
+
         private void Awake()
         {
-            _colliders = _rootBone.GetComponentsInChildren<Collider>();
             _rigidbodies = _rootBone.GetComponentsInChildren<Rigidbody>();
 
             DisableRagdoll();
@@ -35,6 +35,11 @@ namespace OfficeBreak.Characters
                 rigidbody.isKinematic = true;
 
             OnRagdollDisable?.Invoke();
+        }
+
+        public void ApplyForce(Vector3 force)
+        {
+            _rootBone.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
         }
     }
 }

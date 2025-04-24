@@ -746,8 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051465f403b82894585b2ce7f0ed41bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pitchRangeMin: 0.8
-  _pitchRangeMax: 1.2
+  _minPitch: 0.8
+  _maxPitch: 1.2
   _hitSFXs:
   - {fileID: 8300000, guid: 1e3312d22540aa14597a1fb4739f2782, type: 3}
   - {fileID: 8300000, guid: d0f166575306db84091dc03fce0eff69, type: 3}
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd70f19fdf2b77479d7422a58d6c348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTransform: {fileID: 5250567902686570296}
+  _ragdollController: {fileID: 440569203507505073}
   _circleRadius: 2
   _floatingHeight: 2
   _floatingSpeed: 0.01
