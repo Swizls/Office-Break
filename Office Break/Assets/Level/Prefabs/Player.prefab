@@ -3051,9 +3051,9 @@ GameObject:
   - component: {fileID: 3627259493258727459}
   - component: {fileID: 758490816160319738}
   - component: {fileID: 3008999811093049752}
-  - component: {fileID: 860836118449538863}
   - component: {fileID: 1742562323851656916}
   - component: {fileID: 440569203507505073}
+  - component: {fileID: 3752230942627355613}
   m_Layer: 3
   m_Name: Model
   m_TagString: Untagged
@@ -3118,21 +3118,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 5162466235013599555}
     m_Active: 1
   m_Effectors: []
---- !u!114 &860836118449538863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5312011006103789939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158d793322787c443afce13a97191266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
-  _secondaryAttackAnimation: {fileID: -8945691123924629249, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
-  _playerAttack: {fileID: 884220439882305472}
 --- !u!114 &1742562323851656916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3285,6 +3270,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &3752230942627355613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312011006103789939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e2f80247ee5394d855a428ba53eea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
+  _secondaryAttackAnimation: {fileID: -8945691123924629249, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
 --- !u!1 &5327292736692087847
 GameObject:
   m_ObjectHideFlags: 0

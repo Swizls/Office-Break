@@ -3516,13 +3516,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7722472593035795079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8fb9b42f97f3234fb9116f248354f64, type: 3}
+  m_Script: {fileID: 11500000, guid: c65602febf21103439accea06ca2128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
-  _secondaryAttackAnimation: {fileID: -8945691123924629249, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
-  _enemyMover: {fileID: 4158930420107859663}
-  _attackController: {fileID: 6618236544784308911}
 --- !u!114 &94739523849862383
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using FabroGames.PlayerControlls;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -5,7 +6,7 @@ using UnityEngine.AI;
 namespace OfficeBreak.Characters.Enemies
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyMover : MonoBehaviour
+    public class EnemyMover : MonoBehaviour, IMovable
     {
         private const float MIN_DISTANCE_TO_START_RUN = 4f;
         private const float BODY_ROTATION_SPEED = 10f;
@@ -20,9 +21,11 @@ namespace OfficeBreak.Characters.Enemies
 
         private Coroutine _bodyRotationCoroutine;
 
-        public Vector3 AgentVelocity => _agent.velocity;
+        public Vector3 Velocity => _agent.velocity;
         public float RemainingDistance => _agent.remainingDistance;
         public bool IsRunning => _agent.speed > _walkingSpeed;
+        public bool IsMoving => _agent.velocity.magnitude > 0;
+        public bool IsGrounded => true;
 
         private void Awake()
         {
