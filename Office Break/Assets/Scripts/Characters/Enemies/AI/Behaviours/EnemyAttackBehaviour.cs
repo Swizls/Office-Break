@@ -5,7 +5,11 @@ namespace OfficeBreak.Characters.Enemies.AI
 {
     public class EnemyAttackBehaviour : EnemyBehaviour
     {
+        private const float MIN_COOLDOWN_TIME = 0.5f;
+        private const float MAX_COOLDOWN_TIME = 3f;
+
         private EnemyAttackController _attackController;
+        private float _cooldownTime = 0f;
 
         private bool IsEnoughCloseToAttack => Vector3.Distance(PlayerTransform.position, EnemyTransform.position) < _attackController.AttackRange;
 
@@ -16,10 +20,20 @@ namespace OfficeBreak.Characters.Enemies.AI
 
         public override void Execute()
         {
+            UpdateCooldownTime();
             Mover.SetDestination(PlayerTransform.position);
 
-            if (IsEnoughCloseToAttack)
+            if (IsEnoughCloseToAttack && _cooldownTime <= 0)
+            {
+                _cooldownTime = UnityEngine.Random.Range(MIN_COOLDOWN_TIME, MAX_COOLDOWN_TIME);
                 _attackController.PerformAttack();
+            }
+        }
+
+        private void UpdateCooldownTime()
+        {
+            if(_cooldownTime > 0)
+                _cooldownTime -= Time.deltaTime;
         }
     }
 }
