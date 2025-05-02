@@ -3,7 +3,7 @@
     "rootNamespace": "OfficeBreak.DestructionSystem",
     "references": [
         "GUID:74b70a2b966423b43a8819fe382e688e",
-        "GUID:937fabf8e5e2ec04a9661cdf3a05244d"
+        "GUID:8b243a8a290ea264b80e523d0362c299"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

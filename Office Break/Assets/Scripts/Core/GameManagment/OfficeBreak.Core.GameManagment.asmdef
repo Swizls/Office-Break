@@ -1,10 +1,10 @@
 {
-    "name": "OfficeBreak.Characters",
-    "rootNamespace": "OfficeBreak.Characters",
+    "name": "OfficeBreak.Core.GameManagment",
+    "rootNamespace": "OfficeBreak.Core.GameManagment",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:e15d28443409ee54099493d7423c3d18",
         "GUID:6485187461948144a89afee54252dbcc",
-        "GUID:8b243a8a290ea264b80e523d0362c299"
+        "GUID:c7209615e72e1b44f9961d2aa0bca0b2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
