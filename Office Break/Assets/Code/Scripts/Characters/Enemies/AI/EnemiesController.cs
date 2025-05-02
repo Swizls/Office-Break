@@ -3,22 +3,21 @@ using System.Linq;
 using OfficeBreak.Spawners;
 using UnityEngine;
 
-namespace OfficeBreak.Characters.Enemies
+namespace OfficeBreak.Characters.Enemies.AI
 {
     public class EnemiesController : MonoBehaviour
     {
-        private const int MAX_ATTACKING_AT_ONCE_ENEMIES = 2;
+        private const int MAX_ATTACKING_ENEMIES_AT_ONCE = 2;
 
         [SerializeField] private EnemySpawnController _enemySpawnController;
 
-        private List<Enemy> _attackingEnemies = new List<Enemy>();
-        private List<Enemy> _followingEnemies = new List<Enemy>();
+        private List<Enemy> _activeEnemies = new List<Enemy>();
 
-        private bool IsEnoughAttackingEnemies => _attackingEnemies.Count >= MAX_ATTACKING_AT_ONCE_ENEMIES;
-        private int RequiredAttackingEnemiesCount => MAX_ATTACKING_AT_ONCE_ENEMIES - _attackingEnemies.Count;
+        private bool IsEnoughAttackingEnemies => AttackingEnemiesCount >= MAX_ATTACKING_ENEMIES_AT_ONCE;
+        private int RequiredAttackingEnemiesCount => MAX_ATTACKING_ENEMIES_AT_ONCE - AttackingEnemiesCount;
 
-        public int FollowingEnemiesCount => _followingEnemies.Count;
-        public int AttackingEnemiesCount => _attackingEnemies.Count;
+        public int FollowingEnemiesCount => _activeEnemies.Where(enemy => enemy.BehaviourController.CurrentBehaviour.GetType() == typeof(EnemyFollowBehaviour)).Count();
+        public int AttackingEnemiesCount => _activeEnemies.Where(enemy => enemy.BehaviourController.CurrentBehaviour.GetType() == typeof(EnemyAttackBehaviour)).Count();
 
         #region MONO
 
@@ -36,7 +35,7 @@ namespace OfficeBreak.Characters.Enemies
                 .ForEach(enemy =>
                 {
                     enemy.Health.Died += OnEnemyDeath;
-                    _followingEnemies.Add(enemy);
+                    _activeEnemies.Add(enemy);
                 });
 
             if (!IsEnoughAttackingEnemies)
@@ -45,15 +44,15 @@ namespace OfficeBreak.Characters.Enemies
 
         private void OnEnemyDeath()
         {
-            List<Enemy> deadFollowingEnemies = _followingEnemies.Where(enemy => enemy.Health.IsDead).ToList();
+            List<Enemy> deadFollowingEnemies = _activeEnemies.Where(enemy => enemy.Health.IsDead).ToList();
 
             foreach (Enemy enemy in deadFollowingEnemies)
-                _followingEnemies.Remove(enemy);
+                _activeEnemies.Remove(enemy);
 
-            List<Enemy> deadAttackingEnemies = _attackingEnemies.Where(enemy => enemy.Health.IsDead).ToList();
+            List<Enemy> deadAttackingEnemies = _activeEnemies.Where(enemy => enemy.Health.IsDead).ToList();
 
             foreach (Enemy enemy in deadAttackingEnemies)
-                _attackingEnemies.Remove(enemy);
+                _activeEnemies.Remove(enemy);
 
             if (!IsEnoughAttackingEnemies)
                 AddAttackingEnemies(RequiredAttackingEnemiesCount);
@@ -63,22 +62,27 @@ namespace OfficeBreak.Characters.Enemies
 
         private void AddAttackingEnemies(int countToAdd)
         {
-            TransferEnemies(_followingEnemies, _attackingEnemies, countToAdd);
+            List<Enemy> followingEnemies = GetEnemiesByBehaviour<EnemyFollowBehaviour>();
 
-            _attackingEnemies.ForEach(enemy => enemy.BehaviourController.SetAttackBehaviour());
+            for (int i = 0; i < countToAdd && i < followingEnemies.Count; i++)
+            {
+                followingEnemies[i].BehaviourController.SetAttackBehaviour();
+            }
         }
 
-        private void TransferEnemies(List<Enemy> fromList, List<Enemy> toList, int count)
+        private void AddFollowingEnemies(int countToAdd)
         {
-            List<Enemy> transferedEnemies = new List<Enemy>();
+            List<Enemy> attackingEnemies = GetEnemiesByBehaviour<EnemyAttackBehaviour>();
 
-            for(int i = 0; i < count && i < fromList.Count; i++) 
+            for (int i = 0; i < countToAdd && i < attackingEnemies.Count; i++)
             {
-                transferedEnemies.Add(fromList[i]);
-                toList.Add(fromList[i]);
+                attackingEnemies[i].BehaviourController.SetFollowBehaviour();
             }
+        }
 
-            fromList.RemoveAll(enemy => transferedEnemies.Contains(enemy));
+        private List<Enemy> GetEnemiesByBehaviour<T>() where T : EnemyBehaviour
+        {
+            return _activeEnemies.Where(enemy => enemy.BehaviourController.CurrentBehaviour.GetType() == typeof(T)).ToList();
         }
     }
 }
