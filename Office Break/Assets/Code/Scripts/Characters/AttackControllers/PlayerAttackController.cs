@@ -46,9 +46,6 @@ namespace OfficeBreak.Characters.FightingSystem
 
         private void OnBlockButtonPress(InputAction.CallbackContext context)
         {
-            if (!IsAbleToAttackLeftHand && !IsAbleToAttackRightHand)
-                return;
-
             StartCoroutine(HoldBlock());
         }
 
@@ -78,6 +75,8 @@ namespace OfficeBreak.Characters.FightingSystem
 
         private IEnumerator HoldBlock()
         {
+            yield return new WaitUntil(() => IsAbleToAttackLeftHand && IsAbleToAttackRightHand);
+
             IsBlocking = true;
             BlockStateChanged?.Invoke(IsBlocking);
 
