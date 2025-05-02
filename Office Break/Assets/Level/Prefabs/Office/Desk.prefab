@@ -147,7 +147,7 @@ MonoBehaviour:
   _health:
     _initialHealth: 250
   _model: {fileID: 7618184530898280028}
-  _explosionForce: 200
+  _explosionForce: 400
   _destroySFX: {fileID: 8300000, guid: ed7474f79dfcb5144a303439be4232dc, type: 3}
 --- !u!114 &3931020834331315885
 MonoBehaviour:

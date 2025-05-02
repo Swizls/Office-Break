@@ -26,16 +26,23 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected override void PrimaryAttack()
         {
-            AlternativeAttackPerformed?.Invoke();
-            _player.TakeHit(HitData);
-            StartCoroutine(CooldownTimer(AttackType.LeftHand, LeftHandCooldownTime));
+            AttackPerformed?.Invoke();
+            IsAbleToAttackRightHand = false;
+            IsAbleToAttackLeftHand = false;
+            _animatorController.AttackAnimationEnded += OnLeftAttackCooldownEnd;
         }
 
         protected override void AlternativeAttack()
         {
-            AttackPerformed?.Invoke();
+            AlternativeAttackPerformed?.Invoke();
+            IsAbleToAttackLeftHand = false;
+            IsAbleToAttackRightHand = false;
+            _animatorController.AttackAnimationEnded += OnRightAttackCooldownEnd;
+        }
+
+        protected override void FistAttack()
+        {
             _player.TakeHit(HitData);
-            StartCoroutine(CooldownTimer(AttackType.LeftHand, RightHandCooldownTime));
         }
 
         public void PerformAttack()
@@ -45,9 +52,9 @@ namespace OfficeBreak.Characters.FightingSystem
 
             bool randomAttack = Random.Range(0, 2) == 0;
 
-            if(randomAttack && IsAbleToAttackLeftHand) 
+            if (randomAttack && IsAbleToAttackLeftHand)
                 PrimaryAttack();
-            else if(IsAbleToAttackRightHand)
+            else if (IsAbleToAttackRightHand)
                 AlternativeAttack();
         }
     }

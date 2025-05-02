@@ -1,5 +1,6 @@
 using FabroGames.PlayerControlls;
 using OfficeBreak.Characters.FightingSystem;
+using System;
 using UnityEngine;
 
 namespace OfficeBreak.Characters.Animations
@@ -17,15 +18,11 @@ namespace OfficeBreak.Characters.Animations
 
         private float ANIMATION_CHANGE_SPEED = 0.1f;
 
-        [SerializeField] private AnimationClip _primaryAttackAnimation;
-        [SerializeField] private AnimationClip _secondaryAttackAnimation;
-
         private Animator _animator;
         private IMovable _movable;
         private AttackController _attackController;
 
-        public float PrimaryAttackAnimationLength => _primaryAttackAnimation.length;
-        public float SecondaryAttackAnimationLength => _secondaryAttackAnimation.length;
+        public Action AttackAnimationEnded;
 
         #region MONO
         private void Awake()

@@ -17,9 +17,9 @@ namespace OfficeBreak.Characters.FightingSystem
         [SerializeField] private float _damage;
         [SerializeField][Range(0.2f, 5f)] private float _attackRange;
         [SerializeField] private float _attackForce;
-        [SerializeField][Range(0f, 1f)] private float _cooldownReductionTime;
 
         protected AudioSource _audioSource;
+        protected AnimatorController _animatorController;
 
         public Action AttackPerformed;
         public Action AlternativeAttackPerformed;
@@ -27,8 +27,6 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected float Damage => _damage;
         protected float AttackForce => _attackForce;
-        protected float LeftHandCooldownTime { get; private set; }
-        protected float RightHandCooldownTime { get; private set; }
         protected bool IsAbleToAttackLeftHand { get; set; }
         protected bool IsAbleToAttackRightHand { get; set; }
 
@@ -42,10 +40,7 @@ namespace OfficeBreak.Characters.FightingSystem
         {
             _audioSource = GetComponent<AudioSource>();
 
-            var animatorController = GetComponentInChildren<AnimatorController>();
-
-            LeftHandCooldownTime = animatorController.PrimaryAttackAnimationLength - _cooldownReductionTime;
-            RightHandCooldownTime = animatorController.SecondaryAttackAnimationLength - _cooldownReductionTime;
+            _animatorController = GetComponentInChildren<AnimatorController>();
 
             IsAbleToAttackLeftHand = true;
             IsAbleToAttackRightHand = true;
@@ -57,33 +52,22 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected abstract void AlternativeAttack();
 
-        protected IEnumerator CooldownTimer(AttackType attackType, float cooldownTimer)
+        protected abstract void FistAttack();
+
+        protected void OnLeftAttackCooldownEnd()
         {
-            switch (attackType)
-            {
-                case AttackType.LeftHand:
-                    IsAbleToAttackLeftHand = false;
-                    break;
-                case AttackType.RightHand:
-                    IsAbleToAttackRightHand = false;
-                    break;
-            }
+            IsAbleToAttackRightHand = true;
+            IsAbleToAttackLeftHand = true;
+            _animatorController.AttackAnimationEnded -= OnLeftAttackCooldownEnd;
+            FistAttack();
+        }
 
-            while (cooldownTimer > 0)
-            {
-                cooldownTimer -= Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-            }
-
-            switch (attackType)
-            {
-                case AttackType.LeftHand:
-                    IsAbleToAttackLeftHand = true;
-                    break;
-                case AttackType.RightHand:
-                    IsAbleToAttackRightHand = true;
-                    break;
-            }
+        protected void OnRightAttackCooldownEnd()
+        {
+            IsAbleToAttackRightHand = true;
+            IsAbleToAttackLeftHand = true;
+            _animatorController.AttackAnimationEnded -= OnRightAttackCooldownEnd;
+            FistAttack();
         }
     }
 }

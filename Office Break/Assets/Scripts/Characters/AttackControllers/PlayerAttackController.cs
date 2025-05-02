@@ -47,7 +47,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         #endregion
 
-        private void FistAttack()
+        protected override void FistAttack()
         {
             Physics.SphereCast(AttackPosition, ATTACK_SPHERE_RADIUS, Camera.main.transform.forward, out RaycastHit hit, AttackRange, _hitablesLayer);
 
@@ -71,6 +71,9 @@ namespace OfficeBreak.Characters.FightingSystem
 
         private void ToggleBlock()
         {
+            if (!IsAbleToAttackLeftHand && !IsAbleToAttackRightHand)
+                return;
+
             IsBlocking = !IsBlocking;
             BlockStateChanged?.Invoke(IsBlocking);
         }
@@ -80,10 +83,11 @@ namespace OfficeBreak.Characters.FightingSystem
             if (!IsAbleToAttackLeftHand || IsBlocking)
                 return;
 
-            StartCoroutine(CooldownTimer(AttackType.LeftHand, LeftHandCooldownTime));
+            IsAbleToAttackRightHand = false;
+            IsAbleToAttackLeftHand = false;
+            _animatorController.AttackAnimationEnded += OnLeftAttackCooldownEnd;
 
             AttackPerformed?.Invoke();
-            FistAttack();
         }
 
         protected override void AlternativeAttack()
@@ -91,10 +95,11 @@ namespace OfficeBreak.Characters.FightingSystem
             if (!IsAbleToAttackRightHand || IsBlocking)
                 return;
 
-            StartCoroutine(CooldownTimer(AttackType.RightHand, RightHandCooldownTime));
+            IsAbleToAttackLeftHand = false;
+            IsAbleToAttackRightHand = false;
+            _animatorController.AttackAnimationEnded += OnRightAttackCooldownEnd;
 
             AlternativeAttackPerformed?.Invoke();
-            FistAttack();
         }
     }
 }
