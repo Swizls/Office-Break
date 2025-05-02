@@ -1,5 +1,6 @@
 using FabroGames.PlayerControlls;
 using OfficeBreak.Core.DamageSystem;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,7 +44,13 @@ namespace OfficeBreak.Characters.FightingSystem
 
         private void OnAltAttackButtonPress(InputAction.CallbackContext context) => AlternativeAttack();
 
-        private void OnBlockButtonPress(InputAction.CallbackContext context) => ToggleBlock();
+        private void OnBlockButtonPress(InputAction.CallbackContext context)
+        {
+            if (!IsAbleToAttackLeftHand && !IsAbleToAttackRightHand)
+                return;
+
+            StartCoroutine(HoldBlock());
+        }
 
         #endregion
 
@@ -69,12 +76,14 @@ namespace OfficeBreak.Characters.FightingSystem
             target.TakeHit(data);
         }
 
-        private void ToggleBlock()
+        private IEnumerator HoldBlock()
         {
-            if (!IsAbleToAttackLeftHand && !IsAbleToAttackRightHand)
-                return;
+            IsBlocking = true;
+            BlockStateChanged?.Invoke(IsBlocking);
 
-            IsBlocking = !IsBlocking;
+            yield return new WaitUntil(() => _playerInputActions.Player.Block.IsPressed() == false);
+
+            IsBlocking = false;
             BlockStateChanged?.Invoke(IsBlocking);
         }
 
