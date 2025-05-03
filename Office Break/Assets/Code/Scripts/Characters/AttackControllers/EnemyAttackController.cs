@@ -18,7 +18,7 @@ namespace OfficeBreak.Characters.FightingSystem
                 return new HitData()
                 {
                     Damage = Damage,
-                    HitDirection = transform.forward,
+                    HitDirection = (_player.transform.position - transform.position).normalized,
                     AttackForce = AttackForce,
                 };
             }
