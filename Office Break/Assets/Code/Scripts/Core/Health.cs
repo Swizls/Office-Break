@@ -36,5 +36,18 @@ namespace OfficeBreak.Core.DamageSystem
 
             ValueChanged?.Invoke();
         }
+
+        public void TakeHeal(float healPoints)
+        {
+            if (healPoints < 0)
+                throw new ArgumentException("Wrong heal value");
+
+            _health += healPoints;
+
+            if(_health > _initialHealth)
+                _health = _initialHealth;
+
+            ValueChanged?.Invoke();
+        }
     }
 }

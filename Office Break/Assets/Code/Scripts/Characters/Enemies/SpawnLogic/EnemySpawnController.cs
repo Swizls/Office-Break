@@ -1,5 +1,6 @@
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace OfficeBreak.Spawners
 
         private int _activeEnemyCount;
 
+        public event Action EnemyWaveDefeated;
         public UnityEvent<List<Enemy>> EnemyWaveSpawned;
 
         #region MONO
@@ -53,7 +55,10 @@ namespace OfficeBreak.Spawners
             _activeEnemyCount--;
 
             if (_activeEnemyCount == 0)
+            {
+                EnemyWaveDefeated?.Invoke();
                 StartCoroutine(SpawnEnemiesWithDelay(_enemySpawnDelay));
+            }
         }
 
         private IEnumerator SpawnEnemiesWithDelay(float delay)
