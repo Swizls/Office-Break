@@ -1,5 +1,6 @@
 using OfficeBreak.Characters.Animations;
 using OfficeBreak.Core;
+using OfficeBreak.Core.DamageSystem;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,12 +10,6 @@ namespace OfficeBreak.Characters.FightingSystem
     [RequireComponent(typeof(AudioSource))]
     public abstract class AttackController : MonoBehaviour
     {
-        public enum AttackType
-        {
-            RightHand,
-            LeftHand
-        }
-
         [SerializeField] private float _damage;
         [SerializeField][Range(0.2f, 5f)] private float _attackRange;
         [SerializeField] private float _attackForce;
@@ -27,6 +22,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         public Action AttackPerformed;
         public Action AlternativeAttackPerformed;
+
         public Action<bool> BlockStateChanged;
 
         protected float Damage => _damage;
@@ -35,6 +31,7 @@ namespace OfficeBreak.Characters.FightingSystem
         protected bool IsAbleToAttackRightHand { get; set; }
 
         public abstract bool IsBlocking { get; protected set; }
+        public HitData.AttackDirections BlockDirection { get; protected set; }
         public bool IsAbleToAttack => IsAbleToAttackLeftHand && IsAbleToAttackRightHand && !IsBlocking;
         public float AttackRange => _attackRange;
 

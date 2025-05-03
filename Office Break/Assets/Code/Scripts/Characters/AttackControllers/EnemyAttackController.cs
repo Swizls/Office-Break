@@ -1,5 +1,6 @@
 using OfficeBreak.Core.DamageSystem;
 using UnityEngine;
+using static OfficeBreak.Core.DamageSystem.HitData;
 
 namespace OfficeBreak.Characters.FightingSystem
 {
@@ -9,20 +10,8 @@ namespace OfficeBreak.Characters.FightingSystem
         private const float MAX_COOLDOWN_TIME = 3f;
 
         private Player _player;
+        private AttackDirections _attackDirection;
         private float _cooldownTime = 0f;
-
-        private HitData HitData 
-        {
-            get
-            {
-                return new HitData()
-                {
-                    Damage = Damage,
-                    HitDirection = (_player.transform.position - transform.position).normalized,
-                    AttackForce = AttackForce,
-                };
-            }
-        }
 
         public override bool IsBlocking { get ; protected set; }
 
@@ -33,6 +22,7 @@ namespace OfficeBreak.Characters.FightingSystem
         protected override void PrimaryAttack()
         {
             AttackPerformed?.Invoke();
+            _attackDirection = AttackDirections.Right;
             IsAbleToAttackRightHand = false;
             IsAbleToAttackLeftHand = false;
             _animatorController.AttackAnimationEnded += OnLeftAttackCooldownEnd;
@@ -41,6 +31,7 @@ namespace OfficeBreak.Characters.FightingSystem
         protected override void AlternativeAttack()
         {
             AlternativeAttackPerformed?.Invoke();
+            _attackDirection = AttackDirections.Left;
             IsAbleToAttackLeftHand = false;
             IsAbleToAttackRightHand = false;
             _animatorController.AttackAnimationEnded += OnRightAttackCooldownEnd;
@@ -48,7 +39,14 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected override void FistAttack()
         {
-            _player.TakeHit(HitData);
+            HitData data = new HitData()
+            {
+                Damage = Damage,
+                HitDirection = (_player.transform.position - transform.position).normalized,
+                AttackDirection = _attackDirection,
+                AttackForce = AttackForce,
+            };
+            _player.TakeHit(data);
         }
 
         public void PerformAttack()

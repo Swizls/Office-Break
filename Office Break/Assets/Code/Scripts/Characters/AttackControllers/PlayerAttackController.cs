@@ -50,12 +50,40 @@ namespace OfficeBreak.Characters.FightingSystem
 
         private void OnAltAttackButtonPress(InputAction.CallbackContext context) => AlternativeAttack();
 
-        private void OnBlockButtonPress(InputAction.CallbackContext context)
+        private void OnBlockButtonPress(InputAction.CallbackContext context) => StartCoroutine(HoldBlock());
+
+        private void OnLeftBlockButtonPress(InputAction.CallbackContext context)
         {
-            StartCoroutine(HoldBlock());
+            if (BlockDirection == HitData.AttackDirections.Left)
+                return;
+
+            BlockDirection = HitData.AttackDirections.Left;
+            BlockStateChanged?.Invoke(IsBlocking);
+        }
+
+        private void OnRightBlockButtonPress(InputAction.CallbackContext context)
+        {
+            if (BlockDirection == HitData.AttackDirections.Right)
+                return;
+
+            BlockDirection = HitData.AttackDirections.Right;
+            BlockStateChanged?.Invoke(IsBlocking);
         }
 
         #endregion
+
+        public bool IsHitBlocked(HitData hitData)
+        {
+            float hitAngle = Vector3.Angle(_cameraTransform.forward, hitData.HitDirection);
+
+            if (BlockDirection != hitData.AttackDirection)
+                return false;
+
+            if (hitAngle < BLOCKING_ANGLE)
+                return false;
+
+            return true;
+        }
 
         protected override void FistAttack()
         {
@@ -83,13 +111,46 @@ namespace OfficeBreak.Characters.FightingSystem
         {
             yield return new WaitUntil(() => IsAbleToAttackLeftHand && IsAbleToAttackRightHand);
 
+            DisableAttackInput();
+
             IsBlocking = true;
             BlockStateChanged?.Invoke(IsBlocking);
 
+            EnableBlockInput();
+
             yield return new WaitUntil(() => _playerInputActions.Player.Block.IsPressed() == false);
 
+            DisableBlockInput();
+
             IsBlocking = false;
+            BlockDirection = HitData.AttackDirections.Center;
             BlockStateChanged?.Invoke(IsBlocking);
+
+            EnableAttackInput();
+
+            void DisableAttackInput()
+            {
+                _playerInputActions.Player.Attack.performed -= OnAttackButtonPress;
+                _playerInputActions.Player.AlternativeAttack.performed -= OnAltAttackButtonPress;
+            }
+
+            void EnableBlockInput()
+            {
+                _playerInputActions.Player.Attack.performed += OnLeftBlockButtonPress;
+                _playerInputActions.Player.AlternativeAttack.performed += OnRightBlockButtonPress;
+            }
+
+            void DisableBlockInput()
+            {
+                _playerInputActions.Player.Attack.performed -= OnLeftBlockButtonPress;
+                _playerInputActions.Player.AlternativeAttack.performed -= OnRightBlockButtonPress;
+            }
+
+            void EnableAttackInput()
+            {
+                _playerInputActions.Player.Attack.performed += OnAttackButtonPress;
+                _playerInputActions.Player.AlternativeAttack.performed += OnAltAttackButtonPress;
+            }
         }
 
         protected override void PrimaryAttack()

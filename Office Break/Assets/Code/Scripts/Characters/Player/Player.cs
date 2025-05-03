@@ -34,11 +34,9 @@ namespace OfficeBreak.Characters
 
         public void TakeHit(HitData hitData)
         {
-            if (_playerAttackController.IsBlocking)
+            if (_playerAttackController.IsHitBlocked(hitData))
             {
-                float hitAngle = Vector3.Angle(_cameraTransform.forward, hitData.HitDirection);
-                if (hitAngle > PlayerAttackController.BLOCKING_ANGLE)
-                    return;
+                return;
             }
 
             _health.TakeDamage(hitData.Damage);

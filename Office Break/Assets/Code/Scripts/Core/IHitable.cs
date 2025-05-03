@@ -11,8 +11,16 @@ namespace OfficeBreak.Core.DamageSystem
 
     public struct HitData
     {
+        public enum AttackDirections
+        {
+            Left,
+            Right,
+            Center
+        }
+
         public float Damage;
         public Vector3 HitDirection;
+        public AttackDirections AttackDirection;
         public float AttackForce;
     }
 }

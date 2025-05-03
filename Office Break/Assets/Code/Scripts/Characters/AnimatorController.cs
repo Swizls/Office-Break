@@ -1,5 +1,6 @@
 using FabroGames.PlayerControlls;
 using OfficeBreak.Characters.FightingSystem;
+using OfficeBreak.Core.DamageSystem;
 using System;
 using UnityEngine;
 
@@ -9,13 +10,15 @@ namespace OfficeBreak.Characters.Animations
     public class AnimatorController : MonoBehaviour
     {
         private const string IS_RUNNING = "IsRunning";
+
         private const string IS_BLOCKING = "IsBlocking";
+        private const string BLOCK_LEFT = "BlockLeft";
+        private const string BLOCK_RIGHT = "BlockRight";
         private const string ATTACK = "Attack";
         private const string ALTERNATIVE_ATTACK = "AltAttack";
 
         private const string MOVE_X = "moveX";
         private const string MOVE_Y = "moveY";
-
         private float ANIMATION_CHANGE_SPEED = 0.1f;
 
         private Animator _animator;
@@ -57,7 +60,15 @@ namespace OfficeBreak.Characters.Animations
 
         private void SetIsRunningBool() => _animator.SetBool(IS_RUNNING, _movable.IsRunning);
 
-        private void OnBlockStateChange(bool flag) => _animator.SetBool(IS_BLOCKING, flag);
+        private void OnBlockStateChange(bool flag)
+        {
+            _animator.SetBool(IS_BLOCKING, flag);
+
+            if (_attackController.BlockDirection == HitData.AttackDirections.Center)
+                return;
+
+            _animator.SetTrigger(_attackController.BlockDirection == HitData.AttackDirections.Left ? BLOCK_LEFT : BLOCK_RIGHT);
+        }
 
         private void OnAttackPerform() => _animator.SetTrigger(ATTACK);
 
