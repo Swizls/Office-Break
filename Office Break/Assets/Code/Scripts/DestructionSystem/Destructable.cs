@@ -1,3 +1,4 @@
+using OfficeBreak.Core;
 using OfficeBreak.Core.DamageSystem;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,15 @@ namespace OfficeBreak.DustructionSystem
         [SerializeField] private Health _health;
         [SerializeField] private GameObject _model;
         [SerializeField] private float _explosionForce = 10f;
+        [Space]
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _hitSFXes;
         [SerializeField] private AudioClip _destroySFX;
 
         private Rigidbody _rigidbody;
         private AudioSource _audioSource;
         private NavMeshObstacle _navMeshObstacle;
+        private SFXPlayer _sfxPlayer;
 
         private GameObject _fracturedVersion;
         private List<Rigidbody> _fracturedPiecesRigibody;
@@ -35,6 +40,10 @@ namespace OfficeBreak.DustructionSystem
 
             _audioSource = GetComponent<AudioSource>();
             _rigidbody = _model.GetComponent<Rigidbody>();
+
+            _sfxPlayer = new SFXPlayer(_audioSource);
+            _sfxPlayer.AddClip(nameof(_destroySFX), _destroySFX);
+            _sfxPlayer.AddClips(nameof(_hitSFXes), _hitSFXes);
 
             _fracturedVersion = FractureHandler.Fracture(_model);
             _fracturedVersion.transform.parent = transform;
@@ -55,8 +64,7 @@ namespace OfficeBreak.DustructionSystem
 
             _navMeshObstacle.carving = false;
 
-            _audioSource.clip = _destroySFX;
-            _audioSource.Play();
+            _sfxPlayer.Play(nameof(_destroySFX));
 
             Destroy(_model);
 
@@ -73,7 +81,10 @@ namespace OfficeBreak.DustructionSystem
             _rigidbody.AddForce(hitData.HitDirection * hitData.AttackForce);
 
             if(!_health.IsDead)
+            {
+                _sfxPlayer.Play(nameof(_hitSFXes));
                 GotHit?.Invoke(this);
+            }
         }
     }
 }

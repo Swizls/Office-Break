@@ -67,6 +67,8 @@ namespace OfficeBreak.Characters.FightingSystem
                 PrimaryAttack();
             else if (IsAbleToAttackRightHand)
                 AlternativeAttack();
+
+            PlayAttackSFX();
         }
 
         private void UpdateCooldownTime()

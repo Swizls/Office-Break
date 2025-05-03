@@ -101,6 +101,7 @@ namespace OfficeBreak.Characters.FightingSystem
             IsAbleToAttackLeftHand = false;
             _animatorController.AttackAnimationEnded += OnLeftAttackCooldownEnd;
 
+            PlayAttackSFX();
             AttackPerformed?.Invoke();
         }
 
@@ -113,6 +114,7 @@ namespace OfficeBreak.Characters.FightingSystem
             IsAbleToAttackRightHand = false;
             _animatorController.AttackAnimationEnded += OnRightAttackCooldownEnd;
 
+            PlayAttackSFX();
             AlternativeAttackPerformed?.Invoke();
         }
     }
