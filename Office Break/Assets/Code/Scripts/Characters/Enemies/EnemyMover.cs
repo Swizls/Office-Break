@@ -10,6 +10,7 @@ namespace OfficeBreak.Characters.Enemies
     {
         private const float MIN_DISTANCE_TO_START_RUN = 4f;
         private const float BODY_ROTATION_SPEED = 10f;
+        private const float RIGIDBODIES_PUSH_FORCE = 105f;
 
         [SerializeField] private float _walkingSpeed = 3.5f;
         [SerializeField] private float _runningSpeed = 8f;
@@ -28,6 +29,8 @@ namespace OfficeBreak.Characters.Enemies
         public bool IsGrounded => true;
         public bool Enabled { get => enabled; set => enabled = value; }
 
+        #region MONO
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
@@ -43,6 +46,16 @@ namespace OfficeBreak.Characters.Enemies
                 _bodyRotationCoroutine = null;
             }
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Rigidbody rigidbody))
+            {
+                rigidbody.AddForce((collision.transform.position - transform.position).normalized * RIGIDBODIES_PUSH_FORCE * Time.deltaTime);
+            }
+        }
+
+        #endregion
 
         private IEnumerator RotateBodyToPlayerDirection()
         {

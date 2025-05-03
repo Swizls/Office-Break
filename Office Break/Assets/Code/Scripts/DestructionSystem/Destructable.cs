@@ -21,7 +21,6 @@ namespace OfficeBreak.DustructionSystem
 
         private Rigidbody _rigidbody;
         private AudioSource _audioSource;
-        private NavMeshObstacle _navMeshObstacle;
         private SFXPlayer _sfxPlayer;
 
         private GameObject _fracturedVersion;
@@ -49,9 +48,6 @@ namespace OfficeBreak.DustructionSystem
             _fracturedVersion.transform.parent = transform;
             _fracturedPiecesRigibody = _fracturedVersion.GetComponentsInChildren<Rigidbody>().ToList();
             _fracturedVersion.SetActive(false);
-
-            _navMeshObstacle = _model.AddComponent<NavMeshObstacle>();
-            _navMeshObstacle.carving = true;
         }
 
         private void OnEnable() => _health.Died += OnObjectDestroy;
@@ -61,8 +57,6 @@ namespace OfficeBreak.DustructionSystem
         private void OnObjectDestroy()
         {
             Destroyed?.Invoke();
-
-            _navMeshObstacle.carving = false;
 
             _sfxPlayer.Play(nameof(_destroySFX));
 
