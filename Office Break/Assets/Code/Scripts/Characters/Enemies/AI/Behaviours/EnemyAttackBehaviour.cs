@@ -8,26 +8,37 @@ namespace OfficeBreak.Characters.Enemies.AI
         private const float MIN_COOLDOWN_TIME = 0.5f;
         private const float MAX_COOLDOWN_TIME = 3f;
 
-        private EnemyAttackController _attackController;
+        private readonly float _attackDistance;
+
         private float _cooldownTime = 0f;
 
-        private bool IsEnoughCloseToAttack => Vector3.Distance(PlayerTransform.position, EnemyTransform.position) < _attackController.AttackRange;
+        private bool IsEnoughCloseToAttack => Vector3.Distance(BehaviourController.PlayerPosition, EnemyTransform.position) < AttackController.AttackRange;
 
-        public EnemyAttackBehaviour(Transform playerTransform, EnemyMover mover, EnemyAttackController attackController) : base(playerTransform, mover)
+        public EnemyAttackBehaviour(EnemyBehaviourController controller, EnemyMover mover) : base(controller, mover)
         {
-            _attackController = attackController;
+            _attackDistance = AttackController.AttackRange;
         }
 
         public override void Execute()
         {
             UpdateCooldownTime();
-            Mover.SetDestination(PlayerTransform.position);
+            MoveTowardsPlayer();
+            Attack();
+        }
 
+        private void Attack()
+        {
             if (IsEnoughCloseToAttack && _cooldownTime <= 0)
             {
                 _cooldownTime = UnityEngine.Random.Range(MIN_COOLDOWN_TIME, MAX_COOLDOWN_TIME);
-                _attackController.PerformAttack();
+                AttackController.PerformAttack();
             }
+        }
+
+        private void MoveTowardsPlayer()
+        {
+            if (Vector3.Distance(BehaviourController.transform.position, BehaviourController.PlayerPosition) > _attackDistance)
+                Mover.SetDestination(CalculatePointAroundPlayer(_attackDistance / 1.5f, ChosenAngle));
         }
 
         private void UpdateCooldownTime()

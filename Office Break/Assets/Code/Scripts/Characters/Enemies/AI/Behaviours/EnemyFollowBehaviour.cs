@@ -1,46 +1,26 @@
+using OfficeBreak.Characters.FightingSystem;
 using UnityEngine;
 
 namespace OfficeBreak.Characters.Enemies.AI
 {
     public class EnemyFollowBehaviour : EnemyBehaviour
     {
-        private const float CIRCLE_RADIUS = 5f;
+        private bool PlayerIsClose => Vector3.Distance(BehaviourController.transform.position, BehaviourController.PlayerPosition) < BehaviourController.GetComponent<AttackController>().AttackRange;
 
-        private readonly float _chosenAngle;
-
-        public EnemyFollowBehaviour(Transform playerTransform, EnemyMover mover) : base(playerTransform, mover)
+        public EnemyFollowBehaviour(EnemyBehaviourController controller, EnemyMover mover) : base(controller, mover)
         {
-            _chosenAngle = Random.Range(0, 360);
         }
 
         public override void Execute()
         {
-            Vector3 targetPosition = GetPositionOnCircleAroundPlayer();
+            MoveAroundPlayer();
+        }
+
+        private void MoveAroundPlayer()
+        {
+            Vector3 targetPosition = CalculatePointAroundPlayer(CIRCLE_RADIUS, ChosenAngle);
 
             Mover.SetDestination(targetPosition);
-        }
-
-        private Vector3 GetPositionOnCircleAroundPlayer(int attempt = 0)
-        {
-            if (attempt > 10)
-                return Mover.transform.position;
-
-            Vector3 position = CalculatePointAroundPlayer();
-
-            //if (Mover.IsPositionReachable(position))
-            //    return position;
-
-            return position;
-            //return GetPositionOnCircleAroundPlayer(attempt++);
-        }
-
-        private Vector3 CalculatePointAroundPlayer()
-        {
-            float x = PlayerTransform.position.x + CIRCLE_RADIUS * Mathf.Cos(_chosenAngle);
-            float z = PlayerTransform.position.z + CIRCLE_RADIUS * Mathf.Sin(_chosenAngle);
-            Vector3 calculatedPos = new Vector3(x, PlayerTransform.position.y, z);
-
-            return calculatedPos;
         }
     }
 

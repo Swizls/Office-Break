@@ -235,7 +235,7 @@ NavMeshAgent:
   m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 1000
-  m_StoppingDistance: 1.7
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -287,7 +287,6 @@ MonoBehaviour:
   _damage: 20
   _attackRange: 2
   _attackForce: 500
-  _cooldownReductionTime: 0
 --- !u!114 &1296513437465502063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3731,8 +3730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e2f80247ee5394d855a428ba53eea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
-  _secondaryAttackAnimation: {fileID: 7400000, guid: dc9319b71f6d3ad4bb0733f4ecaa8b7a, type: 2}
 --- !u!1 &7741302335955089187
 GameObject:
   m_ObjectHideFlags: 0

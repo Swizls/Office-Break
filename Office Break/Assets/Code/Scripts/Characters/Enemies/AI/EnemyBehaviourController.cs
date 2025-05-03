@@ -5,6 +5,7 @@ namespace OfficeBreak.Characters.Enemies.AI
 {
     [RequireComponent(typeof(EnemyMover))]
     [RequireComponent(typeof(EnemyAttackController))]
+    [DisallowMultipleComponent]
     public class EnemyBehaviourController : MonoBehaviour
     {
         private Transform _playerTransform;
@@ -14,6 +15,9 @@ namespace OfficeBreak.Characters.Enemies.AI
         private EnemyBehaviour _followBehaviour;
         private EnemyBehaviour _attackBehaviour;
 
+        public Vector3 PlayerPosition => _playerTransform.position;
+
+        public EnemyAttackController AttackController => _attackController;
         public EnemyBehaviour CurrentBehaviour { get; private set; }
 
         public void Initialize(Player player)
@@ -22,8 +26,8 @@ namespace OfficeBreak.Characters.Enemies.AI
             _enemyMover = GetComponent<EnemyMover>();
             _attackController = GetComponent<EnemyAttackController>();
 
-            _followBehaviour = new EnemyFollowBehaviour(_playerTransform, _enemyMover);
-            _attackBehaviour = new EnemyAttackBehaviour(_playerTransform, _enemyMover, _attackController);
+            _followBehaviour = new EnemyFollowBehaviour(this, _enemyMover);
+            _attackBehaviour = new EnemyAttackBehaviour(this, _enemyMover);
 
             SetFollowBehaviour();
         }
