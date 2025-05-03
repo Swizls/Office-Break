@@ -636,7 +636,6 @@ MonoBehaviour:
   _damage: 20
   _attackRange: 1.5
   _attackForce: 500
-  _cooldownReductionTime: 0.4
   _hitablesLayer:
     serializedVersion: 2
     m_Bits: 257
@@ -653,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health:
-    _initialHealth: 100
+    _initialHealth: 200
 --- !u!114 &6427787858174111423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3331,8 +3330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e2f80247ee5394d855a428ba53eea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _primaryAttackAnimation: {fileID: 8654396287097530017, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
-  _secondaryAttackAnimation: {fileID: -8945691123924629249, guid: e0b6e55ce694d314ba7aeb3a71d04ce1, type: 3}
 --- !u!1 &5327292736692087847
 GameObject:
   m_ObjectHideFlags: 0

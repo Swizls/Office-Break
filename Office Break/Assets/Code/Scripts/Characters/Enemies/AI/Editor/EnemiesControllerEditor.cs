@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -20,4 +19,3 @@ namespace OfficeBreak.Characters.Enemies.AI.EditorExtensions
         }
     }
 }
-#endif

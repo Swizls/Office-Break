@@ -11,6 +11,7 @@ namespace OfficeBreak.Characters
 
         private CameraShaker _shaker;
         private PlayerAttackController _playerAttackController;
+        private Transform _cameraTransform;
 
         public event Action<IHitable> GotHit;
 
@@ -19,6 +20,7 @@ namespace OfficeBreak.Characters
         private void Awake()
         {
             _health.Initialize();
+            _cameraTransform = Camera.main.transform;
             _shaker = GetComponentInChildren<CameraShaker>();  
             _playerAttackController = GetComponent<PlayerAttackController>();
         }
@@ -26,7 +28,11 @@ namespace OfficeBreak.Characters
         public void TakeHit(HitData hitData)
         {
             if (_playerAttackController.IsBlocking)
-                return;
+            {
+                float hitAngle = Vector3.Angle(_cameraTransform.forward, hitData.HitDirection);
+                if (hitAngle > PlayerAttackController.BLOCKING_ANGLE)
+                    return;
+            }
 
             _health.TakeDamage(hitData.Damage);
             _shaker.StartShake();

@@ -1,0 +1,18 @@
+{
+    "name": "OfficeBreak.Characters.Enemies.AI.EditorExtensions",
+    "rootNamespace": "OfficeBreak.Characters.Enemies.AI.EditorExtensions",
+    "references": [
+        "GUID:e15d28443409ee54099493d7423c3d18"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -18,7 +18,7 @@ namespace OfficeBreak.Characters.FightingSystem
                 return new HitData()
                 {
                     Damage = Damage,
-                    HitDirection = Vector3.zero,
+                    HitDirection = transform.forward,
                     AttackForce = AttackForce,
                 };
             }
@@ -26,10 +26,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         public override bool IsBlocking { get ; protected set; }
 
-        private void Update()
-        {
-            UpdateCooldownTime();
-        }
+        private void Update() => UpdateCooldownTime();
 
         public void Initialize(Player player) => _player = player;
 

@@ -36,7 +36,11 @@ namespace OfficeBreak.Characters.FightingSystem
 
         #region MONO
 
-        private void Awake()
+        private void Awake() => Initialize();
+
+        #endregion
+
+        protected void Initialize()
         {
             _audioSource = GetComponent<AudioSource>();
 
@@ -45,14 +49,6 @@ namespace OfficeBreak.Characters.FightingSystem
             IsAbleToAttackLeftHand = true;
             IsAbleToAttackRightHand = true;
         }
-
-        #endregion
-
-        protected abstract void PrimaryAttack();
-
-        protected abstract void AlternativeAttack();
-
-        protected abstract void FistAttack();
 
         protected void OnLeftAttackCooldownEnd()
         {
@@ -69,5 +65,11 @@ namespace OfficeBreak.Characters.FightingSystem
             _animatorController.AttackAnimationEnded -= OnRightAttackCooldownEnd;
             FistAttack();
         }
+
+        protected abstract void PrimaryAttack();
+
+        protected abstract void AlternativeAttack();
+
+        protected abstract void FistAttack();
     }
 }

@@ -8,17 +8,23 @@ namespace OfficeBreak.Characters.FightingSystem
 {
     public class PlayerAttackController : AttackController
     {
+        public const float BLOCKING_ANGLE = 120f;
         private const float ATTACK_SPHERE_RADIUS = 0.3f;
 
         [SerializeField] private LayerMask _hitablesLayer;
 
         private PlayerInputActions _playerInputActions;
-
-        private Vector3 AttackPosition => Camera.main.transform.position;
+        private Transform _cameraTransform;
 
         public override bool IsBlocking { get ; protected set; }
 
         #region MONO
+
+        private void Awake()
+        {
+            _cameraTransform = Camera.main.transform;
+            Initialize();
+        }
 
         private void OnEnable()
         {
@@ -53,7 +59,7 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected override void FistAttack()
         {
-            Physics.SphereCast(AttackPosition, ATTACK_SPHERE_RADIUS, Camera.main.transform.forward, out RaycastHit hit, AttackRange, _hitablesLayer);
+            Physics.SphereCast(_cameraTransform.position, ATTACK_SPHERE_RADIUS, Camera.main.transform.forward, out RaycastHit hit, AttackRange, _hitablesLayer);
 
             if (hit.collider == null)
                 return;
@@ -66,7 +72,7 @@ namespace OfficeBreak.Characters.FightingSystem
             HitData data = new HitData
             {
                 Damage = Damage,
-                HitDirection = Camera.main.transform.forward,
+                HitDirection = _cameraTransform.forward,
                 AttackForce = AttackForce
             };
 
