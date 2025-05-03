@@ -14,6 +14,9 @@ namespace OfficeBreak.Characters.Enemies.AI
         public override void Execute()
         {
             MoveAroundPlayer();
+
+            if (PlayerIsClose)
+                AttackController.PerformAttack();
         }
 
         private void MoveAroundPlayer()
