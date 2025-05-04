@@ -11,7 +11,7 @@ namespace OfficeBreak.Core
     {
         [Header("Prefabs")]
         [Header("UI")]
-        [SerializeField] private DestructionLevelUI _destructionLevelUI;
+        [SerializeField] private Canvas _canvasPrefab;
         [SerializeField] private DestructableHealthUI _destructableHealthUIPrefab;
         [Header("Systems")]
         [SerializeField] private DestructionTracker _destructionTrackerPrefab;
@@ -28,7 +28,6 @@ namespace OfficeBreak.Core
         private void Initialize()
         {
             Player player = FindAnyObjectByType<Player>();
-            Canvas canvas = FindAnyObjectByType<Canvas>();
 
             //Systems - references
             DestructionTracker tracker = Instantiate(_destructionTrackerPrefab);
@@ -36,7 +35,7 @@ namespace OfficeBreak.Core
 
             //UI - references
             DestructableHealthUI destructableHealthUI = Instantiate(_destructableHealthUIPrefab);
-            DestructionLevelUI meter = Instantiate(_destructionLevelUI, canvas.transform);
+            Instantiate(_canvasPrefab);
 
             //Systems - init
             tracker.Initialzie();
@@ -45,7 +44,6 @@ namespace OfficeBreak.Core
 
             //UI - init
             destructableHealthUI.Initialize(tracker.Destructables, player.transform);
-            meter.gameObject.SetActive(true);
 
             player.gameObject.AddComponent<Healer>();
 

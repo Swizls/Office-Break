@@ -5,13 +5,21 @@ namespace OfficeBreak
 {
     [RequireComponent (typeof(Animator))]
     [RequireComponent(typeof(AudioSource))]
-    public class ElevatorDoorsController : MonoBehaviour
+    public class ElevatorDoors : MonoBehaviour
     {
+        public enum ElevatorType
+        {
+            EnemySpawner,
+            Exit
+        }
+
         private const string IS_OPEN = "isOpen";
         private const float OPEN_TIMER = 5f;
 
         private Animator _animator;
         private AudioSource _audioSource;
+
+        [field: SerializeField] public ElevatorType Type { get; }
 
         private void Awake()
         {

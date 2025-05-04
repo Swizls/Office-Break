@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace OfficeBreak.Spawners
 {
@@ -17,11 +16,17 @@ namespace OfficeBreak.Spawners
         private List<EnemySpawner> _startEnemySpawners;
 
         private int _activeEnemyCount;
+        private ElevatorDoors[] _elevators;
 
         public event Action EnemyWaveDefeated;
-        public UnityEvent<List<Enemy>> EnemyWaveSpawned;
+        public event Action<List<Enemy>> EnemyWaveSpawned;
 
         #region MONO
+
+        public void Awake()
+        {
+            _elevators = FindObjectsByType<ElevatorDoors>(FindObjectsSortMode.None).Where(elevator => elevator.Type == ElevatorDoors.ElevatorType.EnemySpawner).ToArray();
+        }
 
         public void Initialize(Player player)
         {
@@ -46,6 +51,9 @@ namespace OfficeBreak.Spawners
                 enemies.Add(enemy);
                 _activeEnemyCount++;
             }
+
+            foreach(var elevator in _elevators)
+                elevator.OpenDoors();
 
             EnemyWaveSpawned?.Invoke(enemies);
         }

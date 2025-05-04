@@ -24,9 +24,9 @@ namespace OfficeBreak.Characters.Enemies.AI
 
         private void Awake() => _enemySpawnController = GetComponent<EnemySpawnController>();
 
-        private void OnEnable() => _enemySpawnController.EnemyWaveSpawned.AddListener(OnEnemyWaveSpawn);
+        private void OnEnable() => _enemySpawnController.EnemyWaveSpawned += OnEnemyWaveSpawn;
 
-        private void OnDisable() => _enemySpawnController.EnemyWaveSpawned.RemoveListener(OnEnemyWaveSpawn);
+        private void OnDisable() => _enemySpawnController.EnemyWaveSpawned -= OnEnemyWaveSpawn;
 
         #endregion
 
@@ -47,14 +47,9 @@ namespace OfficeBreak.Characters.Enemies.AI
 
         private void OnEnemyDeath()
         {
-            List<Enemy> deadFollowingEnemies = _activeEnemies.Where(enemy => enemy.Health.IsDead).ToList();
+            List<Enemy> deadEnemies = _activeEnemies.Where(enemy => enemy.Health.IsDead).ToList();
 
-            foreach (Enemy enemy in deadFollowingEnemies)
-                _activeEnemies.Remove(enemy);
-
-            List<Enemy> deadAttackingEnemies = _activeEnemies.Where(enemy => enemy.Health.IsDead).ToList();
-
-            foreach (Enemy enemy in deadAttackingEnemies)
+            foreach (Enemy enemy in deadEnemies)
                 _activeEnemies.Remove(enemy);
 
             if (!IsEnoughAttackingEnemies)
