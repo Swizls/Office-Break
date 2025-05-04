@@ -1,5 +1,5 @@
 using OfficeBreak.Characters;
-using OfficeBreak.Core.DamageSystem;
+using OfficeBreak.Core;
 using System.Collections;
 using System.Linq;
 using UnityEngine;

@@ -1,5 +1,5 @@
 using FabroGames.PlayerControlls;
-using OfficeBreak.Core.DamageSystem;
+using OfficeBreak.Core;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;

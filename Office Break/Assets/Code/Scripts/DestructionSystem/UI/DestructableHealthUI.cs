@@ -1,4 +1,4 @@
-using OfficeBreak.Core.DamageSystem;
+using OfficeBreak.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;

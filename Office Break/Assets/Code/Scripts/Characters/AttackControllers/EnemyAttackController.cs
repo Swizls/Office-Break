@@ -1,6 +1,6 @@
-using OfficeBreak.Core.DamageSystem;
+using OfficeBreak.Core;
 using UnityEngine;
-using static OfficeBreak.Core.DamageSystem.HitData;
+using static OfficeBreak.Core.HitData;
 
 namespace OfficeBreak.Characters.FightingSystem
 {

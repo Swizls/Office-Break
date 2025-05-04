@@ -1,6 +1,5 @@
 using OfficeBreak.Characters.Animations;
 using OfficeBreak.Core;
-using OfficeBreak.Core.DamageSystem;
 using System;
 using System.Collections;
 using UnityEngine;

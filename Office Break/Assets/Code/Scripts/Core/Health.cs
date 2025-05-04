@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace OfficeBreak.Core.DamageSystem
+namespace OfficeBreak.Core
 {
     [Serializable]
     public class Health
@@ -44,7 +44,7 @@ namespace OfficeBreak.Core.DamageSystem
 
             _health += healPoints;
 
-            if(_health > _initialHealth)
+            if (_health > _initialHealth)
                 _health = _initialHealth;
 
             ValueChanged?.Invoke();

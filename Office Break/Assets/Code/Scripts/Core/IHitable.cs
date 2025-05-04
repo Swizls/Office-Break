@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace OfficeBreak.Core.DamageSystem
+namespace OfficeBreak.Core
 {
     public interface IHitable
     {

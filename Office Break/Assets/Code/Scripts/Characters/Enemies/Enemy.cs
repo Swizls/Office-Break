@@ -1,7 +1,6 @@
 using OfficeBreak.Characters.Enemies.AI;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core;
-using OfficeBreak.Core.DamageSystem;
 using System;
 using UnityEngine;
 

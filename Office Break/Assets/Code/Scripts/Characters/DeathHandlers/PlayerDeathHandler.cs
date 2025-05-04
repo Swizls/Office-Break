@@ -1,6 +1,6 @@
 ﻿using FabroGames.Characters.Player;
 using OfficeBreak.Characters.FightingSystem;
-using OfficeBreak.Core.DamageSystem;
+using OfficeBreak.Core;
 using UnityEngine;
 
 namespace OfficeBreak.Characters
