@@ -1,13 +1,14 @@
-using FabroGames;
 using FabroGames.PlayerControlls;
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Animations;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Spawners;
+using System;
+using UnityEngine;
 
 namespace OfficeBreak.Core
 {
-    public class GameManager : IService
+    public class GameManager : MonoBehaviour
     { 
         private EnemySpawnController _enemySpawnController;
         private IMovable _playerMovement;
@@ -15,7 +16,23 @@ namespace OfficeBreak.Core
         private AttackController _playerAttackController;
         private AnimatorController _animatorController;
 
-        public GameManager(EnemySpawnController enemySpawnController, Player player)
+        public event Action GameInitialized;
+
+        public static GameManager Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        public void Intialize(EnemySpawnController enemySpawnController, Player player)
         {
             _enemySpawnController = enemySpawnController;
             _playerMovement = player.GetComponent<IMovable>();
@@ -28,6 +45,8 @@ namespace OfficeBreak.Core
             _playerCamera.enabled = false;
             _playerAttackController.enabled = false;
             _animatorController.enabled = false;
+
+            GameInitialized?.Invoke();
         }
 
         public void StartGame()

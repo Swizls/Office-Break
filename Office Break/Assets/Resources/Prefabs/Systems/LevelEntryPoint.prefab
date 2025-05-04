@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4263262596061068670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3038411387602456021}
+  - component: {fileID: 7349317467037598336}
+  m_Layer: 0
+  m_Name: LevelEntryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3038411387602456021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263262596061068670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.678188, y: -4.9413376, z: -12.911939}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7349317467037598336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4263262596061068670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8902cb6f5a43e2c4c9f886ecc3a0d554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destructionLevelUI: {fileID: 1090919728418816257, guid: f27266aabde88ee4f8ce68ae987f4442, type: 3}
+  _destructableHealthUIPrefab: {fileID: 7083854012070455955, guid: 39e1ceac1e5d29c4ebe895c04ee2439c, type: 3}
+  _destructionTrackerPrefab: {fileID: 7231257509438065843, guid: b471db540818e6b4f9c92f261c080d31, type: 3}
+  _enemySpawnControllerPrefab: {fileID: 9148635721552292981, guid: 2048d508d1c1cce47b091a52cce737d3, type: 3}

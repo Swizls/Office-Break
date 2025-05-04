@@ -8,27 +8,18 @@ namespace OfficeBreak.DestructionSystem.UI
         private const float ANIMATION_SPEED = 0.001f;
 
         [SerializeField] private RectTransform _barTransform;
-        [SerializeField] private DestructionTracker _destructionTracker;
 
-        private void Start()
-        {
-            UpdateValue();
-        }
+        private DestructionTracker _destructionTracker;
 
-        private void OnEnable()
-        {
-            _destructionTracker.DestructablesUpdated += UpdateValue;
-        }
+        private void Awake() => _destructionTracker = FindAnyObjectByType<DestructionTracker>();
 
-        private void OnDisable()
-        {
-            _destructionTracker.DestructablesUpdated -= UpdateValue;
-        }
+        private void Start() => UpdateValue();
 
-        private void UpdateValue()
-        {
-            StartCoroutine(PlayAnimation(_destructionTracker.DestructionLevelByPercent));
-        }
+        private void OnEnable() => _destructionTracker.DestructablesUpdated += UpdateValue;
+
+        private void OnDisable() => _destructionTracker.DestructablesUpdated -= UpdateValue;
+
+        private void UpdateValue() => StartCoroutine(PlayAnimation(_destructionTracker.DestructionLevelByPercent));
 
         private IEnumerator PlayAnimation(float target)
         {

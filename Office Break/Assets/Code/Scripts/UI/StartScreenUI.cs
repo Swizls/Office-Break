@@ -8,7 +8,7 @@ namespace OfficeBreak
     {
         public void StartGame()
         {
-            ServiceLocator.Get<GameManager>().StartGame();
+            GameManager.Instance.StartGame();
             gameObject.SetActive(false);
         }
     }

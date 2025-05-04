@@ -15,19 +15,10 @@ namespace OfficeBreak.Characters
             _targetHealth = FindAnyObjectByType<Player>().Health;
         }
 
-        private void OnEnable()
-        {
-            _spawnController.EnemyWaveDefeated += OnDeathAllEnemies;
-        }
+        private void OnEnable() => _spawnController.EnemyWaveDefeated += OnDeathAllEnemies;
 
-        private void OnDisable()
-        {
-            _spawnController.EnemyWaveDefeated -= OnDeathAllEnemies;
-        }
+        private void OnDisable() => _spawnController.EnemyWaveDefeated -= OnDeathAllEnemies;
 
-        private void OnDeathAllEnemies()
-        {
-            _targetHealth.TakeHeal(1000);    
-        }
+        private void OnDeathAllEnemies() => _targetHealth.TakeHeal(1000);
     }
 }

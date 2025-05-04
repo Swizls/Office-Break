@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace OfficeBreak.Characters.Enemies.AI
 {
+    [RequireComponent(typeof(EnemySpawnController))]
     public class EnemiesController : MonoBehaviour
     {
         private const int MAX_ATTACKING_ENEMIES_AT_ONCE = 2;
 
-        [SerializeField] private EnemySpawnController _enemySpawnController;
+        private EnemySpawnController _enemySpawnController;
 
         private List<Enemy> _activeEnemies = new List<Enemy>();
 
@@ -20,6 +21,8 @@ namespace OfficeBreak.Characters.Enemies.AI
         public int AttackingEnemiesCount => _activeEnemies.Where(enemy => enemy.BehaviourController.CurrentBehaviour.GetType() == typeof(EnemyAttackBehaviour)).Count();
 
         #region MONO
+
+        private void Awake() => _enemySpawnController = GetComponent<EnemySpawnController>();
 
         private void OnEnable() => _enemySpawnController.EnemyWaveSpawned.AddListener(OnEnemyWaveSpawn);
 

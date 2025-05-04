@@ -28,10 +28,7 @@ namespace FabroGames.PlayerControlls
 
         #region MONO
 
-        private void Awake()
-        {
-            _rigidbody = GetComponent<Rigidbody>();
-        }
+        private void Awake() => _rigidbody = GetComponent<Rigidbody>();
 
         private void OnEnable()
         {

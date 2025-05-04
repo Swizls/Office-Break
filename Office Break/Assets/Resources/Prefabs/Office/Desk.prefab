@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health:
-    _initialHealth: 250
+    _initialHealth: 150
   _model: {fileID: 7618184530898280028}
   _explosionForce: 400
   _hitSFXes:
