@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OfficeBreak.DustructionSystem.UI
+namespace OfficeBreak.DestructionSystem.UI
 {
     public class DestructableHealthUI : MonoBehaviour
     {

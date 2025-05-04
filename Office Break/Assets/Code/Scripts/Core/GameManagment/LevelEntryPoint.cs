@@ -1,7 +1,7 @@
 using FabroGames;
 using OfficeBreak.Characters;
-using OfficeBreak.DustructionSystem;
-using OfficeBreak.DustructionSystem.UI;
+using OfficeBreak.DestructionSystem;
+using OfficeBreak.DestructionSystem.UI;
 using OfficeBreak.Spawners;
 using UnityEngine;
 

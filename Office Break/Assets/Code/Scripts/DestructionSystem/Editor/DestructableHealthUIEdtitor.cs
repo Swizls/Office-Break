@@ -1,9 +1,9 @@
-using OfficeBreak.DustructionSystem.UI;
+using OfficeBreak.DestructionSystem.UI;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace OfficeBreak.DustructionSystem.Editors
+namespace OfficeBreak.DestructionSystem.Editors
 {
     [CustomEditor(typeof(DestructableHealthUI))]
     public class DestructableHealthUIEdtitor : Editor

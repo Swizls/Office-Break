@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace OfficeBreak.DustructionSystem
+namespace OfficeBreak.DestructionSystem
 {
     [RequireComponent(typeof(AudioSource))]
     public class Destructable : MonoBehaviour, IHitable

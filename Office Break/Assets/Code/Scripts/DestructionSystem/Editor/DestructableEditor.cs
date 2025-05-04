@@ -2,7 +2,7 @@ using OfficeBreak.Core.DamageSystem;
 using UnityEditor;
 using UnityEngine;
 
-namespace OfficeBreak.DustructionSystem.Editors
+namespace OfficeBreak.DestructionSystem.Editors
 {
     [CustomEditor(typeof(Destructable))]
     public class DestructableEditor : Editor 

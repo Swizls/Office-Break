@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace OfficeBreak.DustructionSystem.UI
+namespace OfficeBreak.DestructionSystem.UI
 {
     public class DestructionLevelUI : MonoBehaviour
     {
