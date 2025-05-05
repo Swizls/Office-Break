@@ -1,3 +1,4 @@
+using FabroGames.Helpers;
 using FabroGames.PlayerControlls;
 using OfficeBreak.Characters.FightingSystem;
 using OfficeBreak.Core;
@@ -53,7 +54,7 @@ namespace OfficeBreak.Characters.Animations
         {
             SetIsRunningBool();
             Vector3 movementVector = _movable.IsMoving ? _movable.Velocity.normalized : Vector3.zero;
-            SetMovementDirection(CalculateRealitveMovementDirection(movementVector, transform.forward));
+            SetMovementDirection(Helpers.CalculateRelativeVector(movementVector, transform.forward));
         }
 
         #endregion
@@ -78,25 +79,6 @@ namespace OfficeBreak.Characters.Animations
         {
             _animator.SetFloat(MOVE_X, Mathf.MoveTowards(_animator.GetFloat(MOVE_X), relativeMovementDirection.x, ANIMATION_CHANGE_SPEED));
             _animator.SetFloat(MOVE_Y, Mathf.MoveTowards(_animator.GetFloat(MOVE_Y), relativeMovementDirection.y, ANIMATION_CHANGE_SPEED));
-        }
-
-        private Vector2 CalculateRealitveMovementDirection(Vector3 movementDirection, Vector3 lookDirection)
-        {
-            if (movementDirection.magnitude == 0)
-                return Vector2.zero;
-
-            float dotProduct = Vector3.Dot(movementDirection.normalized, lookDirection);
-            float crossProductMagnitude = Vector3.Cross(movementDirection, lookDirection).y;
-            float clockwiseAngle = Mathf.Atan2(crossProductMagnitude, dotProduct) * Mathf.Rad2Deg;
-
-            clockwiseAngle = (clockwiseAngle + 360) % 360;
-
-            float radians = clockwiseAngle * Mathf.Deg2Rad;
-
-            float x = Mathf.Sin(radians);
-            float y = Mathf.Cos(radians);
-
-            return new Vector2(x, y);
         }
     }
 }

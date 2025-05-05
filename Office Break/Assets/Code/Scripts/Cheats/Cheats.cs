@@ -19,6 +19,7 @@ namespace OfficeBreak.Cheats
             };
 
             Object.FindObjectsByType<Destructable>(FindObjectsSortMode.None)
+                .Where(destructable => destructable.Health.IsDead == false)
                 .ToList()
                 .ForEach(destructable => destructable.TakeHit(hitData));
         }

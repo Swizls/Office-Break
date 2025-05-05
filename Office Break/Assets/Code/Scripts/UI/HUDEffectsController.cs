@@ -17,7 +17,7 @@ namespace OfficeBreak.UI
 
         private void Awake()
         {
-            VolumeProfile volumeProfile = GetComponent<Volume>().profile;
+            VolumeProfile volumeProfile = FindAnyObjectByType<Volume>().profile;
             _playerHealth = FindAnyObjectByType<Player>().Health;
             _vignette = (Vignette)volumeProfile.components.Where(component => component.GetType() == typeof(Vignette)).First();
             _vignette.intensity.value = 0;
