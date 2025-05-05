@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4461415788458038323}
   - component: {fileID: 8246983101386720478}
   - component: {fileID: 2397127520307503720}
+  - component: {fileID: 6896244420980835213}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -199,6 +200,26 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _damageMaterial: {fileID: 2100000, guid: b0811cb9e0b4ebf4b8f8f718aae73c00, type: 2}
+--- !u!114 &6896244420980835213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293547314237619561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &7618184530898280028
 GameObject:
   m_ObjectHideFlags: 0

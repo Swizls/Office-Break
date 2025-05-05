@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace OfficeBreak.Core
 {
-    public class SceneController : MonoBehaviour
+    public class SceneLoader : MonoBehaviour
     {
         public const int MAIN_MENU_BUILD_INDEX = 0;
         public const int START_LEVEL_BUILD_INDEX = 1;

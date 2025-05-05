@@ -31,7 +31,10 @@ namespace OfficeBreak.DestructionSystem
                     DestructablesUpdated?.Invoke();
 
                     if (DestructionLevelByPercent == 100)
+                    {
+                        Debug.Log("Level destroyed");
                         LevelDestroyed?.Invoke();
+                    }
                 };
             }
         }

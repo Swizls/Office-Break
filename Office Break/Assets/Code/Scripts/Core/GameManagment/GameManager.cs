@@ -2,21 +2,27 @@ using FabroGames.PlayerControlls;
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Animations;
 using OfficeBreak.Characters.FightingSystem;
+using OfficeBreak.DestructionSystem;
 using OfficeBreak.Spawners;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace OfficeBreak.Core
 {
     public class GameManager : MonoBehaviour
     { 
+        private SceneLoader _sceneLoader;
+
         private EnemySpawnController _enemySpawnController;
         private IMovable _playerMovement;
         private PlayerCamera _playerCamera;
         private AttackController _playerAttackController;
         private AnimatorController _animatorController;
+        private DestructionTracker _destructionTracker;
 
         public event Action GameInitialized;
+        public event Action LevelCompleted;
 
         public static GameManager Instance { get; private set; }
 
@@ -29,6 +35,7 @@ namespace OfficeBreak.Core
             }
 
             Instance = this;
+            _sceneLoader = GetComponent<SceneLoader>();
             DontDestroyOnLoad(gameObject);
         }
 
@@ -39,6 +46,7 @@ namespace OfficeBreak.Core
             _playerAttackController = player.GetComponent<AttackController>();
             _playerCamera = player.GetComponentInChildren<PlayerCamera>();
             _animatorController = player.GetComponentInChildren<AnimatorController>();
+            _destructionTracker = FindAnyObjectByType<DestructionTracker>();
 
             _enemySpawnController.enabled = false;
             _playerMovement.Enabled = false;
@@ -57,7 +65,29 @@ namespace OfficeBreak.Core
             _playerAttackController.enabled = true;
             _animatorController.enabled = true;
 
+            _destructionTracker.LevelDestroyed += OnLevelDestroy;
+
             _enemySpawnController.SpawnFirstWave();
+        }
+
+        public void OnLevelDestroy()
+        {
+            ElevatorDoors elevator = 
+                FindObjectsByType<ElevatorDoors>(FindObjectsSortMode.None)
+                .Where(obj => obj.Type == ElevatorDoors.ElevatorType.Exit)
+                .First();
+            elevator.Open();
+
+            ExitTrigger trigger = FindAnyObjectByType<ExitTrigger>();
+
+            trigger.PlayerEnteredExit += OnExitEnter;
+
+            LevelCompleted?.Invoke();
+        }
+
+        private void OnExitEnter()
+        {
+            _sceneLoader.LoadNextLevel();
         }
     }
 }

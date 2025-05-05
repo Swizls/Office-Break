@@ -53,7 +53,7 @@ namespace OfficeBreak.Spawners
             }
 
             foreach(var elevator in _elevators)
-                elevator.OpenDoors();
+                elevator.OpenAndCloseAfterDelay();
 
             EnemyWaveSpawned?.Invoke(enemies);
         }
@@ -77,7 +77,10 @@ namespace OfficeBreak.Spawners
 
         public void SpawnFirstWave()
         {
-            Spawn(_startEnemySpawners);
+            if (_startEnemySpawners.Count > 0)
+                Spawn(_startEnemySpawners);
+            else
+                Spawn(_elevatorSpawners);
         }
     }
 }

@@ -3,6 +3,7 @@ using OfficeBreak.Characters.Enemies.AI;
 using OfficeBreak.DestructionSystem;
 using OfficeBreak.DestructionSystem.UI;
 using OfficeBreak.Spawners;
+using System.Linq;
 using UnityEngine;
 
 namespace OfficeBreak.Core
@@ -10,6 +11,8 @@ namespace OfficeBreak.Core
     public class LevelEntryPoint : MonoBehaviour
     {
         [Header("Prefabs")]
+        [SerializeField] private Player _playerPrefab;
+        [SerializeField] private Transform _playerSpawnerTransform;
         [Header("UI")]
         [SerializeField] private Canvas _canvasPrefab;
         [SerializeField] private DestructableHealthUI _destructableHealthUIPrefab;
@@ -20,14 +23,22 @@ namespace OfficeBreak.Core
         private void Awake()
         {
             if (GameManager.Instance == null)
-                SceneController.LoadScene(SceneController.MAIN_MENU_BUILD_INDEX);
+                SceneLoader.LoadScene(SceneLoader.MAIN_MENU_BUILD_INDEX);
 
-            SceneController.SceneChanged += Initialize;
+            SceneLoader.SceneChanged += Initialize;
+        }
+
+        private void OnDestroy() => SceneLoader.SceneChanged -= Initialize;
+
+        private void OnValidate()
+        {
+            if (_enemySpawnControllerPrefab.TryGetComponent(out EnemiesController com) == false)
+                throw new System.Exception($"Component '{nameof(EnemiesController)} is required to exist on gameobject'");
         }
 
         private void Initialize()
         {
-            Player player = FindAnyObjectByType<Player>();
+            Player player = SpawnPlayer();
 
             //Systems - references
             DestructionTracker tracker = Instantiate(_destructionTrackerPrefab);
@@ -50,12 +61,27 @@ namespace OfficeBreak.Core
             Destroy(gameObject);
         }
 
-        private void OnDestroy() => SceneController.SceneChanged -= Initialize;
-
-        private void OnValidate()
+        private Player SpawnPlayer()
         {
-            if (_enemySpawnControllerPrefab.TryGetComponent(out EnemiesController com) == false)
-                throw new System.Exception($"Component '{nameof(EnemiesController)} is required to exist on gameobject'");
+            Quaternion rotation;
+            Vector3 position;
+
+            if (_playerSpawnerTransform == null)
+            {
+                rotation = Quaternion.identity;
+                position =
+                    FindObjectsByType<ElevatorDoors>(FindObjectsSortMode.None)
+                    .ToList()
+                    .Where(elevator => elevator.Type == ElevatorDoors.ElevatorType.Start)
+                    .First().transform.position;
+            }
+            else
+            {
+                rotation = Quaternion.Euler(0, _playerSpawnerTransform.eulerAngles.y, 0);
+                position = _playerSpawnerTransform.position;
+            }
+
+            return Instantiate(_playerPrefab, position, rotation);
         }
     }
 }
