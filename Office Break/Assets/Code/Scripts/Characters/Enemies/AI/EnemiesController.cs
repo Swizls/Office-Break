@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using OfficeBreak.Core.Configs;
 using OfficeBreak.Spawners;
 using UnityEngine;
 
@@ -8,14 +9,14 @@ namespace OfficeBreak.Characters.Enemies.AI
     [RequireComponent(typeof(EnemySpawnController))]
     public class EnemiesController : MonoBehaviour
     {
-        private const int MAX_ATTACKING_ENEMIES_AT_ONCE = 2;
+        private int _maxAttackingEnemies = 2;
 
         private EnemySpawnController _enemySpawnController;
 
         private List<Enemy> _activeEnemies = new List<Enemy>();
 
-        private bool IsEnoughAttackingEnemies => AttackingEnemiesCount >= MAX_ATTACKING_ENEMIES_AT_ONCE;
-        private int RequiredAttackingEnemiesCount => MAX_ATTACKING_ENEMIES_AT_ONCE - AttackingEnemiesCount;
+        private bool IsEnoughAttackingEnemies => AttackingEnemiesCount >= _maxAttackingEnemies;
+        private int RequiredAttackingEnemiesCount => _maxAttackingEnemies - AttackingEnemiesCount;
 
         public int FollowingEnemiesCount => _activeEnemies.Where(enemy => enemy.BehaviourController.CurrentBehaviour.GetType() == typeof(EnemyFollowBehaviour)).Count();
         public int AttackingEnemiesCount => _activeEnemies.Where(enemy => enemy.BehaviourController.CurrentBehaviour.GetType() == typeof(EnemyAttackBehaviour)).Count();
@@ -57,6 +58,8 @@ namespace OfficeBreak.Characters.Enemies.AI
         }
 
         #endregion
+
+        public void Initialize(DifficultyConfig config) => _maxAttackingEnemies = config.MaxAttackingEnemies;
 
         private void AddAttackingEnemies(int countToAdd)
         {

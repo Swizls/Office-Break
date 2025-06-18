@@ -2,16 +2,17 @@ using FabroGames.PlayerControlls;
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Animations;
 using OfficeBreak.Characters.FightingSystem;
+using OfficeBreak.Core.Configs;
 using OfficeBreak.DestructionSystem;
 using OfficeBreak.Spawners;
 using System;
 using System.Linq;
 using UnityEngine;
 
-namespace OfficeBreak.Core
+namespace OfficeBreak.Core.GameManagment
 {
     public class GameManager : MonoBehaviour
-    { 
+    {
         private SceneLoader _sceneLoader;
 
         private EnemySpawnController _enemySpawnController;
@@ -25,6 +26,7 @@ namespace OfficeBreak.Core
         public event Action LevelCompleted;
 
         public static GameManager Instance { get; private set; }
+        [field: SerializeField] public DifficultyConfig Difficulty { get; private set; }
 
         private void Awake()
         {
@@ -70,9 +72,11 @@ namespace OfficeBreak.Core
             _enemySpawnController.SpawnFirstWave();
         }
 
-        public void OnLevelDestroy()
+        public void SetDifficulty(DifficultyConfig config) => Difficulty = config;
+
+        private void OnLevelDestroy()
         {
-            ElevatorDoors elevator = 
+            ElevatorDoors elevator =
                 FindObjectsByType<ElevatorDoors>(FindObjectsSortMode.None)
                 .Where(obj => obj.Type == ElevatorDoors.ElevatorType.Exit)
                 .First();
@@ -85,9 +89,6 @@ namespace OfficeBreak.Core
             LevelCompleted?.Invoke();
         }
 
-        private void OnExitEnter()
-        {
-            _sceneLoader.LoadNextLevel();
-        }
+        private void OnExitEnter() => _sceneLoader.LoadNextLevel();
     }
 }

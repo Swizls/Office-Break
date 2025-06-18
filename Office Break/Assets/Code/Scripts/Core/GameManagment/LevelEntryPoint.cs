@@ -1,5 +1,6 @@
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies.AI;
+using OfficeBreak.Core.GameManagment;
 using OfficeBreak.DestructionSystem;
 using OfficeBreak.DestructionSystem.UI;
 using OfficeBreak.Spawners;
@@ -50,13 +51,15 @@ namespace OfficeBreak.Core
 
             //Systems - init
             tracker.Initialzie();
-            enemySpawnController.Initialize(player);
+            enemySpawnController.Initialize(player, GameManager.Instance.Difficulty);
+            enemySpawnController.GetComponent<EnemiesController>().Initialize(GameManager.Instance.Difficulty);
             FindAnyObjectByType<GameManager>().Intialize(enemySpawnController, player);
 
             //UI - init
             destructableHealthUI.Initialize(tracker.Destructables, player.transform);
 
             player.gameObject.AddComponent<Healer>();
+            GameManager.Instance.StartGame();
 
             Destroy(gameObject);
         }

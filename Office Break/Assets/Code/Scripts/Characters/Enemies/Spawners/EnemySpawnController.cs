@@ -1,5 +1,6 @@
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies;
+using OfficeBreak.Core.Configs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace OfficeBreak.Spawners
 {
     public class EnemySpawnController : MonoBehaviour
     {
-        [SerializeField] private float _enemySpawnDelay = 5f;
+        private float _enemySpawnDelay = 5f;
 
         private List<EnemySpawner> _elevatorSpawners;
         private List<EnemySpawner> _startEnemySpawners;
@@ -23,13 +24,12 @@ namespace OfficeBreak.Spawners
 
         #region MONO
 
-        public void Awake()
-        {
-            _elevators = FindObjectsByType<ElevatorDoors>(FindObjectsSortMode.None).Where(elevator => elevator.Type == ElevatorDoors.ElevatorType.EnemySpawner).ToArray();
-        }
+        public void Awake() => _elevators = FindObjectsByType<ElevatorDoors>(FindObjectsSortMode.None).Where(elevator => elevator.Type == ElevatorDoors.ElevatorType.EnemySpawner).ToArray();
 
-        public void Initialize(Player player)
+        public void Initialize(Player player, DifficultyConfig difficultyConfig)
         {
+            _enemySpawnDelay = difficultyConfig.EnemySpawnDelay;
+
             List<EnemySpawner> enemySpawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None).ToList();
 
             _elevatorSpawners = enemySpawners.Where(spawner => spawner.Type == EnemySpawner.EnemySpawnerType.Elevator).ToList();
@@ -77,6 +77,9 @@ namespace OfficeBreak.Spawners
 
         public void SpawnFirstWave()
         {
+            if (_enemySpawnDelay < 0)
+                return;
+
             if (_startEnemySpawners.Count > 0)
                 Spawn(_startEnemySpawners);
             else

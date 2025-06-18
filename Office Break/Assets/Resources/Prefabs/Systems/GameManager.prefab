@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9dc1e3049be8641bdd4027bc54564e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Difficulty>k__BackingField: {fileID: 11400000, guid: 8d5d0b8402de314458eca193193a1dee, type: 2}
 --- !u!114 &8957988607307999076
 MonoBehaviour:
   m_ObjectHideFlags: 0
