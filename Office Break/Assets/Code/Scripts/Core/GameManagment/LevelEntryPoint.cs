@@ -44,6 +44,7 @@ namespace OfficeBreak.Core
             //Systems - references
             DestructionTracker tracker = Instantiate(_destructionTrackerPrefab);
             EnemySpawnController enemySpawnController = Instantiate(_enemySpawnControllerPrefab);
+            Destructable[] destructables = FindObjectsByType<Destructable>(FindObjectsSortMode.None).ToArray();
 
             //UI - references
             DestructableHealthUI destructableHealthUI = Instantiate(_destructableHealthUIPrefab);
@@ -54,6 +55,9 @@ namespace OfficeBreak.Core
             enemySpawnController.Initialize(player, GameManager.Instance.Difficulty);
             enemySpawnController.GetComponent<EnemiesController>().Initialize(GameManager.Instance.Difficulty);
             FindAnyObjectByType<GameManager>().Intialize(enemySpawnController, player);
+
+            foreach (Destructable destructable in destructables)
+                destructable.Initialize();
 
             //UI - init
             destructableHealthUI.Initialize(tracker.Destructables, player.transform);

@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace OfficeBreak.DestructionSystem
 {
     [RequireComponent(typeof(AudioSource))]
+    [DisallowMultipleComponent]
     public class Destructable : MonoBehaviour, IHitable
     {
         [SerializeField] private Health _health;
@@ -18,7 +18,9 @@ namespace OfficeBreak.DestructionSystem
         [SerializeField] private AudioClip[] _hitSFXes;
         [SerializeField] private AudioClip _destroySFX;
 
-        private Rigidbody _rigidbody;
+        private MeshRenderer _modelMeshRenderer;
+        private Collider[] _modelColliders;
+        private Rigidbody _modelRigidbody;
         private AudioSource _audioSource;
         private SFXPlayer _sfxPlayer;
 
@@ -35,10 +37,18 @@ namespace OfficeBreak.DestructionSystem
         private void Awake()
         {
             _health.Initialize();
-
             _audioSource = GetComponent<AudioSource>();
-            _rigidbody = _model.GetComponent<Rigidbody>();
 
+            if (_model == null)
+                _model = gameObject;
+
+            _modelRigidbody = _model.GetComponent<Rigidbody>();
+            _modelMeshRenderer = _model.GetComponent<MeshRenderer>();
+            _modelColliders = _model.GetComponents<Collider>();
+        }
+
+        public void Initialize()
+        {
             _sfxPlayer = new SFXPlayer(_audioSource);
             _sfxPlayer.AddClip(nameof(_destroySFX), _destroySFX);
             _sfxPlayer.AddClips(nameof(_hitSFXes), _hitSFXes);
@@ -55,11 +65,24 @@ namespace OfficeBreak.DestructionSystem
 
         private void OnObjectDestroy()
         {
+            bool isScriptAttachedToModel = _model.gameObject == gameObject;
+
             Destroyed?.Invoke();
 
             _sfxPlayer.Play(nameof(_destroySFX));
 
-            Destroy(_model);
+            if (isScriptAttachedToModel)
+            {
+                _modelMeshRenderer.enabled = false;
+                foreach(Collider collider in _modelColliders)
+                    collider.enabled = false;
+
+                _modelRigidbody.isKinematic = true;
+            }
+            else
+            {
+                Destroy(_model);
+            }
 
             _fracturedVersion.transform.position = _model.transform.position;
             _fracturedVersion.transform.rotation = _model.transform.rotation;
@@ -69,9 +92,9 @@ namespace OfficeBreak.DestructionSystem
 
         public void TakeHit(HitData hitData)
         {
-            _rigidbody.isKinematic = false;
+            _modelRigidbody.isKinematic = false;
             _health.TakeDamage(hitData.Damage);
-            _rigidbody.AddForce(hitData.HitDirection * hitData.AttackForce);
+            _modelRigidbody.AddForce(hitData.HitDirection * hitData.AttackForce);
 
             if(!_health.IsDead)
             {
