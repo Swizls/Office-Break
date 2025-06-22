@@ -6,6 +6,14 @@ namespace OfficeBreak.Characters.Animations
     {
         [SerializeField][Range(0f, 1f)] private float _attackCooldownDuration;
 
+        private AnimatorController _animatorController;
+
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            Debug.Log("Entering Attack Animations");
+            _animatorController = animator.GetComponent<AnimatorController>();
+        }
+
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             if (animator.IsInTransition(layerIndex)) 
@@ -14,7 +22,7 @@ namespace OfficeBreak.Characters.Animations
             if (stateInfo.normalizedTime < _attackCooldownDuration)
                 return;
 
-            animator.GetComponent<AnimatorController>().AttackAnimationEnded?.Invoke();
+            _animatorController.AttackAnimationEnded?.Invoke();
         }
     }
 }

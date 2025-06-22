@@ -19,25 +19,23 @@ namespace OfficeBreak.Characters.FightingSystem
 
         public void Initialize(Player player) => _player = player;
 
-        protected override void PrimaryAttack()
+        protected void PrimaryAttack()
         {
             AttackPerformed?.Invoke();
             _attackDirection = AttackDirections.Right;
-            IsAbleToAttackRightHand = false;
-            IsAbleToAttackLeftHand = false;
-            _animatorController.AttackAnimationEnded += OnLeftAttackCooldownEnd;
+            _animatorController.AttackAnimationEnded += OnAttackAnimationEnd;
+            FistAttack();
         }
 
-        protected override void AlternativeAttack()
+        protected void AlternativeAttack()
         {
             AlternativeAttackPerformed?.Invoke();
             _attackDirection = AttackDirections.Left;
-            IsAbleToAttackLeftHand = false;
-            IsAbleToAttackRightHand = false;
-            _animatorController.AttackAnimationEnded += OnRightAttackCooldownEnd;
+            _animatorController.AttackAnimationEnded += OnAttackAnimationEnd;
+            FistAttack();
         }
 
-        protected override void FistAttack()
+        protected void FistAttack()
         {
             HitData data = new HitData()
             {
@@ -46,6 +44,7 @@ namespace OfficeBreak.Characters.FightingSystem
                 AttackDirection = _attackDirection,
                 AttackForce = AttackForce,
             };
+
             _player.TakeHit(data);
         }
 
@@ -61,9 +60,9 @@ namespace OfficeBreak.Characters.FightingSystem
 
             _cooldownTime = UnityEngine.Random.Range(MIN_COOLDOWN_TIME, MAX_COOLDOWN_TIME);
 
-            if (randomAttack && IsAbleToAttackLeftHand)
+            if (randomAttack)
                 PrimaryAttack();
-            else if (IsAbleToAttackRightHand)
+            else
                 AlternativeAttack();
 
             PlayAttackSFX();

@@ -14,6 +14,8 @@ namespace OfficeBreak.Characters.FightingSystem
         [SerializeField] private float _attackForce;
         [SerializeField] private AudioClip[] _attackSFX;
 
+        private bool _isAbleToAttack = true;
+
         protected AudioSource _audioSource;
         protected AnimatorController _animatorController;
 
@@ -26,12 +28,14 @@ namespace OfficeBreak.Characters.FightingSystem
 
         protected float Damage => _damage;
         protected float AttackForce => _attackForce;
-        protected bool IsAbleToAttackLeftHand { get; set; }
-        protected bool IsAbleToAttackRightHand { get; set; }
+        public bool IsAbleToAttack 
+        {
+            get => _isAbleToAttack && !IsBlocking;
+            protected set => _isAbleToAttack = value;
+        }
 
         public abstract bool IsBlocking { get; protected set; }
         public HitData.AttackDirections BlockDirection { get; protected set; }
-        public bool IsAbleToAttack => IsAbleToAttackLeftHand && IsAbleToAttackRightHand && !IsBlocking;
         public float AttackRange => _attackRange;
 
         #region MONO
@@ -47,34 +51,14 @@ namespace OfficeBreak.Characters.FightingSystem
 
             _sfxPlayer = new SFXPlayer(_audioSource);
             _sfxPlayer.AddClips(nameof(_attackSFX), _attackSFX);
-
-            IsAbleToAttackLeftHand = true;
-            IsAbleToAttackRightHand = true;
         }
 
-        protected void OnLeftAttackCooldownEnd()
+        protected void OnAttackAnimationEnd()
         {
-            IsAbleToAttackRightHand = true;
-            IsAbleToAttackLeftHand = true;
-            _animatorController.AttackAnimationEnded -= OnLeftAttackCooldownEnd;
-            FistAttack();
-        }
-
-        protected void OnRightAttackCooldownEnd()
-        {
-            IsAbleToAttackRightHand = true;
-            IsAbleToAttackLeftHand = true;
-            _animatorController.AttackAnimationEnded -= OnRightAttackCooldownEnd;
-            FistAttack();
+            IsAbleToAttack = true;
+            _animatorController.AttackAnimationEnded -= OnAttackAnimationEnd;
         }
 
         protected void PlayAttackSFX() => _sfxPlayer.Play(nameof(_attackSFX));
-
-        protected abstract void PrimaryAttack();
-
-        protected abstract void AlternativeAttack();
-
-        protected abstract void FistAttack();
-
     }
 }

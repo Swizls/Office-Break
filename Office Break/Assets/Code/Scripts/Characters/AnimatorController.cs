@@ -20,6 +20,9 @@ namespace OfficeBreak.Characters.Animations
 
         private const string MOVE_X = "moveX";
         private const string MOVE_Y = "moveY";
+
+        private const int ARMS_LAYER = 1;
+
         private float ANIMATION_CHANGE_SPEED = 0.1f;
 
         private Animator _animator;
@@ -58,6 +61,12 @@ namespace OfficeBreak.Characters.Animations
         }
 
         #endregion
+
+        public void PlayAnimation(AnimationClip animationClip)
+        {
+            int animationHash = Animator.StringToHash("Arms." + animationClip.name);
+            _animator.Play(animationHash, ARMS_LAYER, 0);
+        }
 
         private void SetIsRunningBool() => _animator.SetBool(IS_RUNNING, _movable.IsRunning);
 
