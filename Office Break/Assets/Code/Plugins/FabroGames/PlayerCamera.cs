@@ -4,8 +4,9 @@ namespace FabroGames.PlayerControlls
 {
     public class PlayerCamera : MonoBehaviour
     {
+        private const string MOUSE_SENSIVITY_KEY = "mouseSensivity";
+
         [SerializeField][Range(0f, 120f)] private float _maxYAngle;
-        [SerializeField] private float _sensivity;
         [SerializeField] private Transform _cameraAnchor;
 
         private PlayerInputActions _playerInputActions;
@@ -45,10 +46,8 @@ namespace FabroGames.PlayerControlls
 
             Vector2 mouseInput = _playerInputActions.Player.Look.ReadValue<Vector2>();
 
-            float mouseSensivity = _sensivity;
-
-            float mouseX = mouseInput.x * mouseSensivity * Time.deltaTime;
-            float mouseY = mouseInput.y * mouseSensivity * Time.deltaTime;
+            float mouseX = mouseInput.x * PlayerPrefs.GetFloat(MOUSE_SENSIVITY_KEY) * Time.deltaTime;
+            float mouseY = mouseInput.y * PlayerPrefs.GetFloat(MOUSE_SENSIVITY_KEY) * Time.deltaTime;
 
             _currentRotation.x += mouseX;
             _currentRotation.y -= mouseY;

@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 283064313790373299}
   - component: {fileID: 7083854012070455955}
   m_Layer: 5
-  m_Name: Destructable Health(Canvas)
+  m_Name: Canvas (Destructable Health)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
