@@ -1,3 +1,4 @@
+using FabroGames.PlayerControlls;
 using OfficeBreak.Characters;
 using OfficeBreak.Characters.Enemies.AI;
 using OfficeBreak.Core.GameManagment;
@@ -48,7 +49,8 @@ namespace OfficeBreak.Core
 
             //UI - references
             DestructableHealthUI destructableHealthUI = Instantiate(_destructableHealthUIPrefab);
-            Instantiate(_canvasPrefab);
+            Canvas canvas = Instantiate(_canvasPrefab);
+            UIManager uIManager = canvas.GetComponent<UIManager>();
 
             //Systems - init
             tracker.Initialzie();
@@ -61,6 +63,7 @@ namespace OfficeBreak.Core
 
             //UI - init
             destructableHealthUI.Initialize(tracker.Destructables, player.transform);
+            uIManager.Initialize(player.GetComponentInChildren<PlayerCamera>(), player.GetComponent<RigidbodyMovement>());
 
             player.gameObject.AddComponent<Healer>();
             GameManager.Instance.StartGame();

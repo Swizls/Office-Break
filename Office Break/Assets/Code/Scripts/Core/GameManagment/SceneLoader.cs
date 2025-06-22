@@ -22,7 +22,7 @@ namespace OfficeBreak.Core
 
         public void RestartLevel() => LoadScene(_currentLevelIndex);
 
-        public void LoadMainMenu()
+        public static void LoadMainMenu()
         {
             _currentLevelIndex = MAIN_MENU_BUILD_INDEX;
             LoadScene();
@@ -52,7 +52,7 @@ namespace OfficeBreak.Core
             SceneChanged?.Invoke();
         }
 
-        private async void LoadScene()
+        private static async void LoadScene()
         {
             await SceneManager.LoadSceneAsync(_currentLevelIndex);
             SceneChanged?.Invoke();
