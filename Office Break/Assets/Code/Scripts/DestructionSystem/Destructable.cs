@@ -87,7 +87,7 @@ namespace OfficeBreak.DestructionSystem
             _fracturedVersion.transform.position = _model.transform.position;
             _fracturedVersion.transform.rotation = _model.transform.rotation;
             _fracturedVersion.SetActive(true);
-            _fracturedPiecesRigibody.ForEach(piece => piece.AddExplosionForce(_explosionForce, _fracturedVersion.transform.position, 1f, 1f, ForceMode.Force));
+            _fracturedPiecesRigibody.ForEach(piece => piece.AddExplosionForce(_explosionForce, _fracturedVersion.transform.position, 1f, 0, ForceMode.Force));
         }
 
         public void TakeHit(HitData hitData)
