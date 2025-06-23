@@ -395,7 +395,7 @@ MonoBehaviour:
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
-  m_StopNaN: 0
+  m_StopNaN: 1
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
@@ -426,7 +426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxYAngle: 85
-  _sensivity: 10
   _cameraAnchor: {fileID: 7299626070117839274}
 --- !u!114 &2749579365838505987
 MonoBehaviour:

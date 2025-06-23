@@ -1,0 +1,19 @@
+{
+    "name": "OfficeBreak.Characters.FightingSystem.Editor",
+    "rootNamespace": "OfficeBreak.Characters.FightingSystem.Editor",
+    "references": [
+        "GUID:e15d28443409ee54099493d7423c3d18",
+        "GUID:8b243a8a290ea264b80e523d0362c299"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
