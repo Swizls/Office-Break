@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: bb150748605f2ef49a3472a94e5495cd, type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: cb5f016c05188e545ad5aed49a6a2166, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 924b54d863cb4b84f8d2a603859dfe6c, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1446,6 +1446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1957692099}
     m_Modifications:
+    - target: {fileID: 3238123998028431983, guid: e9b08a9384c07594e8fb6a93035efc80, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5667495934704426361, guid: 7015c4d9afcc2f44b874b45013992d3b, type: 2}
     - target: {fileID: 4370128368359483934, guid: e9b08a9384c07594e8fb6a93035efc80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -2153,6 +2157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_AirVent_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1497425812408240, guid: ecc85f2b380cfe34294d1b47c52542de, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4677559445909376, guid: ecc85f2b380cfe34294d1b47c52542de, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.70593596
@@ -2473,11 +2481,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1728318128880078, guid: b3354394c43a0be47b1a90c0fb64f045, type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 1377386802}
-    - targetCorrespondingSourceObject: {fileID: 1728318128880078, guid: b3354394c43a0be47b1a90c0fb64f045, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1377386808}
   m_SourcePrefab: {fileID: 100100000, guid: b3354394c43a0be47b1a90c0fb64f045, type: 3}
 --- !u!4 &827645818 stripped
 Transform:
@@ -3762,6 +3767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Printer
       objectReference: {fileID: 0}
+    - target: {fileID: 280018189899148647, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5667495934704426361, guid: 7015c4d9afcc2f44b874b45013992d3b, type: 2}
     - target: {fileID: 316587435808541911, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
       propertyPath: _health._health
       value: 30
@@ -3972,6 +3981,10 @@ PrefabInstance:
     - target: {fileID: 1429434539843762, guid: 7ac38c1fd2cd8b84aae18f844ebd7084, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Poster_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429434539843762, guid: 7ac38c1fd2cd8b84aae18f844ebd7084, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4847034035949700, guid: 7ac38c1fd2cd8b84aae18f844ebd7084, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4597,24 +4610,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1377386808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377386797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfdb5f15efe68ee42925ef3a9a96084f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health:
-    _initialHealth: 35
-  _model: {fileID: 1377386797}
-  _explosionForce: 10
-  _hitSFXes: []
-  _destroySFX: {fileID: 8300000, guid: ed7474f79dfcb5144a303439be4232dc, type: 3}
 --- !u!4 &1377386809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4671007105022552, guid: b3354394c43a0be47b1a90c0fb64f045, type: 3}
@@ -6188,7 +6183,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1911445299336768, guid: 830cb1fbbcb273c4f804922226ab2712, type: 3}
-      insertIndex: -1
+      insertIndex: 6
       addedObject: {fileID: 1001138817}
   m_SourcePrefab: {fileID: 100100000, guid: 830cb1fbbcb273c4f804922226ab2712, type: 3}
 --- !u!1001 &2025174397
@@ -6999,7 +6994,7 @@ PrefabInstance:
       objectReference: {fileID: 950852615}
     - target: {fileID: 7643831824191618359, guid: 81e43a289f3474045b16d0544140fd07, type: 3}
       propertyPath: m_VersionIndex
-      value: 5616
+      value: 5622
       objectReference: {fileID: 0}
     - target: {fileID: 7643831824191618359, guid: 81e43a289f3474045b16d0544140fd07, type: 3}
       propertyPath: m_Faces.Array.size
