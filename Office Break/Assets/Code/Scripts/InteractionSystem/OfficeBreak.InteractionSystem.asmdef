@@ -1,0 +1,19 @@
+{
+    "name": "OfficeBreak.InteractionSystem",
+    "rootNamespace": "OfficeBreak.InteractionSystem",
+    "references": [
+        "GUID:8b243a8a290ea264b80e523d0362c299",
+        "GUID:65e65472ee5be574e8028a2a9d629922",
+        "GUID:6485187461948144a89afee54252dbcc",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

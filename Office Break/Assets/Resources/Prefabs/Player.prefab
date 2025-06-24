@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 5768137927320068379}
   - component: {fileID: 6427787858174111423}
   - component: {fileID: 1095412098562032276}
+  - component: {fileID: 8754975405130523351}
+  - component: {fileID: 6824129678617994233}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -273,6 +275,36 @@ MonoBehaviour:
   _walkingSpeed: 250
   _spritingMultiplier: 2
   _jumpForce: 8
+--- !u!114 &8754975405130523351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcc94a8a24f45f4c9e0460f35bc49b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holdingPoint: {fileID: 8617984410795112828}
+  _throwForce: 500
+--- !u!114 &6824129678617994233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7710f057309ccb44d93dd9778293a6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionDistance: 2
+  _interactionMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &3616842772658577407
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1020,7 @@ Transform:
   - {fileID: 8684930802943892126}
   - {fileID: 8685074899417888318}
   - {fileID: 4355057010708108700}
+  - {fileID: 8617984410795112828}
   m_Father: {fileID: 5250567902686570296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &758490816160319738
@@ -4079,6 +4112,37 @@ Transform:
   m_Children:
   - {fileID: 8684999308995646816}
   m_Father: {fileID: 8690163033306977898}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8810558966715791514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8617984410795112828}
+  m_Layer: 3
+  m_Name: HoldingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8617984410795112828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810558966715791514}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3627259493258727459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9052611958897516862
 GameObject:

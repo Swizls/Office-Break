@@ -56,8 +56,6 @@ namespace OfficeBreak.Characters.FightingSystem
             if (_lastPressedAction == null)
                 return;
 
-            Debug.Log("Performing Attack Action");
-
             _lastPressedAction.PerformAction();
             IsAbleToAttack = false;
             _lastPressedAction = null;

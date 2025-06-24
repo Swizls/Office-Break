@@ -10,7 +10,6 @@ namespace OfficeBreak.Characters.Animations
 
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Entering Attack Animations");
             _animatorController = animator.GetComponent<AnimatorController>();
         }
 
