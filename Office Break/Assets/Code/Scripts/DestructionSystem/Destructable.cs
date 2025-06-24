@@ -13,6 +13,7 @@ namespace OfficeBreak.DestructionSystem
         [SerializeField] private Health _health;
         [SerializeField] private GameObject _model;
         [SerializeField] private float _explosionForce = 10f;
+        [SerializeField] private DestructableDamageEffect _destructableDamageEffect;
         [Space]
         [Header("Audio")]
         [SerializeField] private AudioClip[] _hitSFXes;
@@ -45,6 +46,8 @@ namespace OfficeBreak.DestructionSystem
             _modelRigidbody = _model.GetComponent<Rigidbody>();
             _modelMeshRenderer = _model.GetComponent<MeshRenderer>();
             _modelColliders = _model.GetComponents<Collider>();
+
+            _destructableDamageEffect.Initialize(this, _modelMeshRenderer);
         }
 
         public void Initialize()
@@ -62,6 +65,8 @@ namespace OfficeBreak.DestructionSystem
         private void OnEnable() => _health.Died += OnObjectDestroy;
 
         private void OnDisable() => _health.Died -= OnObjectDestroy;
+
+        private void OnDestroy() => _destructableDamageEffect.Dispose();
 
         private void OnObjectDestroy()
         {

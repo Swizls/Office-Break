@@ -33,12 +33,8 @@ namespace OfficeBreak.DestructionSystem
         }
         private static void ClearComponents(GameObject obj)
         {
-            DamageEffect damageEffect = obj.GetComponent<DamageEffect>();
             Destructable destructable = obj.GetComponent<Destructable>();
             Collider[] colliders = obj.GetComponents<Collider>();
-
-            if (damageEffect != null)
-                UnityEngine.Object.Destroy(damageEffect);
 
             if (destructable != null)
                 UnityEngine.Object.Destroy(destructable);

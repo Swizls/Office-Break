@@ -1043,7 +1043,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._damageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b0811cb9e0b4ebf4b8f8f718aae73c00, type: 2}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].time
+      value: 0.05454141
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[2].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].value
+      value: 0.9966675
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].inSlope
+      value: -0.20673323
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].outSlope
+      value: -0.20673323
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937488589443576580, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3905746877028476976, guid: ed920321bd39e894b9ef27772704ce47, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4131,6 +4176,50 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._damageMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b0811cb9e0b4ebf4b8f8f718aae73c00, type: 2}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].time
+      value: 0.05454141
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[2].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].value
+      value: 0.9966675
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].inSlope
+      value: -0.20673323
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].outSlope
+      value: -0.20673323
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869263349330965767, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
+      propertyPath: _destructableDamageEffect._curve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
     - target: {fileID: 8373844672229289540, guid: 400cf4fdd644c7a47b28216b83a3a484, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.50000143
@@ -4532,7 +4621,8 @@ PrefabInstance:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1877439872375473713, guid: 0a29a6c2fa3f00d4588b183f328bccfe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
