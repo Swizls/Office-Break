@@ -1,7 +1,9 @@
 {
     "name": "OfficeBreak.InteractionSystem",
     "rootNamespace": "OfficeBreak.InteractionSystem",
-    "references": [],
+    "references": [
+        "GUID:8b243a8a290ea264b80e523d0362c299"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

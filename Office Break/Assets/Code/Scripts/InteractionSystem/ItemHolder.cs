@@ -6,6 +6,7 @@ namespace OfficeBreak.InteractionSystem
 {
     public class ItemHolder : MonoBehaviour
     {
+        private const float ITEM_PICKUP_SPEED = 0.1f;
         [SerializeField] private Transform _holdingPoint;
         [SerializeField] private float _throwForce;
 
@@ -54,8 +55,7 @@ namespace OfficeBreak.InteractionSystem
             _currentHoldingItem.transform.parent = null;
 
             Vector3 force = _cameraTransform.forward * _throwForce;
-
-            _currentHoldingItem.Rigidbody.AddForce(force, ForceMode.Impulse);
+            _currentHoldingItem.Throw(force);
 
             _currentHoldingItem = null;
 
@@ -66,7 +66,7 @@ namespace OfficeBreak.InteractionSystem
         {
             while (_currentHoldingItem != null)
             {
-                _currentHoldingItem.transform.localPosition = Vector3.MoveTowards(_currentHoldingItem.transform.localPosition, Vector3.zero, 0.05f);
+                _currentHoldingItem.transform.localPosition = Vector3.MoveTowards(_currentHoldingItem.transform.localPosition, Vector3.zero, ITEM_PICKUP_SPEED);
                 _currentHoldingItem.transform.localRotation = Quaternion.Lerp(_currentHoldingItem.transform.localRotation, Quaternion.identity, 0.1f);
                 yield return null;
             }

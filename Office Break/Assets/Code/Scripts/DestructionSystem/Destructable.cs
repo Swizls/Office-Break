@@ -92,6 +92,9 @@ namespace OfficeBreak.DestructionSystem
 
         public void TakeHit(HitData hitData)
         {
+            if (_health.IsDead)
+                return;
+
             _modelRigidbody.isKinematic = false;
             _health.TakeDamage(hitData.Damage);
             _modelRigidbody.AddForce(hitData.HitDirection * hitData.AttackForce);

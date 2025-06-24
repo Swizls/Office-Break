@@ -719,7 +719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 777259241641856013}
   - component: {fileID: 806004902428220487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Chr_Cleaner_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
