@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1095412098562032276}
   - component: {fileID: 8754975405130523351}
   - component: {fileID: 6824129678617994233}
+  - component: {fileID: 1344556559655593868}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -288,8 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holdingPoint: {fileID: 8617984410795112828}
-  _throwForce: 500
-  _forceMode: 0
+  _throwForce: 50
 --- !u!114 &6824129678617994233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +306,18 @@ MonoBehaviour:
   _interactionMask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &1344556559655593868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993656833896514960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b126ce5d5f410f24a9a69c5b72c283e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3616842772658577407
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,6 @@
-using FabroGames.PlayerControlls;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace OfficeBreak.InteractionSystem
 {
@@ -14,33 +12,18 @@ namespace OfficeBreak.InteractionSystem
         private Item _currentHoldingItem;
         private Transform _cameraTransform;
 
-        private PlayerInputActions _inputActions;
-
         public event Action ItemPickedUp;
         public event Action ItemDropped;
 
-        private void OnEnable()
-        {
-            _inputActions = new PlayerInputActions();
+        public bool IsCarringItem => _currentHoldingItem != null;
 
-            _inputActions.Player.Enable();
-            _inputActions.Player.Drop.performed += OnDropKeyPress;
-        }
-
-        private void OnDisable()
-        {
-            _inputActions.Player.Disable();
-            _inputActions.Player.Drop.performed -= OnDropKeyPress;
-        }
+        #region MONO
 
         private void Start() => _cameraTransform = Camera.main.transform;
 
         private void OnDrawGizmos() => Gizmos.DrawSphere(_holdingPoint.position, 0.2f);
 
-        private void OnDropKeyPress(InputAction.CallbackContext context)
-        {
-            Drop();
-        }
+        #endregion MONO
 
         public void Pickup(Item item)
         {
@@ -75,6 +58,8 @@ namespace OfficeBreak.InteractionSystem
             _currentHoldingItem.Rigidbody.AddForce(force, ForceMode.Impulse);
 
             _currentHoldingItem = null;
+
+            ItemDropped?.Invoke();
         }
 
         private IEnumerator MoveItemToHoldingPoint()
