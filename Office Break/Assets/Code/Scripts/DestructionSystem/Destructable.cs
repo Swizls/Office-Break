@@ -29,7 +29,7 @@ namespace OfficeBreak.DestructionSystem
         private List<Rigidbody> _fracturedPiecesRigibody;
 
         public event Action Destroyed;
-        public event Action<IHitable> GotHit;
+        public event Action<HitData> GotHit;
 
         public Transform ModelTransform => _model.transform;
         public Health Health => _health;
@@ -107,7 +107,7 @@ namespace OfficeBreak.DestructionSystem
             if(!_health.IsDead)
             {
                 _sfxPlayer.Play(nameof(_hitSFXes));
-                GotHit?.Invoke(this);
+                GotHit?.Invoke(hitData);
             }
         }
     }

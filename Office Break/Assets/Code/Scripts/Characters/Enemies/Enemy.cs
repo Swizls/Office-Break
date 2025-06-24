@@ -17,7 +17,7 @@ namespace OfficeBreak.Characters.Enemies
         private EnemyAttackController _attackController;
         private SFXPlayer _sfxPlayer;
 
-        public event Action<IHitable> GotHit;
+        public event Action<HitData> GotHit;
 
         public Health Health => _health;
         public EnemyBehaviourController BehaviourController { get; private set; }
@@ -47,7 +47,7 @@ namespace OfficeBreak.Characters.Enemies
         {
             _health.TakeDamage(hitData.Damage);
             _sfxPlayer.Play(nameof(_hitSFX));
-            GotHit?.Invoke(this);
+            GotHit?.Invoke(hitData);
         }
     }
 }

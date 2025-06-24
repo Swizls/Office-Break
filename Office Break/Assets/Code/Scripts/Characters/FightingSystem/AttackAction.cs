@@ -19,7 +19,9 @@ namespace OfficeBreak.Characters.FightingSystem
         [SerializeField] protected AnimationClip AnimationClip;
         [SerializeField] protected LayerMask HitablesLayer;
 
-        public abstract void Initialize(GameObject palyer);
+        protected GameObject Player { get; private set; }
+
+        public virtual void Initialize(GameObject palyer) => Player = palyer;
 
         public bool IsRequiredKeysPressed()
         {

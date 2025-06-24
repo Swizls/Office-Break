@@ -1,8 +1,6 @@
 ﻿using OfficeBreak.Characters.Animations;
 using OfficeBreak.Core;
-using System;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace OfficeBreak.Characters.FightingSystem
 {
@@ -17,6 +15,8 @@ namespace OfficeBreak.Characters.FightingSystem
 
         public override void Initialize(GameObject player)
         {
+            base.Initialize(player);
+
             _cameraTransform = Camera.main.transform;
             _animatorController = player.GetComponentInChildren<AnimatorController>();
         }
@@ -44,6 +44,8 @@ namespace OfficeBreak.Characters.FightingSystem
 
             HitData data = new HitData
             {
+                Sender = Player,
+                Target = target,
                 Damage = AttackDamage,
                 HitDirection = _cameraTransform.forward,
                 AttackForce = AttackForce

@@ -59,11 +59,11 @@ namespace OfficeBreak.DestructionSystem.UI
             Gizmos.DrawSphere(CalculatePointBetweenObjectAndPlayer(_currentDestructableObject.transform.position), 0.5f);
         }
 
-        private void OnHit(IHitable destructableObject)
+        private void OnHit(HitData hitData)
         {
             gameObject.SetActive(true);
 
-            Destructable destructable = destructableObject as Destructable;
+            Destructable destructable = hitData.Target as Destructable;
 
             if (destructable != _currentDestructableObject)
             {

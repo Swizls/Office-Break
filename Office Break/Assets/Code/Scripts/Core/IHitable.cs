@@ -5,7 +5,7 @@ namespace OfficeBreak.Core
 {
     public interface IHitable
     {
-        public event Action<IHitable> GotHit;
+        public event Action<HitData> GotHit;
         public void TakeHit(HitData hitData);
     }
 
@@ -18,6 +18,8 @@ namespace OfficeBreak.Core
             Center
         }
 
+        public GameObject Sender;
+        public IHitable Target;
         public float Damage;
         public Vector3 HitDirection;
         public AttackDirections AttackDirection;

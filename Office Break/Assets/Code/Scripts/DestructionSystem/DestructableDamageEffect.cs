@@ -28,7 +28,7 @@ namespace OfficeBreak.DestructionSystem
 
         public void Dispose() => _target.GotHit -= StartAnimation;
 
-        private void StartAnimation(IHitable hitable)
+        private void StartAnimation(HitData hitData)
         {
             if(_damageAnimation == null)
                 _damageAnimation = _target.StartCoroutine(PlayDamageAnimation());

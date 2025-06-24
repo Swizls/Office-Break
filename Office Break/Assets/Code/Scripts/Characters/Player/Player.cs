@@ -16,7 +16,7 @@ namespace OfficeBreak.Characters
         private Transform _cameraTransform;
         private SFXPlayer _sfxPlayer;
 
-        public event Action<IHitable> GotHit;
+        public event Action<HitData> GotHit;
 
         public Health Health => _health;
 
@@ -42,7 +42,7 @@ namespace OfficeBreak.Characters
             _shaker.StartShake();
             _sfxPlayer.Play(nameof(_hitSFX));
 
-            GotHit?.Invoke(this);
+            GotHit?.Invoke(hitData);
         }
     }
 }
