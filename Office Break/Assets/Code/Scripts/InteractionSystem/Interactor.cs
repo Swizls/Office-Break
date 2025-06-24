@@ -7,6 +7,8 @@ namespace OfficeBreak.InteractionSystem
 {
     public class Interactor : MonoBehaviour
     {
+        private const float RAYCAST_SPHERE_RADIUS = 0.5f;
+
         [SerializeField] private float _interactionDistance = 2f;
         [SerializeField] private LayerMask _interactionMask;
         [SerializeField] private Material _outlineMaterial;
@@ -22,7 +24,7 @@ namespace OfficeBreak.InteractionSystem
 
         public void Interact()
         {
-            Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance);
+            Physics.SphereCast(_cameraTransform.position, RAYCAST_SPHERE_RADIUS, _cameraTransform.forward, out RaycastHit hit, _interactionDistance);
 
             if (hit.collider == null)
                 return;
@@ -35,7 +37,7 @@ namespace OfficeBreak.InteractionSystem
 
         private void HighlighteInteractable()
         {
-            Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance);
+            Physics.SphereCast(_cameraTransform.position, RAYCAST_SPHERE_RADIUS, _cameraTransform.forward, out RaycastHit hit, _interactionDistance);
 
             if(hit.collider == null || !IsInteractable())
             {

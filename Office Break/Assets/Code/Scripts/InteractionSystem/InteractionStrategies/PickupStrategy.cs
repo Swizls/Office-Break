@@ -11,10 +11,6 @@ namespace OfficeBreak.InteractionSystem
             _item = item;
         }
 
-        public override void Execute()
-        {
-            Debug.Log("Executing pickup strategy");
-            Interactor.GetComponent<ItemHolder>().Pickup(_item);
-        }
+        public override void Execute() => Interactor.GetComponent<ItemHolder>().Pickup(_item);
     }
 }
