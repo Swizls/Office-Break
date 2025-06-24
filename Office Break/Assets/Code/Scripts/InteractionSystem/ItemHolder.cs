@@ -24,6 +24,12 @@ namespace OfficeBreak.InteractionSystem
 
         private void OnDrawGizmos() => Gizmos.DrawSphere(_holdingPoint.position, 0.2f);
 
+        private void OnDisable()
+        {
+            if (_currentHoldingItem != null)
+                Drop();
+        }
+
         #endregion MONO
 
         public void Pickup(Item item)
