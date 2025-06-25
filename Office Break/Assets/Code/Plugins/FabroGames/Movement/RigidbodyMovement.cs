@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 namespace FabroGames.PlayerControlls
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class RigidbodyMovement : MonoBehaviour,  IMovable
+    public class RigidbodyMovement : MonoBehaviour, IMovable
     {
         private const float GROUND_DETECTION_DISTANCE = 1.2f;
 
@@ -80,13 +80,6 @@ namespace FabroGames.PlayerControlls
 
         private void Move()
         {
-            //if (_inputDirection == Vector3.zero)
-            //{
-            //    float yVelocty = IsGrounded ? 0 : _rigidbody.linearVelocity.y;
-            //    _rigidbody.linearVelocity = new Vector3(0, yVelocty, 0);
-            //    return;
-            //}
-
             float speed = IsRunning ? _walkingSpeed * _spritingMultiplier : _walkingSpeed;
             Vector3 movementForce = _inputDirection * speed * Time.deltaTime;
             movementForce.y = _rigidbody.linearVelocity.y;
@@ -99,8 +92,8 @@ namespace FabroGames.PlayerControlls
             if (!IsGrounded)
                 return;
 
-            Vector3 jumpForce = Vector3.up * _jumpForce;
-            _rigidbody.AddForce(jumpForce, ForceMode.Impulse);
+            Vector3 jumpForce = _rigidbody.linearVelocity + (Vector3.up * _jumpForce);
+            _rigidbody.linearVelocity = jumpForce;
         }
 
         private Vector3 AdjustVelocityToSlope(Vector3 velocity)
@@ -111,6 +104,7 @@ namespace FabroGames.PlayerControlls
                 return velocity;
 
             Vector3 projectedVector = Vector3.ProjectOnPlane(velocity, hitInfo.normal);
+            projectedVector.y = _rigidbody.linearVelocity.y;
 
             return projectedVector;
         }
