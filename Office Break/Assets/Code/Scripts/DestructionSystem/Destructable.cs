@@ -37,25 +37,25 @@ namespace OfficeBreak.DestructionSystem
 
         private void Awake()
         {
-            _health.Initialize();
-            _audioSource = GetComponent<AudioSource>();
-
             if (_model == null)
                 _model = gameObject;
+
+            _health.Initialize();
+            _audioSource = GetComponent<AudioSource>();
 
             _modelRigidbody = _model.GetComponent<Rigidbody>();
             _modelMeshRenderer = _model.GetComponent<MeshRenderer>();
             _modelColliders = _model.GetComponents<Collider>();
 
             _destructableDamageEffect.Initialize(this, _modelMeshRenderer);
+
+            _sfxPlayer = new SFXPlayer(_audioSource);
+            _sfxPlayer.AddClip(nameof(_destroySFX), _destroySFX);
+            _sfxPlayer.AddClips(nameof(_hitSFXes), _hitSFXes);
         }
 
         public void Initialize()
         {
-            _sfxPlayer = new SFXPlayer(_audioSource);
-            _sfxPlayer.AddClip(nameof(_destroySFX), _destroySFX);
-            _sfxPlayer.AddClips(nameof(_hitSFXes), _hitSFXes);
-
             _fracturedVersion = FractureHandler.Fracture(_model);
             _fracturedVersion.transform.parent = transform;
             _fracturedPiecesRigibody = _fracturedVersion.GetComponentsInChildren<Rigidbody>().ToList();

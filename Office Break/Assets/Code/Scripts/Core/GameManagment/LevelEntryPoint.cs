@@ -12,6 +12,8 @@ namespace OfficeBreak.Core
 {
     public class LevelEntryPoint : MonoBehaviour
     {
+        private const string PATH_TO_GAME_MANAGER_PREFAB = "Prefabs/Systems/GameManager";
+
         [Header("Prefabs")]
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private Transform _playerSpawnerTransform;
@@ -25,12 +27,10 @@ namespace OfficeBreak.Core
         private void Awake()
         {
             if (GameManager.Instance == null)
-                SceneLoader.LoadScene(SceneLoader.MAIN_MENU_BUILD_INDEX);
-
-            SceneLoader.SceneChanged += Initialize;
+                Instantiate(Resources.Load<GameManager>(PATH_TO_GAME_MANAGER_PREFAB));
         }
 
-        private void OnDestroy() => SceneLoader.SceneChanged -= Initialize;
+        private void Start() => Initialize();
 
         private void OnValidate()
         {
